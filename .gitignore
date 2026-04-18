@@ -1,0 +1,25 @@
+# Android/Gradle build outputs
+.gradle/
+build/
+**/build/
+
+# Local SDK config
+local.properties
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python backend artifacts
+backend/.venv/
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+.env
+
+
