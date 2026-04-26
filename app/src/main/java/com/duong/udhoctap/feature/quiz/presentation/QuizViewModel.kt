@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.duong.udhoctap.core.data.repository.FlashcardRepository
 import com.duong.udhoctap.core.data.repository.ReviewRepository
+import com.duong.udhoctap.core.database.entity.FlashcardEntity
 import com.duong.udhoctap.core.database.entity.ReviewLogEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,6 +13,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+enum class QuizPhase { LOADING, PLAYING, COMPLETE }
+
 
 data class QuizQuestion(
     val flashcardId: Long,
@@ -21,13 +25,14 @@ data class QuizQuestion(
 )
 
 data class QuizUiState(
+    val phase: QuizPhase = QuizPhase.LOADING,
+    val totalAvailableCards: Int = 0,
     val questions: List<QuizQuestion> = emptyList(),
     val currentIndex: Int = 0,
     val totalQuestions: Int = 0,
     val correctCount: Int = 0,
     val selectedAnswer: Int? = null,
-    val hasAnswered: Boolean = false,
-    val isComplete: Boolean = false
+    val hasAnswered: Boolean = false
 )
 
 @HiltViewModel
@@ -43,50 +48,54 @@ class QuizViewModel @Inject constructor(
     val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
 
     init {
-        generateQuiz()
+        startQuizImmediately()
     }
 
-    private fun generateQuiz() {
+    private fun startQuizImmediately() {
         viewModelScope.launch {
-            val cards = flashcardRepository.getAllCardsForQuiz(deckId)
-            if (cards.size < 4) {
-                _uiState.value = QuizUiState() // Not enough cards
+            val allCards = flashcardRepository.getAllCardsForQuiz(deckId)
+            _uiState.value = _uiState.value.copy(
+                totalAvailableCards = allCards.size
+            )
+            if (allCards.size < 4) {
+                _uiState.value = _uiState.value.copy(phase = QuizPhase.PLAYING)
                 return@launch
             }
-
-            val questions = cards.shuffled().take(10).map { card ->
-                // Generate wrong answers from other cards
-                val wrongAnswers = cards
+            val questions = allCards.shuffled().map { card ->
+                val wrongAnswers = allCards
                     .filter { it.id != card.id }
                     .shuffled()
                     .take(3)
                     .map { it.back }
-
                 val allOptions = (wrongAnswers + card.back).shuffled()
-                val correctIndex = allOptions.indexOf(card.back)
-
                 QuizQuestion(
                     flashcardId = card.id,
                     questionText = card.front,
                     options = allOptions,
-                    correctIndex = correctIndex
+                    correctIndex = allOptions.indexOf(card.back)
                 )
             }
-
-            _uiState.value = QuizUiState(
+            _uiState.value = _uiState.value.copy(
+                phase = QuizPhase.PLAYING,
                 questions = questions,
-                totalQuestions = questions.size
+                currentIndex = 0,
+                totalQuestions = questions.size,
+                correctCount = 0,
+                selectedAnswer = null,
+                hasAnswered = false
             )
         }
+    }
+
+    fun restartQuizFull() {
+        _uiState.value = QuizUiState()
+        startQuizImmediately()
     }
 
     fun selectAnswer(index: Int) {
         val state = _uiState.value
         if (state.hasAnswered) return
-
         val isCorrect = index == state.questions[state.currentIndex].correctIndex
-
-        // Log review
         viewModelScope.launch {
             reviewRepository.insertReviewLog(
                 ReviewLogEntity(
@@ -95,7 +104,6 @@ class QuizViewModel @Inject constructor(
                 )
             )
         }
-
         _uiState.value = state.copy(
             selectedAnswer = index,
             hasAnswered = true,
@@ -107,7 +115,7 @@ class QuizViewModel @Inject constructor(
         val state = _uiState.value
         val nextIndex = state.currentIndex + 1
         if (nextIndex >= state.totalQuestions) {
-            _uiState.value = state.copy(isComplete = true)
+            _uiState.value = state.copy(phase = QuizPhase.COMPLETE)
         } else {
             _uiState.value = state.copy(
                 currentIndex = nextIndex,
@@ -116,4 +124,5 @@ class QuizViewModel @Inject constructor(
             )
         }
     }
+
 }

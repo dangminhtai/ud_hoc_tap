@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,10 +28,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.duong.udhoctap.feature.deck.presentation.AddEditFlashcardScreen
 import com.duong.udhoctap.feature.deck.presentation.DeckDetailScreen
+import com.duong.udhoctap.feature.draft.presentation.DraftReviewScreen
 import com.duong.udhoctap.feature.home.presentation.HomeScreen
 import com.duong.udhoctap.feature.quiz.presentation.QuizScreen
 import com.duong.udhoctap.feature.review.presentation.ReviewScreen
+import com.duong.udhoctap.feature.settings.presentation.SettingsScreen
 import com.duong.udhoctap.feature.stats.presentation.StatsScreen
+import com.duong.udhoctap.feature.weakspot.presentation.WeakSpotScreen
 
 sealed class Screen(val route: String) {
     data object Home : Screen("home")
@@ -47,6 +52,11 @@ sealed class Screen(val route: String) {
     data object Quiz : Screen("quiz/{deckId}") {
         fun createRoute(deckId: Long) = "quiz/$deckId"
     }
+    data object DraftReview : Screen("deck/{deckId}/drafts") {
+        fun createRoute(deckId: Long) = "deck/$deckId/drafts"
+    }
+    data object Settings : Screen("settings")
+    data object WeakSpot : Screen("weakspot")
 }
 
 data class BottomNavItem(
@@ -58,17 +68,21 @@ data class BottomNavItem(
 
 val bottomNavItems = listOf(
     BottomNavItem(Screen.Home, "Trang chủ", Icons.Filled.Home, Icons.Outlined.Home),
-    BottomNavItem(Screen.Stats, "Thống kê", Icons.Filled.BarChart, Icons.Outlined.BarChart)
+    BottomNavItem(Screen.Stats, "Thống kê", Icons.Filled.BarChart, Icons.Outlined.BarChart),
+    BottomNavItem(Screen.Settings, "Cài đặt", Icons.Filled.Settings, Icons.Outlined.Settings)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppNavigation() {
+fun AppNavigation(
+    darkTheme: Boolean = false,
+    onThemeChanged: (Boolean) -> Unit = {}
+) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    val showBottomBar = currentDestination?.route in listOf(Screen.Home.route, Screen.Stats.route)
+    val showBottomBar = currentDestination?.route in listOf(Screen.Home.route, Screen.Stats.route, Screen.Settings.route)
 
     Scaffold(
         bottomBar = {
@@ -140,7 +154,16 @@ fun AppNavigation() {
             }
 
             composable(Screen.Stats.route) {
-                StatsScreen()
+                StatsScreen(
+                    onNavigateToWeakSpot = { navController.navigate(Screen.WeakSpot.route) }
+                )
+            }
+
+            composable(Screen.Settings.route) {
+                SettingsScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onThemeChanged = onThemeChanged
+                )
             }
 
             composable(
@@ -160,8 +183,18 @@ fun AppNavigation() {
                     },
                     onStartQuiz = { deckId ->
                         navController.navigate(Screen.Quiz.createRoute(deckId))
+                    },
+                    onReviewDrafts = { deckId ->
+                        navController.navigate(Screen.DraftReview.createRoute(deckId))
                     }
                 )
+            }
+
+            composable(
+                route = Screen.DraftReview.route,
+                arguments = listOf(navArgument("deckId") { type = NavType.LongType })
+            ) {
+                DraftReviewScreen(onNavigateBack = { navController.popBackStack() })
             }
 
             composable(
@@ -174,27 +207,25 @@ fun AppNavigation() {
                     }
                 )
             ) {
-                AddEditFlashcardScreen(
-                    onNavigateBack = { navController.popBackStack() }
-                )
+                AddEditFlashcardScreen(onNavigateBack = { navController.popBackStack() })
             }
 
             composable(
                 route = Screen.Review.route,
                 arguments = listOf(navArgument("deckId") { type = NavType.LongType })
             ) {
-                ReviewScreen(
-                    onNavigateBack = { navController.popBackStack() }
-                )
+                ReviewScreen(onNavigateBack = { navController.popBackStack() })
             }
 
             composable(
                 route = Screen.Quiz.route,
                 arguments = listOf(navArgument("deckId") { type = NavType.LongType })
             ) {
-                QuizScreen(
-                    onNavigateBack = { navController.popBackStack() }
-                )
+                QuizScreen(onNavigateBack = { navController.popBackStack() })
+            }
+
+            composable(Screen.WeakSpot.route) {
+                WeakSpotScreen(onNavigateBack = { navController.popBackStack() })
             }
         }
     }
