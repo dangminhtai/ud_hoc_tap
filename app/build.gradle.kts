@@ -86,6 +86,10 @@ dependencies {
     // Coroutines
     implementation(libs.coroutines.android)
 
+    // Glance (Widget)
+    implementation(libs.glance.appwidget)
+    implementation(libs.glance.material3)
+
     // Network
     implementation(libs.network.retrofit)
     implementation(libs.network.retrofit.converter.moshi)

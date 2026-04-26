@@ -2,9 +2,14 @@ package com.duong.udhoctap.feature.review.presentation
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.VolumeOff
+import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,9 +33,101 @@ fun ReviewScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var isFlipped by remember { mutableStateOf(false) }
 
-    // Reset flip when card changes
     LaunchedEffect(uiState.currentIndex) {
         isFlipped = false
+        if (uiState.autoRead && uiState.cards.isNotEmpty()) {
+            viewModel.speakCurrentCard(speakBack = false)
+        }
+    }
+
+    LaunchedEffect(isFlipped) {
+        if (isFlipped && uiState.autoRead) {
+            viewModel.speakCurrentCard(speakBack = true)
+        }
+    }
+
+    if (uiState.showExplainSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { viewModel.dismissExplanation() },
+            containerColor = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .padding(bottom = 32.dp)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Icon(
+                        Icons.Default.Lightbulb,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(22.dp)
+                    )
+                    Text(
+                        "Giải thích AI",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (uiState.isExplaining) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator()
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(
+                                "AI đang phân tích...",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                } else {
+                    val cards = uiState.cards
+                    if (cards.isNotEmpty() && uiState.currentIndex < cards.size) {
+                        val card = cards[uiState.currentIndex]
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f)
+                            ),
+                            shape = MaterialTheme.shapes.medium
+                        ) {
+                            Column(modifier = Modifier.padding(12.dp)) {
+                                Text(
+                                    card.front,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    card.back,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+                    Text(
+                        uiState.explanation ?: "",
+                        style = MaterialTheme.typography.bodyMedium,
+                        lineHeight = MaterialTheme.typography.bodyMedium.lineHeight
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+        }
     }
 
     Scaffold(
@@ -42,12 +139,21 @@ fun ReviewScreen(
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, "Quay lại")
                     }
                 },
+                actions = {
+                    IconButton(onClick = { viewModel.toggleAutoRead() }) {
+                        Icon(
+                            imageVector = if (uiState.autoRead) Icons.Default.VolumeUp else Icons.Default.VolumeOff,
+                            contentDescription = if (uiState.autoRead) "Tắt tự động đọc" else "Bật tự động đọc",
+                            tint = if (uiState.autoRead) MaterialTheme.colorScheme.primary
+                                   else MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
             )
         }
     ) { padding ->
         if (uiState.isComplete) {
-            // Completion screen
             Box(
                 modifier = Modifier.fillMaxSize().padding(padding),
                 contentAlignment = Alignment.Center
@@ -85,7 +191,6 @@ fun ReviewScreen(
                 modifier = Modifier.fillMaxSize().padding(padding).padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Progress
                 LinearProgressIndicator(
                     progress = { (uiState.currentIndex + 1).toFloat() / uiState.totalCards },
                     modifier = Modifier.fillMaxWidth().height(8.dp),
@@ -102,7 +207,6 @@ fun ReviewScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Card
                 val currentCard = uiState.cards[uiState.currentIndex]
                 FlipCard(
                     frontText = currentCard.front,
@@ -112,9 +216,37 @@ fun ReviewScreen(
                     modifier = Modifier.weight(1f)
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-                // Rating buttons (visible only when flipped)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    OutlinedButton(
+                        onClick = { viewModel.speakCurrentCard(speakBack = isFlipped) },
+                        shape = MaterialTheme.shapes.medium,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(Icons.Default.VolumeUp, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(if (isFlipped) "Đọc sau" else "Đọc trước")
+                    }
+                    OutlinedButton(
+                        onClick = { viewModel.explainCurrentCard() },
+                        shape = MaterialTheme.shapes.medium,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = MaterialTheme.colorScheme.tertiary
+                        )
+                    ) {
+                        Icon(Icons.Default.Lightbulb, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text("Giải thích")
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
                 AnimatedVisibility(
                     visible = isFlipped,
                     enter = fadeIn() + slideInVertically { it / 2 },

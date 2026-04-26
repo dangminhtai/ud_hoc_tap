@@ -2,6 +2,7 @@ package com.duong.udhoctap.core.data.repository
 
 import com.duong.udhoctap.core.database.dao.ReviewLogDao
 import com.duong.udhoctap.core.database.entity.ReviewLogEntity
+import com.duong.udhoctap.core.database.entity.WeakCardStat
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -19,6 +20,8 @@ class ReviewRepositoryImpl @Inject constructor(
 
     override suspend fun getReviewCountBetween(startTime: Long, endTime: Long): Int =
         reviewLogDao.getReviewCountBetween(startTime, endTime)
+
+    override suspend fun getWeakCardStats(): List<WeakCardStat> = reviewLogDao.getWeakCardStats()
 
     override suspend fun insertReviewLog(reviewLog: ReviewLogEntity): Long = reviewLogDao.insertReviewLog(reviewLog)
 

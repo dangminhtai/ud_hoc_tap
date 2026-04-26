@@ -34,12 +34,27 @@ class StudyReminderWorker @AssistedInject constructor(
     }
 
     private fun showNotification(dueCount: Int) {
-        val intent = Intent(context, MainActivity::class.java).apply {
+        val openIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+        val openPendingIntent = PendingIntent.getActivity(
+            context, 0, openIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
 
-        val pendingIntent = PendingIntent.getActivity(
-            context, 0, intent,
+        val dismissIntent = Intent(context, NotificationActionReceiver::class.java).apply {
+            action = NotificationActionReceiver.ACTION_DISMISS
+        }
+        val dismissPendingIntent = PendingIntent.getBroadcast(
+            context, 1, dismissIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val snoozeIntent = Intent(context, NotificationActionReceiver::class.java).apply {
+            action = NotificationActionReceiver.ACTION_SNOOZE
+        }
+        val snoozePendingIntent = PendingIntent.getBroadcast(
+            context, 2, snoozeIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -48,11 +63,14 @@ class StudyReminderWorker @AssistedInject constructor(
             .setContentTitle(context.getString(R.string.notification_title))
             .setContentText(context.getString(R.string.notification_body, dueCount))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
+            .setContentIntent(openPendingIntent)
             .setAutoCancel(true)
+            .addAction(android.R.drawable.ic_menu_edit, "Học ngay", openPendingIntent)
+            .addAction(android.R.drawable.ic_menu_rotate, "Nhắc sau 1h", snoozePendingIntent)
+            .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Bỏ qua", dismissPendingIntent)
             .build()
 
         val notificationManager = context.getSystemService(NotificationManager::class.java)
-        notificationManager.notify(1001, notification)
+        notificationManager.notify(NotificationActionReceiver.NOTIFICATION_ID, notification)
     }
 }
