@@ -128,6 +128,35 @@ data class SessionListResponse(
 )
 
 // ─────────────────────────────────────────────────
+// REST — Chat Sessions (JSON store, has full messages)
+// ─────────────────────────────────────────────────
+
+@JsonClass(generateAdapter = true)
+data class ChatMessageDto(
+    val role: String,
+    val content: String,
+    val timestamp: Double?,
+    val sources: Map<String, Any?>? = null
+)
+
+@JsonClass(generateAdapter = true)
+data class FullChatSessionDto(
+    @Json(name = "session_id") val sessionId: String,
+    val title: String?,
+    val messages: List<ChatMessageDto> = emptyList(),
+    val settings: Map<String, Any?>? = null,
+    @Json(name = "created_at") val createdAt: Double?,
+    @Json(name = "updated_at") val updatedAt: Double?,
+    @Json(name = "message_count") val messageCount: Int? = null,
+    @Json(name = "last_message") val lastMessage: String? = null
+)
+
+@JsonClass(generateAdapter = true)
+data class ChatSessionListResponse(
+    val sessions: List<FullChatSessionDto>
+)
+
+// ─────────────────────────────────────────────────
 // REST — Dashboard
 // ─────────────────────────────────────────────────
 
@@ -154,4 +183,34 @@ data class KnowledgeBaseDto(
     val statistics: Map<String, Any?>,
     val status: String?,
     val progress: Map<String, Any?>?
+)
+
+// ─────────────────────────────────────────────────
+// REST — Quiz from Knowledge Base
+// ─────────────────────────────────────────────────
+
+@JsonClass(generateAdapter = true)
+data class KbQuizRequest(
+    @Json(name = "kb_name") val kbName: String,
+    val topic: String,
+    val count: Int = 5,
+    val difficulty: String = "medium",
+    @Json(name = "question_type") val questionType: String = "mixed"
+)
+
+@JsonClass(generateAdapter = true)
+data class KbQuizQuestion(
+    val question: String,
+    @Json(name = "correct_answer") val correctAnswer: String,
+    val explanation: String = "",
+    @Json(name = "question_type") val questionType: String,
+    val options: List<String> = emptyList(),
+    @Json(name = "correct_index") val correctIndex: Int = -1
+)
+
+@JsonClass(generateAdapter = true)
+data class KbQuizResponse(
+    @Json(name = "kb_name") val kbName: String,
+    val topic: String,
+    val questions: List<KbQuizQuestion>
 )

@@ -2,8 +2,12 @@ package com.duong.udhoctap.core.network
 
 import com.duong.udhoctap.core.network.dto.ActivityDto
 import com.duong.udhoctap.core.network.dto.AddRecordRequest
+import com.duong.udhoctap.core.network.dto.ChatSessionListResponse
+import com.duong.udhoctap.core.network.dto.KbQuizRequest
+import com.duong.udhoctap.core.network.dto.KbQuizResponse
 import com.duong.udhoctap.core.network.dto.CreateGuideSessionRequest
 import com.duong.udhoctap.core.network.dto.CreateNotebookRequest
+import com.duong.udhoctap.core.network.dto.FullChatSessionDto
 import com.duong.udhoctap.core.network.dto.GuideChatRequest
 import com.duong.udhoctap.core.network.dto.GuideChatResponse
 import com.duong.udhoctap.core.network.dto.GuideHtmlResponse
@@ -54,6 +58,19 @@ interface BackendApiService {
     @DELETE("api/v1/sessions/{session_id}")
     suspend fun deleteSession(@Path("session_id") sessionId: String): Map<String, Any>
 
+    // ── Chat Sessions (JSON store — has full message history) ─────────────────
+
+    @GET("api/v1/chat/sessions")
+    suspend fun listChatSessions(
+        @Query("limit") limit: Int = 30
+    ): ChatSessionListResponse
+
+    @GET("api/v1/chat/sessions/{session_id}")
+    suspend fun getChatSession(@Path("session_id") sessionId: String): FullChatSessionDto
+
+    @DELETE("api/v1/chat/sessions/{session_id}")
+    suspend fun deleteChatSession(@Path("session_id") sessionId: String): Map<String, Any>
+
     // ── Knowledge Base (legacy) ───────────────────────────────────────────────
 
     @GET("api/v1/knowledge/list")
@@ -89,6 +106,11 @@ interface BackendApiService {
         @Path("name") name: String,
         @Part files: List<MultipartBody.Part>
     ): Map<String, Any>
+
+    // ── Quiz from Knowledge Base ──────────────────────────────────────────────
+
+    @POST("api/v1/quiz/generate-from-kb")
+    suspend fun generateQuizFromKb(@Body request: KbQuizRequest): KbQuizResponse
 
     // ── System ────────────────────────────────────────────────────────────────
 

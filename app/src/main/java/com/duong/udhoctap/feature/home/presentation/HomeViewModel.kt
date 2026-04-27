@@ -61,14 +61,14 @@ class HomeViewModel @Inject constructor(
     }
 
     fun searchDecks(query: String) {
-        _searchQuery.value = query
+        _searchQuery.value = query.trim()
     }
 
     fun createDeck(name: String, description: String, color: String) {
         viewModelScope.launch {
             deckRepository.insertDeck(
                 DeckEntity(
-                    name = name,
+                    name = name.trim(),
                     description = description.ifBlank { null },
                     color = color
                 )

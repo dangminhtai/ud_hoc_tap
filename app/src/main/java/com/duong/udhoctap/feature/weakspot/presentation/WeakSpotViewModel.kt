@@ -7,6 +7,7 @@ import com.duong.udhoctap.core.data.repository.FlashcardRepository
 import com.duong.udhoctap.core.data.repository.ReviewRepository
 import com.duong.udhoctap.core.database.entity.DeckEntity
 import com.duong.udhoctap.core.database.entity.FlashcardEntity
+import com.duong.udhoctap.core.network.BackendApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -33,7 +34,8 @@ data class WeakSpotUiState(
 class WeakSpotViewModel @Inject constructor(
     private val reviewRepository: ReviewRepository,
     private val flashcardRepository: FlashcardRepository,
-    private val deckRepository: DeckRepository
+    private val deckRepository: DeckRepository,
+    private val backendApi: BackendApiService
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(WeakSpotUiState())
@@ -96,5 +98,20 @@ class WeakSpotViewModel @Inject constructor(
 
     fun dismissDeckCreatedMessage() {
         _uiState.value = _uiState.value.copy(deckCreatedName = null)
+    }
+
+    fun loadWeakSpotsFromBackend(deckId: String) {
+        viewModelScope.launch {
+            try {
+                // TODO: Call backend API when implemented
+                // val response = backendApi.analyzeDeckWeakSpots(deckId)
+                // Map backend response to WeakCardUiModel and update UI
+
+                // For now, the local analysis is used
+                // Backend will provide more advanced analysis in the future
+            } catch (e: Exception) {
+                // Silently fall back to local analysis
+            }
+        }
     }
 }

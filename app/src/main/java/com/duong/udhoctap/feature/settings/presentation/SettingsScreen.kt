@@ -24,6 +24,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun SettingsScreen(
     onNavigateBack: () -> Unit,
     onThemeChanged: (Boolean) -> Unit = {},
+    onNavigateToLogin: () -> Unit = {},
+    onNavigateToStats: () -> Unit = {},
+    onNavigateToSearch: () -> Unit = {},
+    onNavigateToReminderSettings: () -> Unit = {},
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -95,6 +99,13 @@ fun SettingsScreen(
                 onClick = { showHourPicker = true }
             )
 
+            SettingsClickItem(
+                icon = Icons.Default.NotificationsActive,
+                title = "Cài đặt nhắc nhở chi tiết",
+                subtitle = "Chế độ yên tĩnh, bộ lọc thông báo...",
+                onClick = onNavigateToReminderSettings
+            )
+
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
 
             // ── Section 3: Học tập ────────────────────────────────────────────
@@ -105,6 +116,13 @@ fun SettingsScreen(
                 title = "Mục tiêu hàng ngày",
                 subtitle = "${state.dailyGoal} thẻ/ngày",
                 onClick = { showGoalPicker = true }
+            )
+
+            SettingsClickItem(
+                icon = Icons.Default.Assessment,
+                title = "Thống kê nâng cao",
+                subtitle = "Biểu đồ, điểm yếu, lịch sử...",
+                onClick = onNavigateToStats
             )
 
             HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
@@ -187,6 +205,29 @@ fun SettingsScreen(
                 checked = state.defaultEnableWebSearch,
                 onCheckedChange = { viewModel.setDefaultEnableWebSearch(it) }
             )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+
+            // ── Section 6: Hệ thống ───────────────────────────────────────────
+            SettingsSectionTitle("Hệ thống")
+
+            SettingsClickItem(
+                icon = Icons.Default.Search,
+                title = "Tìm kiếm toàn cầu",
+                subtitle = "Tìm thẻ ghi nhớ, bộ thẻ, tài liệu",
+                onClick = onNavigateToSearch
+            )
+
+            Button(
+                onClick = onNavigateToLogin,
+                modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+            ) {
+                Icon(Icons.Default.Logout, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text("Đăng Xuất")
+            }
 
             Spacer(Modifier.height(80.dp))
         }

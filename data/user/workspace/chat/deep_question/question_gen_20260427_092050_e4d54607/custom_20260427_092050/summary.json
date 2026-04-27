@@ -1,0 +1,372 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 5,
+  "template_count": 5,
+  "completed": 5,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "Understanding the role of self-attention in Transformer architecture and how it enables parallel processing of input sequences",
+      "question_type": "written",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "This question encourages deep comprehension of a core and complex component of Transformers, crucial for advanced understanding and application.",
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Tạo câu hỏi về Transformer architecture"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "Comparison between Transformer architecture and traditional sequence models like RNNs and LSTMs, focusing on efficiency and performance",
+      "question_type": "choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "By contrasting Transformer with older models, learners articulate the innovations and advantages, reinforcing their understanding of architectural differences.",
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Tạo câu hỏi về Transformer architecture"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "Design and explain the multi-head attention mechanism within a Transformer, including how it captures different types of information",
+      "question_type": "written",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "This prompts learners to analyze and articulate a sophisticated component of Transformers, deepening their grasp of multi-faceted attention mechanisms.",
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Tạo câu hỏi về Transformer architecture"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "Implementing a simplified version of the Transformer encoder layer using pseudocode, emphasizing key steps and data flow",
+      "question_type": "coding",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Writing pseudocode consolidates understanding of the architecture's operational steps, crucial for advanced learners aiming to implement or modify Transformers.",
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Tạo câu hỏi về Transformer architecture"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "Analyzing the impact of positional encoding on the Transformer model's ability to understand sequence order",
+      "question_type": "written",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "This question explores a nuanced aspect of Transformers, fostering a deep conceptual understanding of how positional information is integrated into the model.",
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Tạo câu hỏi về Transformer architecture"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "hard"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "Understanding the role of self-attention in Transformer architecture and how it enables parallel processing of input sequences",
+        "question_type": "written",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "This question encourages deep comprehension of a core and complex component of Transformers, crucial for advanced understanding and application.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Tạo câu hỏi về Transformer architecture"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "Explain how self-attention in the Transformer architecture enables the model to process input sequences in parallel and why this is advantageous over traditional sequential models.",
+        "correct_answer": "",
+        "explanation": "Self-attention allows each position in the input sequence to directly attend to all other positions simultaneously, capturing dependencies regardless of distance. This mechanism enables the Transformer to process entire sequences in parallel, unlike RNNs or LSTMs that process tokens sequentially. The parallel processing significantly reduces training time and allows the model to better capture long-range dependencies, making it highly effective for tasks involving complex sequence data.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Understanding the role of self-attention in Transformer architecture and how it enables parallel processing of input sequences",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "Comparison between Transformer architecture and traditional sequence models like RNNs and LSTMs, focusing on efficiency and performance",
+        "question_type": "choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "By contrasting Transformer with older models, learners articulate the innovations and advantages, reinforcing their understanding of architectural differences.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Tạo câu hỏi về Transformer architecture"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Which of the following best explains a primary advantage of Transformer architecture over traditional sequence models like RNNs and LSTMs?",
+        "correct_answer": "B",
+        "explanation": "Transformers leverage self-attention mechanisms that enable the model to consider all input tokens simultaneously, allowing for efficient parallel processing and better capturing of long-range dependencies. In contrast, RNNs and LSTMs process sequences sequentially, which can be slower and less effective for modeling long-distance relationships. This architectural innovation significantly improves both efficiency and performance in handling sequence data.",
+        "question_type": "choice",
+        "options": {
+          "A": "Transformers process data sequentially, making them more efficient for long sequences.",
+          "B": "Transformers use self-attention mechanisms that allow for parallel processing of input tokens, improving efficiency and capturing long-range dependencies.",
+          "C": "Transformers rely on recursive functions to handle sequence data, which simplifies training.",
+          "D": "Transformers require less data to train effectively compared to RNNs and LSTMs."
+        },
+        "concentration": "Comparison between Transformer architecture and traditional sequence models like RNNs and LSTMs, focusing on efficiency and performance",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "Design and explain the multi-head attention mechanism within a Transformer, including how it captures different types of information",
+        "question_type": "written",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "This prompts learners to analyze and articulate a sophisticated component of Transformers, deepening their grasp of multi-faceted attention mechanisms.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Tạo câu hỏi về Transformer architecture"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "Design and explain the multi-head attention mechanism within a Transformer, including how it captures different types of information.",
+        "correct_answer": "The multi-head attention mechanism in a Transformer consists of multiple parallel attention heads, each projecting the input into different subspaces through learned linear transformations. Each head computes scaled dot-product attention, capturing various aspects of the input data such as syntax or semantic relationships. By concatenating the outputs of all heads and applying a final linear projection, the model integrates diverse information streams, enabling it to attend to different parts of the input simultaneously and capture multiple types of information effectively.",
+        "explanation": "Multi-head attention allows the Transformer to jointly attend to information from different representation subspaces. Each attention head learns to focus on different features or relationships within the input data, such as local syntax or long-range dependencies. This multi-faceted approach enhances the model's capacity to understand complex patterns, making the attention mechanism more expressive and robust compared to single-head attention.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Design and explain the multi-head attention mechanism within a Transformer, including how it captures different types of information",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "Implementing a simplified version of the Transformer encoder layer using pseudocode, emphasizing key steps and data flow",
+        "question_type": "coding",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Writing pseudocode consolidates understanding of the architecture's operational steps, crucial for advanced learners aiming to implement or modify Transformers.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Tạo câu hỏi về Transformer architecture"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "Implement a simplified version of the Transformer encoder layer using pseudocode, emphasizing key steps such as multi-head self-attention, add & norm, feedforward network, and residual connections. Focus on the data flow and core operations involved in each step.",
+        "correct_answer": "function transformer_encoder_layer(input, params):\n    # Multi-head self-attention\n    attention_output = multi_head_attention(input, input, input, params.attention)\n    # Add & Norm\n    out1 = layer_norm(input + attention_output)\n    # Feedforward network\n    ff_output = feedforward(out1, params.ff)\n    # Final Add & Norm\n    output = layer_norm(out1 + ff_output)\n    return output",
+        "explanation": "The pseudocode outlines the key steps of a Transformer encoder layer. It starts with multi-head self-attention, which allows the model to weigh different parts of the input sequence. The result is added back to the original input (residual connection) and normalized. Then, a position-wise feedforward network processes this normalized output, followed by another residual connection and normalization. Emphasizing these steps captures the core data flow and operational structure of a Transformer encoder layer, suitable for advanced learners implementing or modifying the architecture.",
+        "question_type": "coding",
+        "options": null,
+        "concentration": "Implementing a simplified version of the Transformer encoder layer using pseudocode, emphasizing key steps and data flow",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "coding",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "Analyzing the impact of positional encoding on the Transformer model's ability to understand sequence order",
+        "question_type": "written",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "This question explores a nuanced aspect of Transformers, fostering a deep conceptual understanding of how positional information is integrated into the model.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Tạo câu hỏi về Transformer architecture"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "Analyze how the positional encoding mechanism in Transformer models influences their ability to understand and maintain sequence order. Discuss the implications of different types of positional encodings (e.g., sinusoidal vs. learned) on the model's performance and generalization capabilities.",
+        "correct_answer": "",
+        "explanation": "Positional encoding is crucial in Transformer architectures because, unlike RNNs or CNNs, Transformers do not inherently process sequence order. Sinusoidal positional encodings provide a fixed, continuous representation that allows the model to generalize to sequences longer than those seen during training, owing to their mathematical properties. Learned positional encodings, on the other hand, adapt specifically to the training data, potentially offering better performance on the training distribution but possibly less generalization. The choice and implementation of positional encoding directly impact the model's capacity to interpret sequence order, affecting tasks such as language modeling and translation. This nuanced understanding is essential for designing effective Transformer-based systems.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Analyzing the impact of positional encoding on the Transformer model's ability to understand sequence order",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: Tạo câu hỏi về Transformer architecture ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260427_092050_e4d54607\\custom_20260427_092050"
+}

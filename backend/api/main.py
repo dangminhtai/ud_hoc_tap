@@ -6,9 +6,13 @@ from fastapi import FastAPI
 from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import JSONResponse
+from slowapi import Limiter
+from slowapi.errors import RateLimitExceeded
 
 from backend.loggers import get_logger
 from backend.services.path_service import get_path_service
+from backend.api.rate_limiter import limiter
 
 logger = get_logger("API")
 
@@ -124,10 +128,21 @@ app = FastAPI(
     redirect_slashes=False,
 )
 
+app.state.limiter = limiter
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_exceeded_handler(request, exc):
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Rate limit exceeded. Please try again later."},
+    )
+
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -152,21 +167,37 @@ app.mount(
 )
 
 from backend.api.routers import (
+    auth,
     chat,
     flashcard_gen,
+    fsrs,
+    import_export,
     knowledge,
     question,
+    quiz,
+    reminders,
+    search,
     sessions,
     settings,
+    statistics,
     system,
     unified_ws,
+    weak_spot,
 )
 
 # Include routers
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 app.include_router(chat.router, prefix="/api/v1", tags=["chat"])
 app.include_router(question.router, prefix="/api/v1/question", tags=["question"])
 app.include_router(knowledge.router, prefix="/api/v1/knowledge", tags=["knowledge"])
 app.include_router(flashcard_gen.router, prefix="/api/v1", tags=["flashcard"])
+app.include_router(fsrs.router, prefix="/api/v1/fsrs", tags=["fsrs"])
+app.include_router(import_export.router, prefix="/api/v1/import-export", tags=["import-export"])
+app.include_router(quiz.router, prefix="/api/v1/quiz", tags=["quiz"])
+app.include_router(reminders.router, prefix="/api/v1/reminders", tags=["reminders"])
+app.include_router(search.router, prefix="/api/v1/search", tags=["search"])
+app.include_router(statistics.router, prefix="/api/v1/statistics", tags=["statistics"])
+app.include_router(weak_spot.router, prefix="/api/v1/weak-spots", tags=["weak-spots"])
 app.include_router(sessions.router, prefix="/api/v1/sessions", tags=["sessions"])
 app.include_router(settings.router, prefix="/api/v1/settings", tags=["settings"])
 app.include_router(system.router, prefix="/api/v1/system", tags=["system"])

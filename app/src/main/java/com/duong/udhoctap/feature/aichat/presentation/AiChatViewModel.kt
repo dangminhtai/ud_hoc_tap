@@ -6,6 +6,7 @@ import com.duong.udhoctap.core.data.repository.AiChatRepository
 import com.duong.udhoctap.core.network.BackendApiService
 import com.duong.udhoctap.core.network.dto.ChatEvent
 import com.duong.udhoctap.core.network.dto.ChatMessage
+import com.duong.udhoctap.core.network.dto.FullChatSessionDto
 import com.duong.udhoctap.core.network.dto.SessionDto
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -91,10 +92,22 @@ class AiChatViewModel @Inject constructor(
         _uiState.update { it.copy(isLoadingHistory = true) }
         viewModelScope.launch {
             try {
-                val result = backendApi.listSessions(limit = 30)
-                _uiState.update { it.copy(sessions = result.sessions, isLoadingHistory = false) }
+                val result = backendApi.listChatSessions(limit = 30)
+                // Convert FullChatSessionDto to SessionDto for display in history list
+                val sessions = result.sessions.map { s ->
+                    SessionDto(
+                        sessionId = s.sessionId,
+                        title = s.title,
+                        capability = null,
+                        updatedAt = s.updatedAt?.toLong(),
+                        createdAt = s.createdAt?.toLong(),
+                        messageCount = s.messageCount ?: s.messages.size,
+                        status = null
+                    )
+                }
+                _uiState.update { it.copy(sessions = sessions, isLoadingHistory = false) }
             } catch (e: Exception) {
-                _uiState.update { it.copy(isLoadingHistory = false) }
+                _uiState.update { it.copy(isLoadingHistory = false, error = e.message) }
             }
         }
     }
@@ -102,16 +115,21 @@ class AiChatViewModel @Inject constructor(
     fun loadSession(sessionDto: SessionDto) {
         viewModelScope.launch {
             try {
-                val full = backendApi.getSession(sessionDto.sessionId)
-                // Build messages from session — the API returns a SessionDto without actual messages in list form
-                // We start a new session continuing from this session_id
+                val full = backendApi.getChatSession(sessionDto.sessionId)
+                val settings = full.settings ?: emptyMap()
+                val kbName = settings["kb_name"] as? String ?: ""
+                val enableRag = settings["enable_rag"] as? Boolean ?: false
+                val enableWeb = settings["enable_web_search"] as? Boolean ?: false
+                val messages = full.messages.map { msg ->
+                    ChatMessage(role = msg.role, content = msg.content)
+                }
                 _uiState.update {
                     AiChatUiState(
                         sessionId = full.sessionId,
-                        enableRag = it.enableRag,
-                        enableWebSearch = it.enableWebSearch,
-                        kbName = it.kbName,
-                        messages = listOf(ChatMessage(role = "assistant", content = "Tiếp tục cuộc trò chuyện: \"${full.title ?: full.sessionId}\""))
+                        enableRag = enableRag,
+                        enableWebSearch = enableWeb,
+                        kbName = kbName,
+                        messages = messages
                     )
                 }
             } catch (e: Exception) {
@@ -123,7 +141,7 @@ class AiChatViewModel @Inject constructor(
     fun deleteSession(sessionId: String) {
         viewModelScope.launch {
             try {
-                backendApi.deleteSession(sessionId)
+                backendApi.deleteChatSession(sessionId)
                 _uiState.update { it.copy(sessions = it.sessions.filter { s -> s.sessionId != sessionId }) }
             } catch (_: Exception) {}
         }

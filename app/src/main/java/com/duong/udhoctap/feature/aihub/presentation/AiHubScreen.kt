@@ -73,7 +73,7 @@ fun AiHubScreen(
                         Text("Trợ lý học tập AI", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = Color.White)
                     }
                     Text(
-                        "Chat thông minh, giải bài toán, tạo câu hỏi và lộ trình học — tất cả trong một nơi",
+                        "Chat thông minh và tạo câu hỏi luyện tập từ tài liệu của bạn",
                         style = MaterialTheme.typography.bodyMedium,
                         color = Color.White.copy(alpha = 0.9f),
                         lineHeight = 20.sp

@@ -27,6 +27,7 @@ import com.duong.udhoctap.core.ui.theme.DeckColors
 fun HomeScreen(
     onDeckClick: (Long) -> Unit,
     onNavigateToStats: () -> Unit = {},
+    onNavigateToSearch: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -105,18 +106,28 @@ fun HomeScreen(
                 }
             }
 
-            Text(
-                text = "Tìm kiếm nhanh",
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Tìm kiếm nhanh",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                TextButton(onClick = onNavigateToSearch, contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp), modifier = Modifier.height(24.dp)) {
+                    Text("Tìm kiếm toàn cầu", style = MaterialTheme.typography.labelMedium)
+                    androidx.compose.foundation.layout.Spacer(Modifier.width(4.dp))
+                    Icon(androidx.compose.material.icons.Icons.Default.Search, contentDescription = null, modifier = Modifier.size(14.dp))
+                }
+            }
 
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = {
                     searchQuery = it
-                    viewModel.searchDecks(it)
+                    viewModel.searchDecks(it.trim())
                 },
                 placeholder = { Text("Nhập tên bộ thẻ...") },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },

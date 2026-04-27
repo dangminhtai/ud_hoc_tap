@@ -1,0 +1,43 @@
+{
+  "defaults": {
+    "default_kb": null,
+    "rag_provider": "llamaindex",
+    "search_mode": "hybrid"
+  },
+  "knowledge_bases": {
+    "Machine learning vn": {
+      "path": "Machine learning vn",
+      "description": "Knowledge base: Machine learning vn",
+      "rag_provider": "llamaindex",
+      "needs_reindex": false,
+      "status": "ready",
+      "updated_at": "2026-04-27T09:40:30.486775",
+      "progress": {
+        "stage": "completed",
+        "message": "Knowledge base initialization complete!",
+        "percent": 100,
+        "current": 1,
+        "total": 1,
+        "task_id": "kb_init_20260427_093854_bd670e09",
+        "timestamp": "2026-04-27T09:40:30.485510"
+      }
+    },
+    "word2vec": {
+      "path": "word2vec",
+      "description": "Knowledge base: word2vec",
+      "rag_provider": "llamaindex",
+      "needs_reindex": false,
+      "status": "ready",
+      "updated_at": "2026-04-27T19:13:38.076956",
+      "progress": {
+        "stage": "completed",
+        "message": "Knowledge base initialization complete!",
+        "percent": 100,
+        "current": 1,
+        "total": 1,
+        "task_id": "kb_init_20260427_190840_f23f2a00",
+        "timestamp": "2026-04-27T19:13:38.076956"
+      }
+    }
+  }
+}

@@ -47,12 +47,32 @@ class KnowledgeBaseRepository @Inject constructor(
     suspend fun createKb(name: String, files: List<File>): KbItemDto {
         val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
         val parts = files.map { file ->
+            val mimeType = detectMimeType(file)
             MultipartBody.Part.createFormData(
                 "files", file.name,
-                file.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                file.asRequestBody(mimeType.toMediaTypeOrNull())
             )
         }
         return api.createKb(nameBody, parts)
+    }
+
+    private fun detectMimeType(file: File): String {
+        val extension = file.extension.lowercase()
+        return when (extension) {
+            "pdf" -> "application/pdf"
+            "txt", "text" -> "text/plain"
+            "md", "markdown" -> "text/markdown"
+            "json" -> "application/json"
+            "xml" -> "text/xml"
+            "html", "htm" -> "text/html"
+            "csv" -> "text/csv"
+            "doc" -> "application/msword"
+            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "xls" -> "application/vnd.ms-excel"
+            "rtf" -> "application/rtf"
+            else -> "text/plain"  // Default to text
+        }
     }
 
     fun watchProgress(name: String): Flow<KbProgressEvent> = callbackFlow {

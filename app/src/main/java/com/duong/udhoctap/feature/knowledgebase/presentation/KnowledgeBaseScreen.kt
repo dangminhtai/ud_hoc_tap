@@ -33,10 +33,12 @@ import java.io.File
 @Composable
 fun KnowledgeBaseScreen(
     onNavigateBack: () -> Unit,
+    onStartKbQuiz: (kbName: String, topic: String, count: Int, difficulty: String) -> Unit = { _, _, _, _ -> },
     viewModel: KnowledgeBaseViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var showCreateSheet by remember { mutableStateOf(false) }
+    var quizDialogKb by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {
@@ -88,7 +90,8 @@ fun KnowledgeBaseScreen(
                                 progress = state.progressMap[kb.name],
                                 progressMsg = state.progressMsgMap[kb.name],
                                 onSetDefault = { viewModel.setDefault(kb.name) },
-                                onDelete = { viewModel.deleteKb(kb.name) }
+                                onDelete = { viewModel.deleteKb(kb.name) },
+                                onStartQuiz = { quizDialogKb = kb.name }
                             )
                         }
                     }
@@ -103,6 +106,17 @@ fun KnowledgeBaseScreen(
                 ) { Text(error) }
             }
         }
+    }
+
+    quizDialogKb?.let { kbName ->
+        KbQuizDialog(
+            kbName = kbName,
+            onConfirm = { topic, count, difficulty ->
+                quizDialogKb = null
+                onStartKbQuiz(kbName, topic, count, difficulty)
+            },
+            onDismiss = { quizDialogKb = null }
+        )
     }
 
     if (showCreateSheet) {
@@ -142,7 +156,8 @@ private fun KbItemCard(
     progress: Int?,
     progressMsg: String?,
     onSetDefault: () -> Unit,
-    onDelete: () -> Unit
+    onDelete: () -> Unit,
+    onStartQuiz: () -> Unit = {}
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
@@ -192,6 +207,13 @@ private fun KbItemCard(
                         Icon(Icons.Default.MoreVert, null, modifier = Modifier.size(18.dp))
                     }
                     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                        if (kb.status == "ready") {
+                            DropdownMenuItem(
+                                text = { Text("Tạo Quiz từ KB này") },
+                                leadingIcon = { Icon(Icons.Default.Quiz, null) },
+                                onClick = { onStartQuiz(); showMenu = false }
+                            )
+                        }
                         if (!isDefault) {
                             DropdownMenuItem(
                                 text = { Text("Đặt làm mặc định") },
@@ -244,6 +266,65 @@ private fun KbEmptyState() {
         Spacer(Modifier.height(8.dp))
         Text("Upload tài liệu PDF, DOCX… để AI có thể tìm kiếm và trích dẫn khi trả lời", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
     }
+}
+
+@Composable
+private fun KbQuizDialog(
+    kbName: String,
+    onConfirm: (topic: String, count: Int, difficulty: String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var topic by remember { mutableStateOf("") }
+    var count by remember { mutableStateOf(5) }
+    var difficulty by remember { mutableStateOf("medium") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Tạo Quiz từ \"$kbName\"", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                OutlinedTextField(
+                    value = topic,
+                    onValueChange = { topic = it },
+                    label = { Text("Chủ đề / Từ khóa *") },
+                    placeholder = { Text("VD: Machine Learning, Mạng nơ-ron...") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    shape = MaterialTheme.shapes.medium
+                )
+
+                Text("Số câu hỏi: $count", style = MaterialTheme.typography.bodyMedium)
+                Slider(
+                    value = count.toFloat(),
+                    onValueChange = { count = it.toInt() },
+                    valueRange = 3f..15f,
+                    steps = 11
+                )
+
+                Text("Độ khó:", style = MaterialTheme.typography.bodyMedium)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    listOf("easy" to "Dễ", "medium" to "Vừa", "hard" to "Khó").forEach { (value, label) ->
+                        FilterChip(
+                            selected = difficulty == value,
+                            onClick = { difficulty = value },
+                            label = { Text(label) }
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = { if (topic.isNotBlank()) onConfirm(topic.trim(), count, difficulty) },
+                enabled = topic.isNotBlank()
+            ) {
+                Text("Bắt đầu Quiz")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Huỷ") }
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -24,6 +24,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.duong.udhoctap.core.data.repository.DeckRepository
 import com.duong.udhoctap.core.network.dto.GeneratedQuestion
 import com.duong.udhoctap.core.ui.theme.*
+import dev.jeziellago.compose.markdowntext.MarkdownText
+import androidx.compose.ui.text.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -351,7 +353,13 @@ private fun QuestionCard(
                         Text("Đáp án: ${question.answer}", modifier = Modifier.fillMaxWidth().padding(10.dp), style = MaterialTheme.typography.bodySmall, color = Color(0xFF2E7D32), fontWeight = FontWeight.Medium)
                     }
                     if (question.explanation.isNotBlank()) {
-                        Text("Giải thích: ${question.explanation}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        MarkdownText(
+                            markdown = "**Giải thích:** ${question.explanation}",
+                            style = TextStyle(
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                fontSize = 12.sp
+                            )
+                        )
                     }
                 }
             }

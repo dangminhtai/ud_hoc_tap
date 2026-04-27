@@ -1,4 +1,5 @@
 package com.duong.udhoctap.core.ui.navigation
+// Force recompile after AiHubScreen update
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
@@ -26,6 +27,8 @@ import com.duong.udhoctap.core.data.repository.DeckRepository
 import com.duong.udhoctap.feature.aichat.presentation.AiChatScreen
 import com.duong.udhoctap.feature.aihub.presentation.AiHubScreen
 import com.duong.udhoctap.feature.aiquestion.presentation.AiQuestionScreen
+import com.duong.udhoctap.feature.auth.presentation.LoginScreen
+import com.duong.udhoctap.feature.auth.presentation.SignupScreen
 import com.duong.udhoctap.feature.deck.presentation.AddEditFlashcardScreen
 import com.duong.udhoctap.feature.deck.presentation.DeckDetailScreen
 import com.duong.udhoctap.feature.draft.presentation.DraftReviewScreen
@@ -37,17 +40,25 @@ import com.duong.udhoctap.feature.review.presentation.ReviewScreen
 import com.duong.udhoctap.feature.settings.presentation.SettingsScreen
 import com.duong.udhoctap.feature.stats.presentation.StatsScreen
 import com.duong.udhoctap.feature.weakspot.presentation.WeakSpotScreen
+import com.duong.udhoctap.feature.search.presentation.SearchScreen
+import com.duong.udhoctap.feature.settings.presentation.ReminderSettingsScreen
 
 sealed class Screen(val route: String) {
+    // ── Auth screens ───────────────────────────────────────────────────────────
+    data object Login  : Screen("login")
+    data object Signup : Screen("signup")
+
     // ── Bottom tabs ────────────────────────────────────────────────────────────
     data object Home     : Screen("home")
     data object AiHub    : Screen("ai_hub")
+    data object Stats    : Screen("stats")
     data object Library  : Screen("library")
     data object Settings : Screen("settings")
 
     // ── Detail screens (bottom bar hidden) ────────────────────────────────────
-    data object Stats    : Screen("stats")
     data object WeakSpot : Screen("weakspot")
+    data object Search   : Screen("search")
+    data object ReminderSettings : Screen("reminder_settings")
 
     // AI features
     data object AiChat     : Screen("ai_chat")
@@ -70,6 +81,10 @@ sealed class Screen(val route: String) {
     data object Quiz : Screen("quiz/{deckId}") {
         fun createRoute(deckId: Long) = "quiz/$deckId"
     }
+    data object KbQuiz : Screen("quiz_kb?kbName={kbName}&topic={topic}&count={count}&difficulty={difficulty}") {
+        fun createRoute(kbName: String, topic: String, count: Int = 5, difficulty: String = "medium") =
+            "quiz_kb?kbName=${android.net.Uri.encode(kbName)}&topic=${android.net.Uri.encode(topic)}&count=$count&difficulty=$difficulty"
+    }
     data object DraftReview : Screen("deck/{deckId}/drafts") {
         fun createRoute(deckId: Long) = "deck/$deckId/drafts"
     }
@@ -85,6 +100,7 @@ data class BottomNavItem(
 val bottomNavItems = listOf(
     BottomNavItem(Screen.Home,     "Trang chủ", Icons.Filled.Home,         Icons.Outlined.Home),
     BottomNavItem(Screen.AiHub,    "AI Studio", Icons.Filled.AutoAwesome,  Icons.Outlined.AutoAwesome),
+    BottomNavItem(Screen.Stats,    "Thống kê",  Icons.Filled.BarChart,     Icons.Outlined.BarChart),
     BottomNavItem(Screen.Library,  "Thư viện",  Icons.Filled.LibraryBooks, Icons.Outlined.LibraryBooks),
     BottomNavItem(Screen.Settings, "Cài đặt",   Icons.Filled.Settings,     Icons.Outlined.Settings)
 )
@@ -163,11 +179,27 @@ fun AppNavigation(
             popEnterTransition = { fadeIn(animationSpec = tween(300)) + slideInHorizontally { -it / 4 } },
             popExitTransition = { fadeOut(animationSpec = tween(300)) }
         ) {
+            // ── Auth screens ───────────────────────────────────────────────────
+            composable(Screen.Login.route) {
+                LoginScreen(
+                    onLoginSuccess = { navController.navigate(Screen.Home.route) { popUpTo(Screen.Login.route) { inclusive = true } } },
+                    onNavigateToSignup = { navController.navigate(Screen.Signup.route) }
+                )
+            }
+
+            composable(Screen.Signup.route) {
+                SignupScreen(
+                    onSignupSuccess = { navController.navigate(Screen.Home.route) { popUpTo(Screen.Signup.route) { inclusive = true } } },
+                    onNavigateToLogin = { navController.popBackStack() }
+                )
+            }
+
             // ── Bottom tabs ────────────────────────────────────────────────────
             composable(Screen.Home.route) {
                 HomeScreen(
                     onDeckClick = { navController.navigate(Screen.DeckDetail.createRoute(it)) },
-                    onNavigateToStats = { navController.navigate(Screen.Stats.route) }
+                    onNavigateToStats = { navController.navigate(Screen.Stats.route) },
+                    onNavigateToSearch = { navController.navigate(Screen.Search.route) }
                 )
             }
 
@@ -184,17 +216,22 @@ fun AppNavigation(
                 )
             }
 
+            composable(Screen.Stats.route) {
+                StatsScreen(onNavigateToWeakSpot = { navController.navigate(Screen.WeakSpot.route) })
+            }
+
             composable(Screen.Settings.route) {
                 SettingsScreen(
                     onNavigateBack = { navController.popBackStack() },
-                    onThemeChanged = onThemeChanged
+                    onThemeChanged = onThemeChanged,
+                    onNavigateToLogin = { navController.navigate(Screen.Login.route) },
+                    onNavigateToStats = { navController.navigate(Screen.Stats.route) },
+                    onNavigateToSearch = { navController.navigate(Screen.Search.route) },
+                    onNavigateToReminderSettings = { navController.navigate(Screen.ReminderSettings.route) }
                 )
             }
 
             // ── Stats (no bottom bar) ──────────────────────────────────────────
-            composable(Screen.Stats.route) {
-                StatsScreen(onNavigateToWeakSpot = { navController.navigate(Screen.WeakSpot.route) })
-            }
 
             composable(Screen.WeakSpot.route) {
                 WeakSpotScreen(onNavigateBack = { navController.popBackStack() })
@@ -215,7 +252,24 @@ fun AppNavigation(
             // ── Library sub-screens ───────────────────────────────────────────
 
             composable(Screen.KnowledgeBase.route) {
-                KnowledgeBaseScreen(onNavigateBack = { navController.popBackStack() })
+                KnowledgeBaseScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onStartKbQuiz = { kbName, topic, count, difficulty ->
+                        navController.navigate(Screen.KbQuiz.createRoute(kbName, topic, count, difficulty))
+                    }
+                )
+            }
+
+            composable(
+                route = Screen.KbQuiz.route,
+                arguments = listOf(
+                    navArgument("kbName") { type = NavType.StringType },
+                    navArgument("topic") { type = NavType.StringType },
+                    navArgument("count") { type = NavType.IntType; defaultValue = 5 },
+                    navArgument("difficulty") { type = NavType.StringType; defaultValue = "medium" }
+                )
+            ) {
+                QuizScreen(onNavigateBack = { navController.popBackStack() })
             }
 
             // ── Deck management ───────────────────────────────────────────────
@@ -262,6 +316,16 @@ fun AppNavigation(
                 arguments = listOf(navArgument("deckId") { type = NavType.LongType })
             ) {
                 QuizScreen(onNavigateBack = { navController.popBackStack() })
+            }
+
+            // ── Search screen ──────────────────────────────────────────────────
+            composable(Screen.Search.route) {
+                SearchScreen(onNavigateBack = { navController.popBackStack() })
+            }
+
+            // ── Reminder Settings screen ───────────────────────────────────────
+            composable(Screen.ReminderSettings.route) {
+                ReminderSettingsScreen(onNavigateBack = { navController.popBackStack() })
             }
         }
     }

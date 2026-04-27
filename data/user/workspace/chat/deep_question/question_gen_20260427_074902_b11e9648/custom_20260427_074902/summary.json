@@ -1,0 +1,373 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 5,
+  "template_count": 5,
+  "completed": 5,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "Advanced properties and theorems related to Giai Toán, such as its algebraic structures or symmetries",
+      "question_type": "multiple_choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "Focusing on deep theoretical properties challenges students' understanding beyond basic definitions, fostering higher-order thinking.",
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "GIAI TOAN"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "Application of Giai Toán principles to solve complex real-world problems or abstract puzzles",
+      "question_type": "multiple_choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "Applying theoretical knowledge to complex scenarios demonstrates mastery and encourages critical problem-solving skills.",
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "GIAI TOAN"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "Historical development and key mathematicians involved in the evolution of Giai Toán",
+      "question_type": "multiple_choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "Understanding the historical context enriches learners' appreciation and provides insights into the significance of Giai Toán in mathematical progress.",
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "GIAI TOAN"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "Connections between Giai Toán and other branches of mathematics, such as algebra, topology, or combinatorics",
+      "question_type": "multiple_choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Exploring interdisciplinary links deepens comprehension and highlights the broad applicability of Giai Toán concepts.",
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "GIAI TOAN"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "hard"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "Formulation and proof of advanced propositions or conjectures within Giai Toán",
+      "question_type": "multiple_choice",
+      "difficulty": "hard",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "Encouraging students to engage with proofs and conjectures promotes rigorous reasoning and mastery of mathematical logic.",
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "GIAI TOAN"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "hard"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "Advanced properties and theorems related to Giai Toán, such as its algebraic structures or symmetries",
+        "question_type": "multiple_choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "Focusing on deep theoretical properties challenges students' understanding beyond basic definitions, fostering higher-order thinking.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "GIAI TOAN"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "In the context of Giai Toán, which of the following properties best exemplifies its algebraic symmetry related to advanced structures?",
+        "correct_answer": "B",
+        "explanation": "Giai Toán, especially in advanced contexts, often involves exploring symmetries and invariance properties within algebraic structures such as groups, rings, and fields. The invariance of solutions under group automorphisms exemplifies a deep symmetry property that is central to understanding the algebraic structures in Giai Toán. Options A and C are fundamental properties in elementary arithmetic, while D pertains to matrices but does not specifically address the advanced symmetrical properties characteristic of Giai Toán.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Advanced properties and theorems related to Giai Toán, such as its algebraic structures or symmetries",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": false,
+          "issues": [
+            "non_choice_payload_looks_like_multiple_choice"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "Application of Giai Toán principles to solve complex real-world problems or abstract puzzles",
+        "question_type": "multiple_choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "Applying theoretical knowledge to complex scenarios demonstrates mastery and encourages critical problem-solving skills.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "GIAI TOAN"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Trong việc áp dụng Giai Toán để giải quyết các vấn đề phức tạp trong thực tế, phương pháp nào sau đây thể hiện rõ nhất khả năng phân tích và tối ưu hóa giải pháp? \n\nA) Phân tích các yếu tố rủi ro trong dự án.\nB) Tối ưu hóa lịch trình sản xuất dựa trên các hạn chế về tài nguyên.\nC) Đánh giá độ bền của vật liệu trong công trình xây dựng.\nD) Thiết kế giao diện người dùng cho phần mềm quản lý dự án.",
+        "correct_answer": "B",
+        "explanation": "Việc tối ưu hóa lịch trình sản xuất dựa trên các hạn chế về tài nguyên là một ví dụ điển hình của ứng dụng Giai Toán trong giải quyết các bài toán thực tế phức tạp. Nó yêu cầu phân tích các yếu tố hạn chế, tìm ra giải pháp tối ưu về thời gian và tài nguyên, thể hiện rõ khả năng phân tích và tối ưu hóa của Giai Toán trong các tình huống thực tế.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Application of Giai Toán principles to solve complex real-world problems or abstract puzzles",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": false,
+          "issues": [
+            "non_choice_payload_looks_like_multiple_choice"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "Historical development and key mathematicians involved in the evolution of Giai Toán",
+        "question_type": "multiple_choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "Understanding the historical context enriches learners' appreciation and provides insights into the significance of Giai Toán in mathematical progress.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "GIAI TOAN"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "Which mathematician is widely recognized for pioneering the development of Giai Toán (algebra) during the early Islamic Golden Age, significantly influencing its evolution?",
+        "correct_answer": "",
+        "explanation": "Al-Khwarizmi, a Persian mathematician of the 9th century, is often regarded as the father of algebra (Giai Toán). His works introduced systematic solutions to linear and quadratic equations and laid the foundational principles for algebraic development. His influential book 'Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala' is where the term 'algebra' originates, marking a significant milestone in the historical development of Giai Toán.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Historical development and key mathematicians involved in the evolution of Giai Toán",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "Connections between Giai Toán and other branches of mathematics, such as algebra, topology, or combinatorics",
+        "question_type": "multiple_choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Exploring interdisciplinary links deepens comprehension and highlights the broad applicability of Giai Toán concepts.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "GIAI TOAN"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "How does Giai Toán (Mathematical Reasoning) relate to other branches of mathematics such as algebra, topology, or combinatorics?",
+        "correct_answer": "",
+        "explanation": "Giai Toán, or mathematical reasoning, is deeply interconnected with various branches of mathematics. It offers foundational logical and deductive principles that support and enhance understanding in algebra, topology, and combinatorics. Exploring these connections reveals the broad applicability of Giai Toán concepts and promotes a more integrated view of mathematical thought.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Connections between Giai Toán and other branches of mathematics, such as algebra, topology, or combinatorics",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "Formulation and proof of advanced propositions or conjectures within Giai Toán",
+        "question_type": "multiple_choice",
+        "difficulty": "hard",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "Encouraging students to engage with proofs and conjectures promotes rigorous reasoning and mastery of mathematical logic.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "GIAI TOAN"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "hard"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "Trong lĩnh vực Giai Toán, việc chứng minh các mệnh đề hoặc giả thuyết phức tạp thường yêu cầu sử dụng phương pháp nào dưới đây để đảm bảo tính chính xác của kết quả?",
+        "correct_answer": "",
+        "explanation": "Trong Giai Toán, để chứng minh các mệnh đề hoặc giả thuyết phức tạp, các nhà toán học thường dựa vào các định lý đã được chứng minh trước đó để xây dựng các chứng minh mới, đảm bảo tính logic và chính xác của kết quả. Phương pháp này giúp xây dựng các luận cứ vững chắc và tránh sai sót trong chứng minh.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Formulation and proof of advanced propositions or conjectures within Giai Toán",
+        "difficulty": "hard",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: GIAI TOAN ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260427_074902_b11e9648\\custom_20260427_074902"
+}
