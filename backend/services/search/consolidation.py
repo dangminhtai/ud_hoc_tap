@@ -10,7 +10,7 @@ from typing import Any
 
 from jinja2 import BaseLoader, Environment
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.llm import get_llm_client
 
 from .types import WebSearchResponse

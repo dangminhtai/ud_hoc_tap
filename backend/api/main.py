@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.path_service import get_path_service
 
 logger = get_logger("API")

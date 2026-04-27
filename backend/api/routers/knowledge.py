@@ -37,7 +37,7 @@ from backend.services.rag.factory import DEFAULT_PROVIDER, has_pipeline, normali
 from backend.utils.document_validator import DocumentValidator
 from backend.utils.error_utils import format_exception_message
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.config import PROJECT_ROOT, load_config_with_main
 
 # Initialize logger with config

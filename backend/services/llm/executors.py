@@ -7,7 +7,7 @@ from typing import Any
 
 from openai import AsyncOpenAI
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.provider_registry import find_by_name, strip_provider_prefix
 
 from .config import get_token_limit_kwargs

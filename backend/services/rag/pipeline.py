@@ -10,7 +10,7 @@ from pathlib import Path
 import shutil
 from typing import Any, Dict, List, Optional
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 from .components.base import Component
 from .components.routing import FileTypeRouter

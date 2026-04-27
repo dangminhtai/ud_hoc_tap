@@ -9,7 +9,7 @@ from typing import Any
 from backend.agents.question.agents.generator import Generator
 from backend.agents.question.agents.idea_agent import BATCH_SIZE, IdeaAgent
 from backend.agents.question.models import QAPair, QuestionTemplate
-from backend.logging import Logger, get_logger
+from backend.loggers import Logger, get_logger
 from backend.services.config import PROJECT_ROOT, load_config_with_main
 from backend.services.path_service import get_path_service
 from backend.tools.question.pdf_parser import parse_pdf_with_mineru

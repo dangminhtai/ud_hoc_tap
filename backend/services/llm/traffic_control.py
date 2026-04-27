@@ -4,7 +4,7 @@ import asyncio
 import time
 from types import TracebackType
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 logger = get_logger(__name__)
 

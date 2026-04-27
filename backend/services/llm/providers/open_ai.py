@@ -6,7 +6,7 @@ from typing import Callable, Protocol, TypeVar, cast
 
 import httpx
 import openai
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 from ..config import LLMConfig, get_token_limit_kwargs
 from ..exceptions import LLMConfigError

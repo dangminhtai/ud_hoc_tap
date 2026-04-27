@@ -46,7 +46,7 @@ class BaseComponent:
     name: str = "base"
 
     def __init__(self):
-        from backend.logging import get_logger
+        from backend.loggers import get_logger
 
         self.logger = get_logger(self.__class__.__name__)
 

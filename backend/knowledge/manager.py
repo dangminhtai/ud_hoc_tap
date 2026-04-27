@@ -14,7 +14,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.rag.components.routing import FileTypeRouter
 
 from backend.services.rag.factory import DEFAULT_PROVIDER, LEGACY_PROVIDER_ALIASES, normalize_provider_name

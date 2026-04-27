@@ -9,7 +9,7 @@ import sys
 import time
 from typing import Any
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.path_service import get_path_service
 
 RUN_CODE_WORKSPACE_ENV = "RUN_CODE_WORKSPACE"

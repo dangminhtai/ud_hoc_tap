@@ -9,7 +9,7 @@ from abc import ABC, abstractmethod
 import os
 from typing import Any
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.config import get_env_store
 
 from .types import WebSearchResponse

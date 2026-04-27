@@ -2,7 +2,7 @@ from collections.abc import AsyncGenerator
 
 from pydantic import BaseModel, Field
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 logger = get_logger(__name__)
 

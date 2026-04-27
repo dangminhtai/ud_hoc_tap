@@ -17,7 +17,7 @@ import inspect
 from typing import Any, AsyncGenerator, Awaitable, Callable
 
 from backend.config.settings import settings
-from backend.logging import LLMStats, get_logger
+from backend.loggers import LLMStats, get_logger
 from backend.services.config import get_agent_params
 from backend.services.llm import complete as llm_complete
 from backend.services.llm import get_llm_config, get_token_limit_kwargs, supports_response_format

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, TypedDict
 import tenacity
 
 from backend.config.settings import settings
-from backend.logging.logger import Logger, get_logger
+from backend.loggers.logger import Logger, get_logger
 
 from . import local_provider
 from .config import LLMConfig, get_llm_config

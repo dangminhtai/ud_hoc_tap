@@ -7,7 +7,7 @@ from typing import Optional
 
 from fastapi import WebSocket
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 logger = get_logger("ProgressBroadcaster")
 

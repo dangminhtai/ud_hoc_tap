@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 from .adapters.base import BaseEmbeddingAdapter, EmbeddingRequest
 from .adapters.cohere import CohereEmbeddingAdapter

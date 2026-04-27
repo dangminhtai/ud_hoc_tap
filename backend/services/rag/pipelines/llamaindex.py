@@ -19,7 +19,7 @@ from llama_index.core import (
 from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.bridge.pydantic import PrivateAttr
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.embedding import get_embedding_client, get_embedding_config
 from backend.services.rag.components.routing import FileTypeRouter
 

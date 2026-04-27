@@ -6,7 +6,7 @@ Re-exports handlers from the unified logging system.
 Kept for backwards compatibility.
 """
 
-from backend.logging.handlers import (
+from backend.loggers.handlers import (
     JSONFileHandler,
     LogInterceptor,
     WebSocketLogHandler,

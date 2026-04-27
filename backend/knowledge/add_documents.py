@@ -13,7 +13,7 @@ from typing import List, Optional
 
 from dotenv import load_dotenv
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.rag.factory import DEFAULT_PROVIDER
 from backend.services.rag.pipelines.llamaindex import LlamaIndexPipeline
 

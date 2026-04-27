@@ -11,7 +11,7 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from backend.agents.question import AgentCoordinator
 from backend.api.utils.log_interceptor import LogInterceptor
 from backend.api.utils.task_id_manager import TaskIDManager
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.config import PROJECT_ROOT, load_config_with_main
 from backend.services.llm.config import get_llm_config
 from backend.services.path_service import get_path_service

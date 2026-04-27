@@ -11,7 +11,7 @@ from pathlib import Path
 import logging
 
 # Use unified logging system
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 _logger = get_logger("KnowledgeInit")
 

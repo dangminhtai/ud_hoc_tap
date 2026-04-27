@@ -1,7 +1,7 @@
 from collections.abc import Awaitable, Callable
 from typing import cast
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 from .config import LLMConfig, get_llm_config
 from .utils import sanitize_url

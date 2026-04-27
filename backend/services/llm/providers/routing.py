@@ -5,7 +5,7 @@ import asyncio
 from importlib import import_module
 from typing import Protocol, cast
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 from ..config import LLMConfig
 from ..exceptions import LLMConfigError

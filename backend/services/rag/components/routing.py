@@ -11,7 +11,7 @@ from enum import Enum
 from pathlib import Path
 from typing import List
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 
 logger = get_logger("FileTypeRouter")
 

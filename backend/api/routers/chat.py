@@ -9,7 +9,7 @@ REST endpoints for session operations.
 from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 
 from backend.agents.chat import ChatAgent, SessionManager
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.config import PROJECT_ROOT, load_config_with_main
 from backend.services.llm.config import get_llm_config
 from backend.services.settings.interface_settings import get_ui_language

@@ -10,7 +10,7 @@ from pathlib import Path
 import shutil
 from typing import Optional
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.rag.components.routing import FileTypeRouter
 from backend.services.rag.factory import DEFAULT_PROVIDER, normalize_provider_name
 from backend.services.rag.service import RAGService

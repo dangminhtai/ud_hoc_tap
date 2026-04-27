@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from backend.logging import get_logger
+from backend.loggers import get_logger
 from backend.services.config import (
     DEPRECATED_SEARCH_PROVIDERS,
     PROJECT_ROOT,
