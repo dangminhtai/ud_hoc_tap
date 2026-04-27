@@ -1,24 +1,3 @@
-{
-  "notebooks": [
-    {
-      "id": "2a833571",
-      "name": "gekki",
-      "description": "ádasdasdsa",
-      "created_at": 1776344163.1136866,
-      "updated_at": 1776344209.006864,
-      "record_count": 1,
-      "color": "#3B82F6",
-      "icon": "book"
-    },
-    {
-      "id": "b31ad776",
-      "name": "Hoc to an",
-      "description": "",
-      "created_at": 1777168886.7955673,
-      "updated_at": 1777168886.7955673,
-      "record_count": 0,
-      "color": "#3B82F6",
-      "icon": "book"
-    }
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:26f0297bcbdd60766c3bd3db387fda506142ca4509e1c7a6e6f1e5130c77bc33
+size 534

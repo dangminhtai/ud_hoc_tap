@@ -1,0 +1,8 @@
+data/knowledge_bases/*/llamaindex_storage/default__vector_store.json filter=lfs diff=lfs merge=lfs -text
+\# filter=lfs diff=lfs merge=lfs -text
+or filter=lfs diff=lfs merge=lfs -text
+more filter=lfs diff=lfs merge=lfs -text
+specific filter=lfs diff=lfs merge=lfs -text
+if filter=lfs diff=lfs merge=lfs -text
+needed filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
