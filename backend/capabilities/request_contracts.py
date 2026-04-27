@@ -6,15 +6,6 @@ from typing import Any, Callable, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from backend.agents.math_animator.request_config import (
-    MathAnimatorRequestConfig,
-    validate_math_animator_request_config,
-)
-from backend.agents.research.request_config import (
-    DeepResearchRequestConfig,
-    validate_research_request_config,
-)
-
 _RUNTIME_ONLY_KEYS = {"_persist_user_message", "followup_question_context"}
 
 
@@ -42,6 +33,27 @@ class DeepQuestionRequestConfig(BaseModel):
     preference: str = ""
     paper_path: str = ""
     max_questions: int = Field(default=10, ge=1, le=100)
+
+
+# Placeholder classes for removed agents
+class DeepResearchRequestConfig(BaseModel):
+    """Deep research request config (removed)."""
+    model_config = ConfigDict(extra="forbid")
+
+
+class MathAnimatorRequestConfig(BaseModel):
+    """Math animator request config (removed)."""
+    model_config = ConfigDict(extra="forbid")
+
+
+def validate_research_request_config(raw_config: dict[str, Any] | None) -> DeepResearchRequestConfig:
+    """Validate deep research request config (removed)."""
+    return _validate_model(DeepResearchRequestConfig, raw_config, label="deep research")
+
+
+def validate_math_animator_request_config(raw_config: dict[str, Any] | None) -> MathAnimatorRequestConfig:
+    """Validate math animator request config (removed)."""
+    return _validate_model(MathAnimatorRequestConfig, raw_config, label="math animator")
 
 
 def _clean_public_config(raw_config: dict[str, Any] | None) -> dict[str, Any]:
@@ -102,16 +114,12 @@ CAPABILITY_CONFIG_VALIDATORS: dict[str, Callable[[dict[str, Any] | None], Any]] 
     "chat": validate_chat_request_config,
     "deep_solve": validate_deep_solve_request_config,
     "deep_question": validate_deep_question_request_config,
-    "deep_research": validate_research_request_config,
-    "math_animator": validate_math_animator_request_config,
 }
 
 CAPABILITY_REQUEST_SCHEMAS: dict[str, dict[str, Any]] = {
     "chat": build_request_schema(ChatRequestConfig),
     "deep_solve": build_request_schema(DeepSolveRequestConfig),
     "deep_question": build_request_schema(DeepQuestionRequestConfig),
-    "deep_research": build_request_schema(DeepResearchRequestConfig),
-    "math_animator": build_request_schema(MathAnimatorRequestConfig),
 }
 
 
@@ -137,10 +145,14 @@ __all__ = [
     "ChatRequestConfig",
     "DeepQuestionRequestConfig",
     "DeepSolveRequestConfig",
+    "DeepResearchRequestConfig",
+    "MathAnimatorRequestConfig",
     "build_request_schema",
     "get_capability_request_schema",
     "validate_capability_config",
     "validate_chat_request_config",
     "validate_deep_question_request_config",
     "validate_deep_solve_request_config",
+    "validate_research_request_config",
+    "validate_math_animator_request_config",
 ]

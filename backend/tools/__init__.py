@@ -17,7 +17,7 @@ _LAZY_EXPORTS = {
     "read_tex_file": (".tex_downloader", "read_tex_file"),
     "BrainstormTool": (".builtin", "BrainstormTool"),
     "CodeExecutionTool": (".builtin", "CodeExecutionTool"),
-    "GeoGebraAnalysisTool": (".builtin", "GeoGebraAnalysisTool"),
+    
     "PaperSearchToolWrapper": (".builtin", "PaperSearchToolWrapper"),
     "RAGTool": (".builtin", "RAGTool"),
     "ReasonTool": (".builtin", "ReasonTool"),

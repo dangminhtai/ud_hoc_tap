@@ -407,120 +407,6 @@ class PaperSearchToolWrapper(_PromptHintsMixin, BaseTool):
         )
 
 
-class GeoGebraAnalysisTool(_PromptHintsMixin, BaseTool):
-    """Analyze a math-problem image and generate GeoGebra visualization commands."""
-
-    def get_definition(self) -> ToolDefinition:
-        """Return the definition."""
-        return ToolDefinition(
-            name="geogebra_analysis",
-            description=(
-                "Analyze a math problem image, detect geometric elements, "
-                "and generate validated GeoGebra commands for visualization. "
-                "Requires an attached image."
-            ),
-            parameters=[
-                ToolParameter(
-                    name="question",
-                    type="string",
-                    description="The math problem text to analyze.",
-                ),
-                ToolParameter(
-                    name="image_base64",
-                    type="string",
-                    description="Base64-encoded image (data URI or raw). Injected from attachments when called via function-calling.",
-                    required=False,
-                    default="",
-                ),
-                ToolParameter(
-                    name="language",
-                    type="string",
-                    description="Output language: 'zh' or 'en'.",
-                    required=False,
-                    default="zh",
-                    enum=["zh", "en"],
-                ),
-            ],
-        )
-
-    async def execute(self, **kwargs: Any) -> ToolResult:
-        """Execute."""
-        from backend.agents.vision_solver.vision_solver_agent import VisionSolverAgent
-        from backend.services.llm.config import get_llm_config
-
-        question = kwargs.get("question", "")
-        image_base64 = kwargs.get("image_base64", "")
-        language = kwargs.get("language", "zh")
-
-        if not image_base64:
-            return ToolResult(
-                content="No image provided. This tool requires an image attachment.",
-                success=False,
-            )
-
-        llm_config = get_llm_config()
-        agent = VisionSolverAgent(
-            api_key=llm_config.api_key,
-            base_url=llm_config.base_url,
-            language=language,
-        )
-
-        try:
-            result = await agent.process(
-                question_text=question,
-                image_base64=image_base64,
-            )
-        except Exception as exc:
-            logger.exception("GeoGebra analysis pipeline failed")
-            return ToolResult(content=f"Analysis pipeline error: {exc}", success=False)
-
-        if not result.get("has_image"):
-            return ToolResult(content="No image was processed.", success=False)
-
-        final_commands = result.get("final_ggb_commands", [])
-        ggb_block = agent.format_ggb_block(final_commands)
-
-        analysis = result.get("analysis_output") or {}
-        constraints = analysis.get("constraints", [])
-        relations = analysis.get("geometric_relations", [])
-        summary_parts: list[str] = []
-        if constraints:
-            summary_parts.append(
-                f"Constraints ({len(constraints)}): {json.dumps(constraints[:5], ensure_ascii=False)}"
-            )
-        if relations:
-            relation_descriptions = [
-                relation.get("description", str(relation))
-                if isinstance(relation, dict)
-                else str(relation)
-                for relation in relations[:5]
-            ]
-            summary_parts.append(
-                f"Relations ({len(relations)}): {json.dumps(relation_descriptions, ensure_ascii=False)}"
-            )
-
-        content_parts: list[str] = []
-        if summary_parts:
-            content_parts.append("\n".join(summary_parts))
-        content_parts.append(ggb_block or "(No GeoGebra commands generated.)")
-
-        return ToolResult(
-            content="\n\n".join(content_parts),
-            metadata={
-                "has_image": True,
-                "commands_count": len(final_commands),
-                "final_ggb_commands": final_commands,
-                "image_is_reference": result.get("image_is_reference", False),
-                "bbox_elements": len((result.get("bbox_output") or {}).get("elements", [])),
-                "constraints_count": len(constraints),
-                "relations_count": len(relations),
-                "reflection_issues": len(
-                    (result.get("reflection_output") or {}).get("issues_found", [])
-                ),
-            },
-        )
-
-
 BUILTIN_TOOL_TYPES: tuple[type[BaseTool], ...] = (
     BrainstormTool,
     RAGTool,
@@ -528,7 +414,6 @@ BUILTIN_TOOL_TYPES: tuple[type[BaseTool], ...] = (
     CodeExecutionTool,
     ReasonTool,
     PaperSearchToolWrapper,
-    GeoGebraAnalysisTool,
 )
 
 BUILTIN_TOOL_NAMES: tuple[str, ...] = tuple(tool_type().name for tool_type in BUILTIN_TOOL_TYPES)
@@ -547,7 +432,6 @@ __all__ = [
     "TOOL_ALIASES",
     "BrainstormTool",
     "CodeExecutionTool",
-    "GeoGebraAnalysisTool",
     "PaperSearchToolWrapper",
     "RAGTool",
     "ReasonTool",

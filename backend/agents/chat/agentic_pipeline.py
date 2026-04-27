@@ -35,7 +35,7 @@ from backend.utils.json_parser import parse_json_response
 
 logger = logging.getLogger(__name__)
 
-CHAT_EXCLUDED_TOOLS = {"geogebra_analysis"}
+CHAT_EXCLUDED_TOOLS = set()
 CHAT_OPTIONAL_TOOLS = [
     name for name in BUILTIN_TOOL_NAMES if name not in CHAT_EXCLUDED_TOOLS
 ]
