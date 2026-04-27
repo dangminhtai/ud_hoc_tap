@@ -1,0 +1,1067 @@
+2026-04-26 13:59:54 [INFO    ] [API         ] Application startup
+2026-04-26 13:59:54 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 13:59:54 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 13:59:54 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 13:59:54 [INFO    ] [API         ] EventBus started
+2026-04-26 14:00:08 [INFO    ] [ChatAPI     ] Chat request: session=None, message=hello..., rag=False, web=False
+2026-04-26 14:00:08 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 14:00:08 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 14:00:08 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=5chars
+2026-04-26 14:00:11 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=36chars
+2026-04-26 14:00:11 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777186808402_6217e731, 36 chars
+2026-04-26 14:00:11 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 14:00:38 [INFO    ] [Solver      ] ============================================================
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Solver Initialising (Plan -> ReAct -> Write)
+2026-04-26 14:00:38 [INFO    ] [Solver      ] ============================================================
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Knowledge Base: ai-textbook
+2026-04-26 14:00:38 [DEBUG   ] [Solve.planner_agent] Prompts loaded: planner_agent (en)
+2026-04-26 14:00:38 [DEBUG   ] [Solve.solver_agent] Prompts loaded: solver_agent (en)
+2026-04-26 14:00:38 [DEBUG   ] [Solve.writer_agent] Prompts loaded: writer_agent (en)
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Agents initialised (lang=en), tools registered: ['rag', 'web_search', 'code_execution', 'reason']
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Solver ready (Plan -> ReAct -> Write)
+2026-04-26 14:00:38 [INFO    ] [SolveAPI    ] [solve_20260426_140038_8ef4a67a] Solving: Can you help me implement tansformerarchitecture ?...
+2026-04-26 14:00:38 [INFO    ] [SolveAPI    ] [solve_20260426_140038_8ef4a67a] Solving started
+2026-04-26 14:00:38 [INFO    ] [Solver      ] ============================================================
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Problem Solving Started
+2026-04-26 14:00:38 [INFO    ] [Solver      ] ============================================================
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Question: Can you help me implement tansformerarchitecture ?
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Output: D:\ud_hoc_tap\data\user\workspace\chat\deep_solve\solve_20260426_140038
+2026-04-26 14:00:38 [INFO    ] [Solver      ] Phase 1 started | Planning
+2026-04-26 14:00:38 [DEBUG   ] [Solve.planner_agent] LLM Input [planner_agent:plan_generate_queries] system=0chars, user=363chars
+2026-04-26 14:00:39 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=1, cost=0.0
+2026-04-26 14:00:39 [DEBUG   ] [Solve.planner_agent] LLM Output [planner_agent:plan_generate_queries] response=200chars
+2026-04-26 14:00:40 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: core definitions and components of transformer arc...
+2026-04-26 14:00:40 [INFO    ] [EmbeddingClient] Initialized embedding client with openai adapter (model: text-embedding-3-large, dimensions: 3072)
+2026-04-26 14:00:40 [INFO    ] [LlamaIndexPipeline] LlamaIndex configured: embedding=text-embedding-3-large (3072D, openai), chunk_size=512
+2026-04-26 14:00:40 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: core definitions and components of transformer arc...
+2026-04-26 14:00:40 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:00:40 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: key formulas and attention mechanisms in transform...
+2026-04-26 14:00:40 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: key formulas and attention mechanisms in transform...
+2026-04-26 14:00:40 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:00:40 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: examples and best practices for implementing trans...
+2026-04-26 14:00:40 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: examples and best practices for implementing trans...
+2026-04-26 14:00:40 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:00:40 [DEBUG   ] [Solve.planner_agent] LLM Input [planner_agent:plan_aggregate_context] system=98chars, user=854chars
+2026-04-26 14:00:59 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=2, cost=0.0432
+2026-04-26 14:00:59 [DEBUG   ] [Solve.planner_agent] LLM Output [planner_agent:plan_aggregate_context] response=203chars
+2026-04-26 14:00:59 [DEBUG   ] [Solve.planner_agent] LLM Input [planner_agent:plan] system=1492chars, user=3430chars
+2026-04-26 14:01:02 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=3, cost=0.09909
+2026-04-26 14:01:02 [DEBUG   ] [Solve.planner_agent] LLM Output [planner_agent:plan] response=203chars
+2026-04-26 14:01:02 [INFO    ] [Solver      ] Plan: 8 steps — To assist with implementing a transformer architecture, it is necessary to under
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S1] Establish a detailed understanding of the overall transformer architecture, including its main components and their roles.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S2] Define the mathematical formulation of the scaled dot-product attention mechanism.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S3] Describe the multi-head attention mechanism, including how multiple attention heads are combined.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S4] Explain the purpose and implementation of positional encoding within the transformer.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S5] Outline the structure of a transformer encoder layer, including self-attention, feedforward network, residual connections, and normalization.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S6] Outline the structure of a transformer decoder layer, including masked self-attention, encoder-decoder attention, feedforward network, residual connections, and normalization.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S7] Plan the overall architecture of the transformer model, integrating encoder and decoder layers, and specify how to implement training techniques like masking and dropout.
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   [S8] Translate the detailed component descriptions into a step-by-step implementation plan, including data flow, parameter initialization, and training procedures.
+2026-04-26 14:01:02 [DEBUG   ] [Solver      ] Token Stats: 2291 tokens
+2026-04-26 14:01:02 [INFO    ] [Solver      ] Phase 2 started | Solving
+2026-04-26 14:01:02 [INFO    ] [Solver      ]   Step S1: Establish a detailed understanding of the overall transformer architecture, including its main components and their roles.
+2026-04-26 14:01:02 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S1] system=3638chars, user=1911chars
+2026-04-26 14:01:04 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=4, cost=0.13905
+2026-04-26 14:01:04 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S1] response=203chars
+2026-04-26 14:01:04 [INFO    ] [Solver      ]     Round 1: rag(Provide a detailed explanation of the overall transformer ar...)
+2026-04-26 14:01:04 [DEBUG   ] [Solver      ]     Thought: To effectively assist with implementing the transformer architecture, I need to provide a comprehensive overview of its 
+2026-04-26 14:01:04 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:04 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:04 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:04 [DEBUG   ] [Solver      ] Token Stats: 3503 tokens
+2026-04-26 14:01:04 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S1] system=3638chars, user=2631chars
+2026-04-26 14:01:05 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=5, cost=0.18204
+2026-04-26 14:01:05 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S1] response=203chars
+2026-04-26 14:01:05 [INFO    ] [Solver      ]     Round 2: web_search(Detailed explanation of the transformer architecture, includ...)
+2026-04-26 14:01:05 [DEBUG   ] [Solver      ]     Thought: Since the knowledge base does not contain relevant documents, I should use web search to find a reliable and comprehensi
+2026-04-26 14:01:05 [INFO    ] [Search      ] [duckduckgo] Searching: Detailed explanation of the transformer architectu...
+2026-04-26 14:01:05 [ERROR   ] [Search      ] [duckduckgo] Search failed: No module named 'ddgs'
+2026-04-26 14:01:05 [WARNING ] [Solver      ]     Tool error: duckduckgo search failed: No module named 'ddgs'
+2026-04-26 14:01:05 [DEBUG   ] [Solver      ] Token Stats: 4829 tokens
+2026-04-26 14:01:05 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S1] system=3638chars, user=3286chars
+2026-04-26 14:01:07 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=6, cost=0.22938000000000003
+2026-04-26 14:01:07 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S1] response=203chars
+2026-04-26 14:01:07 [INFO    ] [Solver      ]     Round 3: rag(Provide a detailed explanation of the overall transformer ar...)
+2026-04-26 14:01:07 [DEBUG   ] [Solver      ]     Thought: Since the web search failed and no documents are available in the knowledge base, I will rely on my existing knowledge t
+2026-04-26 14:01:07 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:07 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:07 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:07 [DEBUG   ] [Solver      ] Token Stats: 6289 tokens
+2026-04-26 14:01:07 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S1] system=3638chars, user=3951chars
+2026-04-26 14:01:09 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=7, cost=0.28197000000000005
+2026-04-26 14:01:09 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S1] response=203chars
+2026-04-26 14:01:09 [INFO    ] [Solver      ]     Round 4: done(Provide a comprehensive overview of the transformer architec...)
+2026-04-26 14:01:09 [DEBUG   ] [Solver      ]     Thought: Since the knowledge base and web search have not provided relevant information, I will rely on my existing understanding
+2026-04-26 14:01:09 [INFO    ] [Solver      ]     -> Step S1 completed
+2026-04-26 14:01:09 [INFO    ] [Solver      ]   Step S2: Define the mathematical formulation of the scaled dot-product attention mechanism.
+2026-04-26 14:01:09 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=2353chars
+2026-04-26 14:01:10 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=8, cost=0.32349000000000006
+2026-04-26 14:01:10 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:10 [INFO    ] [Solver      ]     Round 1: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:10 [DEBUG   ] [Solver      ]     Thought: To define the mathematical formulation of scaled dot-product attention, I need to recall its formula and understand how 
+2026-04-26 14:01:10 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:10 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:10 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:10 [DEBUG   ] [Solver      ] Token Stats: 9167 tokens
+2026-04-26 14:01:10 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=3008chars
+2026-04-26 14:01:11 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=9, cost=0.3670800000000001
+2026-04-26 14:01:11 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:11 [INFO    ] [Solver      ]     Round 2: web_search(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:11 [DEBUG   ] [Solver      ]     Thought: Since the knowledge base does not contain the detailed mathematical formulation of scaled dot-product attention, I shoul
+2026-04-26 14:01:11 [INFO    ] [Search      ] [duckduckgo] Searching: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:11 [ERROR   ] [Search      ] [duckduckgo] Search failed: No module named 'ddgs'
+2026-04-26 14:01:11 [WARNING ] [Solver      ]     Tool error: duckduckgo search failed: No module named 'ddgs'
+2026-04-26 14:01:11 [DEBUG   ] [Solver      ] Token Stats: 10532 tokens
+2026-04-26 14:01:11 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=3547chars
+2026-04-26 14:01:13 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=10, cost=0.41463000000000005
+2026-04-26 14:01:13 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:13 [INFO    ] [Solver      ]     Round 3: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:13 [DEBUG   ] [Solver      ]     Thought: The web search failed, so I need to find a reliable source or explanation of the mathematical formulation of scaled dot-
+2026-04-26 14:01:13 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:13 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:13 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:13 [DEBUG   ] [Solver      ] Token Stats: 12015 tokens
+2026-04-26 14:01:13 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=4081chars
+2026-04-26 14:01:14 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=11, cost=0.4641600000000001
+2026-04-26 14:01:14 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:14 [INFO    ] [Solver      ]     Round 4: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:14 [DEBUG   ] [Solver      ]     Thought: I need to provide the mathematical formulation of scaled dot-product attention based on my existing knowledge, as the we
+2026-04-26 14:01:14 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:14 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:14 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:14 [DEBUG   ] [Solver      ] Token Stats: 13582 tokens
+2026-04-26 14:01:14 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=4539chars
+2026-04-26 14:01:15 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=12, cost=0.5172300000000001
+2026-04-26 14:01:15 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:15 [INFO    ] [Solver      ]     Round 5: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:15 [DEBUG   ] [Solver      ]     Thought: I need to provide the mathematical formulation of scaled dot-product attention based on my existing knowledge, as the we
+2026-04-26 14:01:15 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:15 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:15 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:15 [DEBUG   ] [Solver      ] Token Stats: 15250 tokens
+2026-04-26 14:01:15 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=5121chars
+2026-04-26 14:01:17 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=13, cost=0.5732700000000001
+2026-04-26 14:01:17 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:17 [INFO    ] [Solver      ]     Round 6: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:17 [DEBUG   ] [Solver      ]     Thought: I need to recall the mathematical formulation of scaled dot-product attention from my existing knowledge, as the web sea
+2026-04-26 14:01:17 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:17 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:17 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:17 [DEBUG   ] [Solver      ] Token Stats: 17018 tokens
+2026-04-26 14:01:17 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=5696chars
+2026-04-26 14:01:18 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=14, cost=0.6323700000000001
+2026-04-26 14:01:18 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:18 [INFO    ] [Solver      ]     Round 7: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:18 [DEBUG   ] [Solver      ]     Thought: I need to provide the mathematical formulation of scaled dot-product attention based on my existing knowledge, as the we
+2026-04-26 14:01:19 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:19 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:19 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:19 [DEBUG   ] [Solver      ] Token Stats: 18887 tokens
+2026-04-26 14:01:19 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=6276chars
+2026-04-26 14:01:20 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=15, cost=0.6942000000000002
+2026-04-26 14:01:20 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:20 [INFO    ] [Solver      ]     Round 8: rag(Mathematical formulation of scaled dot-product attention in ...)
+2026-04-26 14:01:20 [DEBUG   ] [Solver      ]     Thought: I need to recall the mathematical formulation of scaled dot-product attention from my existing knowledge, as the web sea
+2026-04-26 14:01:20 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:20 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Mathematical formulation of scaled dot-product att...
+2026-04-26 14:01:20 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:20 [DEBUG   ] [Solver      ] Token Stats: 20852 tokens
+2026-04-26 14:01:20 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S2] system=3638chars, user=6831chars
+2026-04-26 14:01:21 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=16, cost=0.7623300000000002
+2026-04-26 14:01:21 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S2] response=203chars
+2026-04-26 14:01:21 [INFO    ] [Solver      ]     Round 9: done(Provide the detailed mathematical formula for scaled dot-pro...)
+2026-04-26 14:01:21 [DEBUG   ] [Solver      ]     Thought: To define the mathematical formulation of scaled dot-product attention, I need to recall the standard formula from my kn
+2026-04-26 14:01:21 [INFO    ] [Solver      ]     -> Step S2 completed
+2026-04-26 14:01:21 [INFO    ] [Solver      ]   Step S3: Describe the multi-head attention mechanism, including how multiple attention heads are combined.
+2026-04-26 14:01:21 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S3] system=3638chars, user=3352chars
+2026-04-26 14:01:23 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=17, cost=0.8102700000000002
+2026-04-26 14:01:23 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S3] response=203chars
+2026-04-26 14:01:23 [INFO    ] [Solver      ]     Round 1: rag(Explain the multi-head attention mechanism in transformer ar...)
+2026-04-26 14:01:23 [DEBUG   ] [Solver      ]     Thought: To accurately describe the multi-head attention mechanism, I need to ensure I have a clear and precise explanation of ho
+2026-04-26 14:01:23 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Explain the multi-head attention mechanism in tran...
+2026-04-26 14:01:23 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Explain the multi-head attention mechanism in tran...
+2026-04-26 14:01:23 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:23 [DEBUG   ] [Solver      ] Token Stats: 24428 tokens
+2026-04-26 14:01:24 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S3] system=3638chars, user=4172chars
+2026-04-26 14:01:25 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=18, cost=0.8619900000000001
+2026-04-26 14:01:25 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S3] response=203chars
+2026-04-26 14:01:25 [INFO    ] [Solver      ]     Round 2: web_search(detailed explanation of multi-head attention mechanism in tr...)
+2026-04-26 14:01:25 [DEBUG   ] [Solver      ]     Thought: I need a detailed explanation of the multi-head attention mechanism, including how multiple attention heads are computed
+2026-04-26 14:01:25 [INFO    ] [Search      ] [duckduckgo] Searching: detailed explanation of multi-head attention mecha...
+2026-04-26 14:01:25 [ERROR   ] [Search      ] [duckduckgo] Search failed: No module named 'ddgs'
+2026-04-26 14:01:25 [WARNING ] [Solver      ]     Tool error: duckduckgo search failed: No module named 'ddgs'
+2026-04-26 14:01:25 [DEBUG   ] [Solver      ] Token Stats: 26022 tokens
+2026-04-26 14:01:25 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S3] system=3638chars, user=4960chars
+2026-04-26 14:01:26 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=19, cost=0.9211500000000001
+2026-04-26 14:01:26 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S3] response=203chars
+2026-04-26 14:01:26 [INFO    ] [Solver      ]     Round 3: done(Describe the multi-head attention mechanism in transformer a...)
+2026-04-26 14:01:26 [DEBUG   ] [Solver      ]     Thought: To accurately describe the multi-head attention mechanism, I need a detailed explanation of how multiple attention heads
+2026-04-26 14:01:26 [INFO    ] [Solver      ]     -> Step S3 completed
+2026-04-26 14:01:26 [INFO    ] [Solver      ]   Step S4: Explain the purpose and implementation of positional encoding within the transformer.
+2026-04-26 14:01:26 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S4] system=3638chars, user=3781chars
+2026-04-26 14:01:27 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=20, cost=0.9690900000000001
+2026-04-26 14:01:27 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S4] response=203chars
+2026-04-26 14:01:27 [INFO    ] [Solver      ]     Round 1: rag(Explain the purpose and implementation of positional encodin...)
+2026-04-26 14:01:27 [DEBUG   ] [Solver      ]     Thought: To explain positional encoding, I should retrieve a detailed description of its purpose and implementation in transforme
+2026-04-26 14:01:28 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Explain the purpose and implementation of position...
+2026-04-26 14:01:28 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Explain the purpose and implementation of position...
+2026-04-26 14:01:28 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:28 [DEBUG   ] [Solver      ] Token Stats: 29308 tokens
+2026-04-26 14:01:28 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S4] system=3638chars, user=4413chars
+2026-04-26 14:01:29 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=21, cost=1.02177
+2026-04-26 14:01:29 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S4] response=203chars
+2026-04-26 14:01:29 [INFO    ] [Solver      ]     Round 2: reason(Explain the purpose and implementation of positional encodin...)
+2026-04-26 14:01:29 [DEBUG   ] [Solver      ]     Thought: To explain positional encoding, I should provide both its purpose and the mathematical implementation, including how it 
+2026-04-26 14:01:35 [DEBUG   ] [Solver      ] Token Stats: 30937 tokens
+2026-04-26 14:01:35 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S4] system=3638chars, user=8290chars
+2026-04-26 14:01:36 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=22, cost=1.09869
+2026-04-26 14:01:36 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S4] response=203chars
+2026-04-26 14:01:36 [INFO    ] [Solver      ]     Round 3: done(Explain the purpose and implementation of positional encodin...)
+2026-04-26 14:01:36 [DEBUG   ] [Solver      ]     Thought: I need to provide a comprehensive explanation of positional encoding, including its purpose, mathematical formulation, a
+2026-04-26 14:01:36 [INFO    ] [Solver      ]     -> Step S4 completed
+2026-04-26 14:01:36 [INFO    ] [Solver      ]   Step S5: Outline the structure of a transformer encoder layer, including self-attention, feedforward network, residual connections, and normalization.
+2026-04-26 14:01:36 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S5] system=3638chars, user=4370chars
+2026-04-26 14:01:37 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=23, cost=1.1512799999999999
+2026-04-26 14:01:37 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S5] response=203chars
+2026-04-26 14:01:37 [INFO    ] [Solver      ]     Round 1: rag(Detailed description and diagram of a transformer encoder la...)
+2026-04-26 14:01:37 [DEBUG   ] [Solver      ]     Thought: To accurately outline the structure of a transformer encoder layer, I need a detailed understanding of how self-attentio
+2026-04-26 14:01:37 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Detailed description and diagram of a transformer ...
+2026-04-26 14:01:37 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Detailed description and diagram of a transformer ...
+2026-04-26 14:01:37 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:37 [DEBUG   ] [Solver      ] Token Stats: 34988 tokens
+2026-04-26 14:01:37 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S5] system=3638chars, user=5163chars
+2026-04-26 14:01:39 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=24, cost=1.2097799999999999
+2026-04-26 14:01:39 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S5] response=203chars
+2026-04-26 14:01:39 [INFO    ] [Solver      ]     Round 2: done(Detailed description and diagram of a transformer encoder la...)
+2026-04-26 14:01:39 [DEBUG   ] [Solver      ]     Thought: To accurately outline the structure of a transformer encoder layer, I need a detailed description or diagram that includ
+2026-04-26 14:01:39 [INFO    ] [Solver      ]     -> Step S5 completed
+2026-04-26 14:01:39 [INFO    ] [Solver      ]   Step S6: Outline the structure of a transformer decoder layer, including masked self-attention, encoder-decoder attention, feedforward network, residual connections, and normalization.
+2026-04-26 14:01:39 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S6] system=3638chars, user=4778chars
+2026-04-26 14:01:41 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=25, cost=1.2644699999999998
+2026-04-26 14:01:41 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S6] response=203chars
+2026-04-26 14:01:41 [INFO    ] [Solver      ]     Round 1: rag(Detailed explanation of the structure of a transformer decod...)
+2026-04-26 14:01:41 [DEBUG   ] [Solver      ]     Thought: To accurately outline the structure of a transformer decoder layer, I need a detailed description of its components and 
+2026-04-26 14:01:41 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Detailed explanation of the structure of a transfo...
+2026-04-26 14:01:41 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Detailed explanation of the structure of a transfo...
+2026-04-26 14:01:41 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:41 [DEBUG   ] [Solver      ] Token Stats: 38464 tokens
+2026-04-26 14:01:41 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S6] system=3638chars, user=5559chars
+2026-04-26 14:01:42 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=26, cost=1.3229999999999997
+2026-04-26 14:01:42 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S6] response=203chars
+2026-04-26 14:01:42 [INFO    ] [Solver      ]     Round 2: web_search(Detailed explanation of the structure of a transformer decod...)
+2026-04-26 14:01:42 [DEBUG   ] [Solver      ]     Thought: To accurately outline the structure of a transformer decoder layer, I need a detailed, formal description of its compone
+2026-04-26 14:01:42 [INFO    ] [Search      ] [duckduckgo] Searching: Detailed explanation of the structure of a transfo...
+2026-04-26 14:01:42 [ERROR   ] [Search      ] [duckduckgo] Search failed: No module named 'ddgs'
+2026-04-26 14:01:42 [WARNING ] [Solver      ]     Tool error: duckduckgo search failed: No module named 'ddgs'
+2026-04-26 14:01:42 [DEBUG   ] [Solver      ] Token Stats: 40287 tokens
+2026-04-26 14:01:42 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S6] system=3638chars, user=6307chars
+2026-04-26 14:01:43 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=27, cost=1.3885799999999997
+2026-04-26 14:01:43 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S6] response=203chars
+2026-04-26 14:01:43 [INFO    ] [Solver      ]     Round 3: done(Detailed explanation of the structure of a transformer decod...)
+2026-04-26 14:01:43 [DEBUG   ] [Solver      ]     Thought: To accurately outline the structure of a transformer decoder layer, I need a reliable, detailed description of its compo
+2026-04-26 14:01:43 [INFO    ] [Solver      ]     -> Step S6 completed
+2026-04-26 14:01:43 [INFO    ] [Solver      ]   Step S7: Plan the overall architecture of the transformer model, integrating encoder and decoder layers, and specify how to implement training techniques like masking and dropout.
+2026-04-26 14:01:43 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S7] system=3638chars, user=5268chars
+2026-04-26 14:01:45 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=28, cost=1.4449499999999997
+2026-04-26 14:01:45 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S7] response=203chars
+2026-04-26 14:01:45 [INFO    ] [Solver      ]     Round 1: rag(Provide a detailed explanation of the overall transformer ar...)
+2026-04-26 14:01:45 [DEBUG   ] [Solver      ]     Thought: To proceed, I need to define the overall architecture of the transformer, including how encoder and decoder layers are s
+2026-04-26 14:01:45 [INFO    ] [RAGService  ] Searching KB 'ai-textbook' with provider 'llamaindex' and query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:45 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai-textbook' with query: Provide a detailed explanation of the overall tran...
+2026-04-26 14:01:45 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai-textbook\llamaindex_storage
+2026-04-26 14:01:45 [DEBUG   ] [Solver      ] Token Stats: 44057 tokens
+2026-04-26 14:01:45 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S7] system=3638chars, user=6000chars
+2026-04-26 14:01:46 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=29, cost=1.5066899999999996
+2026-04-26 14:01:46 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S7] response=203chars
+2026-04-26 14:01:46 [INFO    ] [Solver      ]     Round 2: done(Please provide a detailed overview of the overall transforme...)
+2026-04-26 14:01:46 [DEBUG   ] [Solver      ]     Thought: To proceed, I need a comprehensive overview of the overall transformer architecture, including how encoder and decoder s
+2026-04-26 14:01:46 [INFO    ] [Solver      ]     -> Step S7 completed
+2026-04-26 14:01:46 [INFO    ] [Solver      ]   Step S8: Translate the detailed component descriptions into a step-by-step implementation plan, including data flow, parameter initialization, and training procedures.
+2026-04-26 14:01:46 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S8] system=3638chars, user=5651chars
+2026-04-26 14:01:48 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=30, cost=1.5660899999999995
+2026-04-26 14:01:48 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S8] response=203chars
+2026-04-26 14:01:48 [INFO    ] [Solver      ]     Round 1: reason(What are the key steps to systematically implement the trans...)
+2026-04-26 14:01:48 [DEBUG   ] [Solver      ]     Thought: To translate the component descriptions into a step-by-step implementation plan, I need to outline the sequence of const
+2026-04-26 14:01:52 [DEBUG   ] [Solver      ] Token Stats: 47804 tokens
+2026-04-26 14:01:52 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S8] system=3638chars, user=9842chars
+2026-04-26 14:01:53 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=31, cost=1.6485899999999996
+2026-04-26 14:01:53 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S8] response=203chars
+2026-04-26 14:01:53 [INFO    ] [Solver      ]     Round 2: reason(What are the key steps to systematically implement the trans...)
+2026-04-26 14:01:53 [DEBUG   ] [Solver      ]     Thought: To proceed, I will create a detailed step-by-step implementation plan that describes how to build each component, manage
+2026-04-26 14:01:58 [DEBUG   ] [Solver      ] Token Stats: 50439 tokens
+2026-04-26 14:01:58 [DEBUG   ] [Solve.solver_agent] LLM Input [solver_agent:solve_S8] system=3638chars, user=14946chars
+2026-04-26 14:02:00 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=32, cost=1.7695799999999995
+2026-04-26 14:02:00 [DEBUG   ] [Solve.solver_agent] LLM Output [solver_agent:solve_S8] response=203chars
+2026-04-26 14:02:00 [INFO    ] [Solver      ]     Round 3: done(To systematically organize the implementation steps for the ...)
+2026-04-26 14:02:00 [DEBUG   ] [Solver      ]     Thought: To create a comprehensive implementation plan, I will synthesize the detailed component descriptions, data flow, paramet
+2026-04-26 14:02:00 [INFO    ] [Solver      ]     -> Step S8 completed
+2026-04-26 14:02:00 [INFO    ] [Solver      ]   Solve phase done: 8/8 steps completed
+2026-04-26 14:02:00 [DEBUG   ] [Solver      ] Token Stats: 54212 tokens
+2026-04-26 14:02:00 [INFO    ] [Solver      ] Phase 3 started | Writing answer (simple)
+2026-04-26 14:02:00 [DEBUG   ] [Solve.writer_agent] LLM Input [writer_agent:write] system=3851chars, user=23784chars
+2026-04-26 14:02:06 [DEBUG   ] [SolveAPI    ] Sending token_stats: model=gpt-4.1-nano-2025-04-14, calls=33, cost=2.0005199999999994
+2026-04-26 14:02:06 [DEBUG   ] [Solve.writer_agent] LLM Output [writer_agent:write] response=5180chars
+2026-04-26 14:02:06 [DEBUG   ] [Solve.writer_agent] LLM response: model=gpt-4.1-nano-2025-04-14, duration=6.35s
+2026-04-26 14:02:06 [INFO    ] [Solver      ] Final answer saved: D:\ud_hoc_tap\data\user\workspace\chat\deep_solve\solve_20260426_140038\final_answer.md
+2026-04-26 14:02:06 [DEBUG   ] [Solver      ] Token Stats: 60769 tokens
+2026-04-26 14:02:06 [DEBUG   ] [Solver      ] Published SOLVE_COMPLETE event
+2026-04-26 14:02:06 [INFO    ] [Solver      ] 
+======================================================================
+💰 LLM Cost Statistics
+======================================================================
+Total calls: 33
+Total Tokens: 60,769
+  - Input: 54,854
+  - Output: 5,915
+Total cost: $2.000520 USD
+
+Calculation Tool Status:
+  - tiktoken: ✓ Available
+  - litellm: ✗ Unavailable
+
+Statistics by Calculation Method:
+----------------------------------------------------------------------
+  API Response:
+    Calls: 1
+    Tokens: 0
+    Cost: $0.000000 USD
+
+  tiktoken Precise Calculation:
+    Calls: 32
+    Tokens: 60,769
+    Cost: $2.000520 USD
+
+Statistics by Agent:
+----------------------------------------------------------------------
+  planner_agent:
+    Calls: 3
+    Tokens: 2,291 (Input: 1,279, Output: 1,012)
+    Cost: $0.099090 USD
+
+  solver_agent:
+    Calls: 29
+    Tokens: 51,921 (Input: 48,159, Output: 3,762)
+    Cost: $1.670490 USD
+
+  writer_agent:
+    Calls: 1
+    Tokens: 6,557 (Input: 5,416, Output: 1,141)
+    Cost: $0.230940 USD
+
+Statistics by Model:
+----------------------------------------------------------------------
+  gpt-4.1-nano-2025-04-14:
+    Calls: 33
+    Tokens: 60,769 (Input: 54,854, Output: 5,915)
+    Cost: $2.000520 USD
+
+======================================================================
+2026-04-26 14:02:06 [INFO    ] [Solver      ] Problem solving completed
+2026-04-26 14:02:06 [INFO    ] [SolveAPI    ] [solve_20260426_140038_8ef4a67a] Solving completed
+2026-04-26 14:02:06 [DEBUG   ] [SolveAPI    ] Error processing image paths: name 'Path' is not defined
+2026-04-26 14:03:23 [INFO    ] [QuestionAPI ] [question_gen_20260426_140323_be1af623] Starting question generation: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHITECTURE ?
+2026-04-26 14:03:23 [INFO    ] [QuestionAPI ] Starting question generation for 12 question(s), topic: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHITECTURE ?
+2026-04-26 14:03:23 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 14:03:23 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:23 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:23 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:03:23 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1261chars
+2026-04-26 14:03:27 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:03:27 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:27 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:27 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:03:27 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1760chars
+2026-04-26 14:03:31 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:03:31 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:31 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: cAN YOU GENERATE QUESTION ABOUT TRANSFORMER ARCHIT...
+2026-04-26 14:03:31 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:03:31 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=2381chars
+2026-04-26 14:03:33 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:03:33 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 14:03:33 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2921chars
+2026-04-26 14:03:34 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:34 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2998chars
+2026-04-26 14:03:35 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:36 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2891chars
+2026-04-26 14:03:37 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:37 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3037chars
+2026-04-26 14:03:39 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:39 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2889chars
+2026-04-26 14:03:41 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:41 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3088chars
+2026-04-26 14:03:42 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:42 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2899chars
+2026-04-26 14:03:44 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:44 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3057chars
+2026-04-26 14:03:47 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:47 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2898chars
+2026-04-26 14:03:49 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:49 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3033chars
+2026-04-26 14:03:51 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:51 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2890chars
+2026-04-26 14:03:52 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:52 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2953chars
+2026-04-26 14:03:53 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:53 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2925chars
+2026-04-26 14:03:56 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:03:56 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3167chars
+2026-04-26 14:03:57 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:03:57 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2921chars
+2026-04-26 14:04:00 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:04:00 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2982chars
+2026-04-26 14:04:02 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:04:02 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2932chars
+2026-04-26 14:04:03 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:04:03 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3083chars
+2026-04-26 14:04:05 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:04:05 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2910chars
+2026-04-26 14:04:07 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:04:07 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3006chars
+2026-04-26 14:04:10 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:04:10 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2966chars
+2026-04-26 14:04:12 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:04:12 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3159chars
+2026-04-26 14:04:13 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:04:13 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2974chars
+2026-04-26 14:04:16 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:04:16 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3153chars
+2026-04-26 14:04:17 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:04:17 [INFO    ] [QuestionAPI ] [question_gen_20260426_140323_be1af623] Question generation completed
+2026-04-26 14:06:02 [INFO    ] [QuestionAPI ] [question_gen_20260426_140602_6b3e49b7] Starting question generation: tRANSFORMER ARCHITECTURE
+2026-04-26 14:06:02 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: tRANSFORMER ARCHITECTURE
+2026-04-26 14:06:02 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 14:06:02 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: tRANSFORMER ARCHITECTURE...
+2026-04-26 14:06:02 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: tRANSFORMER ARCHITECTURE...
+2026-04-26 14:06:02 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:06:02 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1193chars
+2026-04-26 14:06:04 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:06:04 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 14:06:04 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2716chars
+2026-04-26 14:06:05 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:06:05 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2693chars
+2026-04-26 14:06:07 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:06:07 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2701chars
+2026-04-26 14:06:08 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:06:08 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2697chars
+2026-04-26 14:06:09 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:06:09 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2678chars
+2026-04-26 14:06:11 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:06:11 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2868chars
+2026-04-26 14:06:12 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:06:12 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2666chars
+2026-04-26 14:06:14 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:06:14 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2718chars
+2026-04-26 14:06:15 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:06:15 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2686chars
+2026-04-26 14:06:17 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:06:17 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2803chars
+2026-04-26 14:06:18 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:06:18 [INFO    ] [QuestionAPI ] [question_gen_20260426_140602_6b3e49b7] Question generation completed
+2026-04-26 14:07:08 [ERROR   ] [KnowledgeInit] No documents provided.
+2026-04-26 14:08:47 [INFO    ] [QuestionAPI ] [question_gen_20260426_140847_829157b6] Starting question generation: Transformer architecture
+2026-04-26 14:08:47 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: Transformer architecture
+2026-04-26 14:08:47 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 14:08:47 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Transformer architecture...
+2026-04-26 14:08:47 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Transformer architecture...
+2026-04-26 14:08:47 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:08:47 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1157chars
+2026-04-26 14:08:50 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:08:50 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 14:08:50 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2747chars
+2026-04-26 14:08:52 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:08:52 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2710chars
+2026-04-26 14:08:54 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:08:54 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3119chars
+2026-04-26 14:08:56 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:08:56 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2712chars
+2026-04-26 14:08:58 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:08:58 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2696chars
+2026-04-26 14:09:00 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:09:00 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2722chars
+2026-04-26 14:09:02 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:09:02 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2856chars
+2026-04-26 14:09:03 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:09:03 [INFO    ] [QuestionAPI ] [question_gen_20260426_140847_829157b6] Question generation completed
+2026-04-26 14:10:35 [INFO    ] [ChatAPI     ] Chat request: session=None, message=hello..., rag=False, web=False
+2026-04-26 14:10:35 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 14:10:35 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 14:10:35 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=5chars
+2026-04-26 14:10:36 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=36chars
+2026-04-26 14:10:36 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777187435737_c0c06329, 36 chars
+2026-04-26 14:10:36 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 14:10:52 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777187435737_c0c06329, message=can you help me learn about svm ?..., rag=False, web=False
+2026-04-26 14:10:52 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 14:10:52 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 14:10:52 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=33chars
+2026-04-26 14:10:55 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 14:10:55 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777187435737_c0c06329, 2240 chars
+2026-04-26 14:10:55 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 14:11:37 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777187435737_c0c06329, message=transformer architecture ?>..., rag=False, web=False
+2026-04-26 14:11:37 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 14:11:37 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 14:11:37 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=27chars
+2026-04-26 14:11:41 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 14:11:41 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777187435737_c0c06329, 3181 chars
+2026-04-26 14:11:41 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 14:18:35 [INFO    ] [QuestionAPI ] [question_gen_20260426_141835_1c90ac4a] Starting question generation: cach hoc to an gioi ?
+2026-04-26 14:18:35 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: cach hoc to an gioi ?
+2026-04-26 14:18:35 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 14:18:35 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: cach hoc to an gioi ?...
+2026-04-26 14:18:35 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: cach hoc to an gioi ?...
+2026-04-26 14:18:35 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:18:35 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1151chars
+2026-04-26 14:18:38 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:18:38 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 14:18:38 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2608chars
+2026-04-26 14:18:40 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:18:40 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2647chars
+2026-04-26 14:18:42 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:18:42 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2616chars
+2026-04-26 14:18:44 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:18:44 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2638chars
+2026-04-26 14:18:45 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:18:45 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2786chars
+2026-04-26 14:18:48 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:18:48 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2632chars
+2026-04-26 14:18:49 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:18:49 [INFO    ] [QuestionAPI ] [question_gen_20260426_141835_1c90ac4a] Question generation completed
+2026-04-26 14:20:21 [INFO    ] [QuestionAPI ] [question_gen_20260426_142021_96b44b88] Starting question generation: Những câu hỏi về SVM
+2026-04-26 14:20:21 [INFO    ] [QuestionAPI ] Starting question generation for 19 question(s), topic: Những câu hỏi về SVM
+2026-04-26 14:20:21 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 14:20:21 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Những câu hỏi về SVM...
+2026-04-26 14:20:21 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Những câu hỏi về SVM...
+2026-04-26 14:20:21 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:20:21 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1185chars
+2026-04-26 14:20:25 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:20:25 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Những câu hỏi về SVM...
+2026-04-26 14:20:25 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Những câu hỏi về SVM...
+2026-04-26 14:20:25 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:20:25 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1585chars
+2026-04-26 14:20:29 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:20:29 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Những câu hỏi về SVM...
+2026-04-26 14:20:29 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Những câu hỏi về SVM...
+2026-04-26 14:20:29 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:20:29 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=2244chars
+2026-04-26 14:20:32 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:20:32 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Những câu hỏi về SVM...
+2026-04-26 14:20:32 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Những câu hỏi về SVM...
+2026-04-26 14:20:32 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 14:20:32 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=2640chars
+2026-04-26 14:20:34 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 14:20:34 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 14:20:34 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2781chars
+2026-04-26 14:20:36 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:36 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2809chars
+2026-04-26 14:20:37 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:37 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2739chars
+2026-04-26 14:20:39 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:39 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2814chars
+2026-04-26 14:20:41 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:41 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2761chars
+2026-04-26 14:20:44 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:44 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3052chars
+2026-04-26 14:20:45 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:45 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2711chars
+2026-04-26 14:20:48 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:48 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2764chars
+2026-04-26 14:20:49 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:49 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2710chars
+2026-04-26 14:20:51 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:51 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2715chars
+2026-04-26 14:20:53 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:53 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2813chars
+2026-04-26 14:20:55 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:20:55 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2942chars
+2026-04-26 14:20:57 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:20:57 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2797chars
+2026-04-26 14:21:01 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:01 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2827chars
+2026-04-26 14:21:04 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:04 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2767chars
+2026-04-26 14:21:07 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:07 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2920chars
+2026-04-26 14:21:09 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:09 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2770chars
+2026-04-26 14:21:11 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:11 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2885chars
+2026-04-26 14:21:12 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:12 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2802chars
+2026-04-26 14:21:14 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:14 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3017chars
+2026-04-26 14:21:17 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:17 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2728chars
+2026-04-26 14:21:18 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:18 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2837chars
+2026-04-26 14:21:20 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:20 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2716chars
+2026-04-26 14:21:23 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:23 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2957chars
+2026-04-26 14:21:24 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:24 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2720chars
+2026-04-26 14:21:27 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:27 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2912chars
+2026-04-26 14:21:29 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:29 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2707chars
+2026-04-26 14:21:31 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:31 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2803chars
+2026-04-26 14:21:33 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:33 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2714chars
+2026-04-26 14:21:35 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:35 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2801chars
+2026-04-26 14:21:36 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:36 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2777chars
+2026-04-26 14:21:39 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:39 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2894chars
+2026-04-26 14:21:40 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:40 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2775chars
+2026-04-26 14:21:42 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:42 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2935chars
+2026-04-26 14:21:44 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:44 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2758chars
+2026-04-26 14:21:47 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:47 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2931chars
+2026-04-26 14:21:48 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:48 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2741chars
+2026-04-26 14:21:51 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 14:21:51 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2875chars
+2026-04-26 14:21:53 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 14:21:53 [INFO    ] [QuestionAPI ] [question_gen_20260426_142021_96b44b88] Question generation completed
+2026-04-26 15:09:31 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:09:31 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:09:33 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:09:33 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:09:46 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:09:46 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:09:50 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:09:50 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:10:24 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:10:24 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:13:07 [INFO    ] [API         ] Application shutdown
+2026-04-26 15:13:07 [INFO    ] [API         ] EventBus stopped
+2026-04-26 15:13:17 [INFO    ] [API         ] Application startup
+2026-04-26 15:13:17 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 15:13:17 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 15:13:17 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 15:13:17 [INFO    ] [API         ] EventBus started
+2026-04-26 15:18:01 [INFO    ] [API         ] Application startup
+2026-04-26 15:18:01 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 15:18:01 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 15:18:01 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 15:18:01 [INFO    ] [API         ] EventBus started
+2026-04-26 15:37:41 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:37:41 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:37:50 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 15:37:50 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 15:38:54 [INFO    ] [QuestionAPI ] [question_gen_20260426_153854_995e0b2f] Starting question generation: Transformer
+2026-04-26 15:38:54 [INFO    ] [QuestionAPI ] Starting question generation for 10 question(s), topic: Transformer
+2026-04-26 15:38:54 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 15:38:54 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Transformer...
+2026-04-26 15:38:54 [INFO    ] [EmbeddingClient] Initialized embedding client with openai adapter (model: text-embedding-3-large, dimensions: 3072)
+2026-04-26 15:38:54 [INFO    ] [LlamaIndexPipeline] LlamaIndex configured: embedding=text-embedding-3-large (3072D, openai), chunk_size=512
+2026-04-26 15:38:54 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Transformer...
+2026-04-26 15:38:54 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 15:38:54 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1169chars
+2026-04-26 15:39:00 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 15:39:00 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Transformer...
+2026-04-26 15:39:00 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Transformer...
+2026-04-26 15:39:00 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 15:39:00 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1508chars
+2026-04-26 15:39:03 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 15:39:03 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 15:39:03 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2668chars
+2026-04-26 15:39:05 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:05 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2791chars
+2026-04-26 15:39:08 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:08 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2656chars
+2026-04-26 15:39:09 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:09 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2721chars
+2026-04-26 15:39:11 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:11 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2623chars
+2026-04-26 15:39:13 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:13 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2601chars
+2026-04-26 15:39:14 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:14 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2625chars
+2026-04-26 15:39:16 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:16 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2640chars
+2026-04-26 15:39:19 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:19 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2629chars
+2026-04-26 15:39:21 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:21 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2614chars
+2026-04-26 15:39:22 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:22 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2726chars
+2026-04-26 15:39:24 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:24 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2845chars
+2026-04-26 15:39:25 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:25 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2685chars
+2026-04-26 15:39:28 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:28 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2918chars
+2026-04-26 15:39:29 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:29 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2683chars
+2026-04-26 15:39:31 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:31 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2744chars
+2026-04-26 15:39:33 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:33 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2679chars
+2026-04-26 15:39:34 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:34 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2696chars
+2026-04-26 15:39:36 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:36 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2709chars
+2026-04-26 15:39:38 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 15:39:38 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2898chars
+2026-04-26 15:39:39 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 15:39:39 [INFO    ] [QuestionAPI ] [question_gen_20260426_153854_995e0b2f] Question generation completed
+2026-04-26 15:40:06 [INFO    ] [Guide       ] Using explicitly specified language setting: en
+2026-04-26 15:40:06 [DEBUG   ] [Guide.design_agent] Prompts loaded: design_agent (en)
+2026-04-26 15:40:06 [DEBUG   ] [Guide.interactive_agent] Prompts loaded: interactive_agent (en)
+2026-04-26 15:40:06 [DEBUG   ] [Guide.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 15:40:06 [DEBUG   ] [Guide.summary_agent] Prompts loaded: summary_agent (en)
+2026-04-26 08:53:43 [INFO    ] [API         ] Application startup
+2026-04-26 08:53:43 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 08:53:43 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 08:53:43 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 08:53:43 [INFO    ] [API         ] EventBus started
+2026-04-26 08:55:38 [INFO    ] [Guide       ] Using explicitly specified language setting: en
+2026-04-26 08:55:38 [DEBUG   ] [Guide.design_agent] Prompts loaded: design_agent (en)
+2026-04-26 08:55:38 [DEBUG   ] [Guide.interactive_agent] Prompts loaded: interactive_agent (en)
+2026-04-26 08:55:38 [DEBUG   ] [Guide.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 08:55:38 [DEBUG   ] [Guide.summary_agent] Prompts loaded: summary_agent (en)
+2026-04-26 08:55:39 [INFO    ] [Guide       ] [guide_20260426_085539_9a4d3d7e] Guide session started: 4f006fed
+2026-04-26 08:55:45 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 08:56:07 [DEBUG   ] [Guide.design_agent] LLM Input [design_agent:design_agent] system=673chars, user=110chars
+2026-04-26 08:56:13 [DEBUG   ] [Guide.design_agent] LLM Output [design_agent:design_agent] response=203chars
+2026-04-26 08:56:13 [INFO    ] [Guide       ] [guide_20260426_085613_44f627e7] Session created: ec0bab81
+2026-04-26 08:56:13 [INFO    ] [Guide       ] [guide_20260426_085613_44f627e7] Guide session started: ec0bab81
+2026-04-26 08:56:56 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 08:57:22 [INFO    ] [Guide       ] [guide_20260426_085613_44f627e7] Guide session started: ec0bab81
+2026-04-26 08:57:22 [DEBUG   ] [Guide       ] [guide_20260426_085613_44f627e7] Start learning
+2026-04-26 08:57:22 [DEBUG   ] [Guide.interactive_agent] LLM Input [interactive_agent:interactive_agent] system=1114chars, user=828chars
+2026-04-26 08:57:22 [DEBUG   ] [Guide.interactive_agent] LLM Input [interactive_agent:interactive_agent] system=1114chars, user=905chars
+2026-04-26 08:57:22 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 08:57:34 [INFO    ] [Guide       ] [guide_20260426_085613_44f627e7] Guide session started: ec0bab81
+2026-04-26 08:57:34 [DEBUG   ] [Guide       ] [guide_20260426_085613_44f627e7] Start learning
+2026-04-26 08:57:34 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 08:57:41 [DEBUG   ] [Guide.interactive_agent] LLM Output [interactive_agent:interactive_agent] response=203chars
+2026-04-26 08:57:41 [DEBUG   ] [Guide.interactive_agent] LLM Input [interactive_agent:interactive_agent] system=1114chars, user=810chars
+2026-04-26 08:57:42 [DEBUG   ] [Guide.interactive_agent] LLM Output [interactive_agent:interactive_agent] response=203chars
+2026-04-26 08:57:42 [DEBUG   ] [Guide.interactive_agent] LLM Input [interactive_agent:interactive_agent] system=1114chars, user=818chars
+2026-04-26 08:58:05 [DEBUG   ] [Guide.interactive_agent] LLM Output [interactive_agent:interactive_agent] response=203chars
+2026-04-26 08:58:08 [DEBUG   ] [Guide.interactive_agent] LLM Output [interactive_agent:interactive_agent] response=203chars
+2026-04-26 08:58:08 [INFO    ] [Guide       ] [guide_20260426_085613_44f627e7] Guide session started: ec0bab81
+2026-04-26 08:58:15 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 08:58:44 [INFO    ] [ChatAPI     ] Chat request: session=None, message=nay..., rag=False, web=True
+2026-04-26 08:58:44 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 08:58:44 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 08:58:44 [INFO    ] [Chat.chat_agent] Web search: nay...
+2026-04-26 08:58:44 [INFO    ] [Search      ] [duckduckgo] Searching: nay...
+2026-04-26 08:58:44 [ERROR   ] [Search      ] [duckduckgo] Search failed: No module named 'ddgs'
+2026-04-26 08:58:44 [WARNING ] [Chat.chat_agent] Web search failed: duckduckgo search failed: No module named 'ddgs'
+2026-04-26 08:58:44 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=3chars
+2026-04-26 08:58:46 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=185chars
+2026-04-26 08:58:46 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777168724612_654bcad9, 185 chars
+2026-04-26 08:58:46 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 08:59:48 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 08:59:48 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 08:59:53 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 08:59:53 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 08:59:54 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 08:59:54 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:26 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:26 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:00:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:01:26 [INFO    ] [API         ] Application shutdown
+2026-04-26 09:01:26 [INFO    ] [API         ] EventBus stopped
+2026-04-26 09:01:42 [INFO    ] [API         ] Application startup
+2026-04-26 09:01:42 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:01:42 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:01:42 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:01:42 [INFO    ] [API         ] EventBus started
+2026-04-26 09:01:52 [INFO    ] [API         ] Application startup
+2026-04-26 09:01:52 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:01:52 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:01:52 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:01:52 [INFO    ] [API         ] EventBus started
+2026-04-26 09:02:06 [INFO    ] [API         ] Application shutdown
+2026-04-26 09:02:06 [INFO    ] [API         ] EventBus stopped
+2026-04-26 09:02:54 [INFO    ] [API         ] Application startup
+2026-04-26 09:02:55 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:02:55 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:02:55 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:02:55 [INFO    ] [API         ] EventBus started
+2026-04-26 09:02:55 [INFO    ] [Guide       ] Using explicitly specified language setting: en
+2026-04-26 09:02:55 [DEBUG   ] [Guide.design_agent] Prompts loaded: design_agent (en)
+2026-04-26 09:02:55 [DEBUG   ] [Guide.interactive_agent] Prompts loaded: interactive_agent (en)
+2026-04-26 09:02:55 [DEBUG   ] [Guide.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:02:55 [DEBUG   ] [Guide.summary_agent] Prompts loaded: summary_agent (en)
+2026-04-26 09:02:56 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:03:50 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:03:52 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:04:13 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:04:32 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:04:34 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:04:35 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:04:51 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:05:20 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:07:12 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:08:11 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:09:45 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:10:45 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:11:34 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:11:36 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:13:25 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:13:46 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:06 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:06 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:06 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:09 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:09 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:09 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:10 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:10 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:10 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:10 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:10 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:11 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:11 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:11 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:11 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:12 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:12 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:12 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:13 [INFO    ] [Guide       ] [guide_20260426_090352_4ab73fc1] Guide session started: 4f006fed
+2026-04-26 09:14:13 [DEBUG   ] [Guide       ] [guide_20260426_090352_4ab73fc1] Navigate to knowledge point 1
+2026-04-26 09:14:13 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:14 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:14:14 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:23 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:23 [DEBUG   ] [Guide       ] [guide_20260426_090256_817169ba] Navigate to knowledge point 1
+2026-04-26 09:14:23 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:24 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:24 [DEBUG   ] [Guide       ] [guide_20260426_090256_817169ba] Navigate to knowledge point 1
+2026-04-26 09:14:24 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:25 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:25 [DEBUG   ] [Guide       ] [guide_20260426_090256_817169ba] Navigate to knowledge point 1
+2026-04-26 09:14:25 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:32 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:32 [DEBUG   ] [Guide       ] [guide_20260426_090256_817169ba] Navigate to knowledge point 1
+2026-04-26 09:14:33 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:33 [INFO    ] [Guide       ] [guide_20260426_090256_817169ba] Guide session started: ec0bab81
+2026-04-26 09:14:33 [DEBUG   ] [Guide       ] [guide_20260426_090256_817169ba] Navigate to knowledge point 1
+2026-04-26 09:14:34 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:35 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:14:59 [INFO    ] [QuestionAPI ] [question_gen_20260426_091459_6d4ef5f4] Starting question generation: Transformer
+2026-04-26 09:14:59 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: Transformer
+2026-04-26 09:14:59 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 09:14:59 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Transformer...
+2026-04-26 09:14:59 [INFO    ] [EmbeddingClient] Initialized embedding client with openai adapter (model: text-embedding-3-large, dimensions: 3072)
+2026-04-26 09:14:59 [INFO    ] [LlamaIndexPipeline] LlamaIndex configured: embedding=text-embedding-3-large (3072D, openai), chunk_size=512
+2026-04-26 09:14:59 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Transformer...
+2026-04-26 09:14:59 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 09:14:59 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1164chars
+2026-04-26 09:15:03 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 09:15:03 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 09:15:03 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2652chars
+2026-04-26 09:15:05 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:15:05 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2643chars
+2026-04-26 09:15:08 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:15:08 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2654chars
+2026-04-26 09:15:09 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:15:09 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2665chars
+2026-04-26 09:15:10 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:15:10 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2706chars
+2026-04-26 09:15:12 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:15:12 [INFO    ] [QuestionAPI ] [question_gen_20260426_091459_6d4ef5f4] Question generation completed
+2026-04-26 09:15:59 [INFO    ] [QuestionAPI ] [question_gen_20260426_091559_5bb3e7b5] Starting question generation: Machine Learning
+2026-04-26 09:15:59 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: Machine Learning
+2026-04-26 09:15:59 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 09:15:59 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Machine Learning...
+2026-04-26 09:15:59 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Machine Learning...
+2026-04-26 09:15:59 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 09:15:59 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1177chars
+2026-04-26 09:16:01 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 09:16:01 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 09:16:01 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2702chars
+2026-04-26 09:16:04 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:04 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2804chars
+2026-04-26 09:16:05 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:05 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2700chars
+2026-04-26 09:16:07 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:07 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=3051chars
+2026-04-26 09:16:10 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:10 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2707chars
+2026-04-26 09:16:12 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:12 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2840chars
+2026-04-26 09:16:13 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:13 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2684chars
+2026-04-26 09:16:15 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:15 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2787chars
+2026-04-26 09:16:18 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:18 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2710chars
+2026-04-26 09:16:20 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:20 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2989chars
+2026-04-26 09:16:21 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:21 [INFO    ] [QuestionAPI ] [question_gen_20260426_091559_5bb3e7b5] Question generation completed
+2026-04-26 09:16:52 [INFO    ] [QuestionAPI ] [question_gen_20260426_091652_6fb41db5] Starting question generation: Deeplearning
+2026-04-26 09:16:52 [INFO    ] [QuestionAPI ] Starting question generation for 5 question(s), topic: Deeplearning
+2026-04-26 09:16:52 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-26 09:16:52 [INFO    ] [RAGService  ] Searching KB 'ai_textbook' with provider 'llamaindex' and query: Deeplearning...
+2026-04-26 09:16:52 [INFO    ] [LlamaIndexPipeline] Searching KB 'ai_textbook' with query: Deeplearning...
+2026-04-26 09:16:52 [WARNING ] [LlamaIndexPipeline] No LlamaIndex storage found at D:\ud_hoc_tap\data\knowledge_bases\ai_textbook\llamaindex_storage
+2026-04-26 09:16:52 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1169chars
+2026-04-26 09:16:55 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-26 09:16:55 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-26 09:16:55 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2682chars
+2026-04-26 09:16:57 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:57 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2998chars
+2026-04-26 09:16:58 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:16:58 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2695chars
+2026-04-26 09:16:59 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:16:59 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2782chars
+2026-04-26 09:17:00 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:17:00 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2670chars
+2026-04-26 09:17:01 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:17:01 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2843chars
+2026-04-26 09:17:03 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:17:03 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2657chars
+2026-04-26 09:17:04 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:17:04 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2898chars
+2026-04-26 09:17:06 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:17:06 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2666chars
+2026-04-26 09:17:08 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-26 09:17:08 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2728chars
+2026-04-26 09:17:09 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-26 09:17:09 [INFO    ] [QuestionAPI ] [question_gen_20260426_091652_6fb41db5] Question generation completed
+2026-04-26 09:18:18 [INFO    ] [ChatAPI     ] Chat request: session=None, message=Em ăn cơm chưa ?..., rag=False, web=False
+2026-04-26 09:18:18 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:18:18 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:18:18 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=16chars
+2026-04-26 09:18:19 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:18:19 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777169898140_e618a5cb, 265 chars
+2026-04-26 09:18:20 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:20:30 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777169898140_e618a5cb, message=Chào bạn..., rag=False, web=False
+2026-04-26 09:20:30 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:20:30 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:20:30 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=682chars, user=8chars
+2026-04-26 09:20:31 [ERROR   ] [ChatAPI     ] Chat processing error: 
+2026-04-26 09:20:31 [ERROR   ] [ChatAPI     ] WebSocket error: Cannot call "send" once a close message has been sent.
+2026-04-26 09:20:31 [INFO    ] [API         ] Application shutdown
+2026-04-26 09:20:31 [INFO    ] [API         ] EventBus stopped
+2026-04-26 09:28:03 [INFO    ] [API         ] Application startup
+2026-04-26 09:28:03 [INFO    ] [API         ] Application startup
+2026-04-26 09:28:03 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:28:03 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:28:03 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:28:03 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:28:03 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:28:03 [INFO    ] [API         ] EventBus started
+2026-04-26 09:28:03 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:28:03 [INFO    ] [API         ] EventBus started
+2026-04-26 09:28:08 [INFO    ] [API         ] Application startup
+2026-04-26 09:28:08 [INFO    ] [API         ] Application startup
+2026-04-26 09:28:08 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:28:08 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:28:08 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:28:08 [INFO    ] [API         ] EventBus started
+2026-04-26 09:28:08 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-26 09:28:08 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-26 09:28:08 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-26 09:28:08 [INFO    ] [API         ] EventBus started
+2026-04-26 09:28:34 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:28:34 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:28:36 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:28:36 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:28:38 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:28:38 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:28:41 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:28:41 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:28:52 [INFO    ] [ChatAPI     ] Chat request: session=None, message=Chán đời quá..., rag=False, web=False
+2026-04-26 09:28:52 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:28:52 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:28:52 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=12chars
+2026-04-26 09:28:54 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:28:54 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170532048_c5602ce2, 369 chars
+2026-04-26 09:28:54 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:29:09 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777170532048_c5602ce2, message=Bây giờ t phải làm sao..., rag=False, web=False
+2026-04-26 09:29:09 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:29:09 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:29:17 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=22chars
+2026-04-26 09:29:19 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:29:19 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170532048_c5602ce2, 1037 chars
+2026-04-26 09:29:19 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:29:56 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:29:56 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:30:09 [INFO    ] [ChatAPI     ] Chat request: session=None, message=Làm sao đây..., rag=False, web=False
+2026-04-26 09:30:09 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:30:09 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:30:09 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=11chars
+2026-04-26 09:30:10 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=116chars
+2026-04-26 09:30:10 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170609893_73e7956a, 116 chars
+2026-04-26 09:30:10 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:30:22 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777170609893_73e7956a, message=T quá chán đời rôi fmyaf giúp t vui hơn đi..., rag=False, web=False
+2026-04-26 09:30:22 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:30:22 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:30:22 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=42chars
+2026-04-26 09:30:24 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:30:24 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170609893_73e7956a, 447 chars
+2026-04-26 09:30:24 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:30:39 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777170609893_73e7956a, message=Kể cho t một câu chuyện vui..., rag=False, web=False
+2026-04-26 09:30:39 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:30:39 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:30:39 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=27chars
+2026-04-26 09:30:41 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:30:41 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170609893_73e7956a, 817 chars
+2026-04-26 09:30:41 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:30:56 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777170609893_73e7956a, message=Haizz..., rag=False, web=False
+2026-04-26 09:30:56 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:30:56 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:30:56 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=5chars
+2026-04-26 09:30:57 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:30:57 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170609893_73e7956a, 323 chars
+2026-04-26 09:30:57 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:31:13 [INFO    ] [ChatAPI     ] Chat request: session=chat_1777170609893_73e7956a, message=M có ăn cứt không..., rag=False, web=False
+2026-04-26 09:31:13 [DEBUG   ] [Chat.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:31:13 [INFO    ] [Chat.chat_agent] ChatAgent initialized: model=gpt-4.1-nano-2025-04-14, base_url=https://api.openai.com/v1
+2026-04-26 09:31:13 [DEBUG   ] [Chat.chat_agent] LLM Input [chat_agent:chat_stream] system=676chars, user=17chars
+2026-04-26 09:31:15 [DEBUG   ] [Chat.chat_agent] LLM Output [chat_agent:chat_stream] response=203chars
+2026-04-26 09:31:15 [INFO    ] [ChatAPI     ] Chat completed: session=chat_1777170609893_73e7956a, 313 chars
+2026-04-26 09:31:15 [DEBUG   ] [ChatAPI     ] Client disconnected from chat
+2026-04-26 09:31:30 [INFO    ] [Guide       ] Using explicitly specified language setting: en
+2026-04-26 09:31:30 [DEBUG   ] [Guide.design_agent] Prompts loaded: design_agent (en)
+2026-04-26 09:31:30 [DEBUG   ] [Guide.interactive_agent] Prompts loaded: interactive_agent (en)
+2026-04-26 09:31:30 [DEBUG   ] [Guide.chat_agent] Prompts loaded: chat_agent (en)
+2026-04-26 09:31:30 [DEBUG   ] [Guide.summary_agent] Prompts loaded: summary_agent (en)
+2026-04-26 09:31:32 [INFO    ] [Guide       ] [guide_20260426_093132_64add391] Guide session started: 4f006fed
+2026-04-26 09:31:35 [DEBUG   ] [Guide       ] WebSocket disconnected: 4f006fed
+2026-04-26 09:31:38 [INFO    ] [Guide       ] [guide_20260426_093138_29d6f271] Guide session started: ec0bab81
+2026-04-26 09:31:43 [INFO    ] [Guide       ] [guide_20260426_093138_29d6f271] Guide session started: ec0bab81
+2026-04-26 09:31:43 [DEBUG   ] [Guide       ] [guide_20260426_093138_29d6f271] Navigate to knowledge point 2
+2026-04-26 09:31:43 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:31:46 [INFO    ] [Guide       ] [guide_20260426_093138_29d6f271] Guide session started: ec0bab81
+2026-04-26 09:31:46 [DEBUG   ] [Guide       ] [guide_20260426_093138_29d6f271] Navigate to knowledge point 1
+2026-04-26 09:31:46 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:31:56 [DEBUG   ] [Guide.chat_agent] LLM Input [chat_agent:chat_agent] system=1034chars, user=4507chars
+2026-04-26 09:31:59 [DEBUG   ] [Guide.chat_agent] LLM Output [chat_agent:chat_agent] response=203chars
+2026-04-26 09:32:04 [INFO    ] [Guide       ] [guide_20260426_093138_29d6f271] Guide session started: ec0bab81
+2026-04-26 09:32:04 [DEBUG   ] [Guide       ] [guide_20260426_093138_29d6f271] Navigate to knowledge point 1
+2026-04-26 09:32:04 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:32:10 [DEBUG   ] [Guide.chat_agent] LLM Input [chat_agent:chat_agent] system=1034chars, user=6236chars
+2026-04-26 09:32:12 [DEBUG   ] [Guide.chat_agent] LLM Output [chat_agent:chat_agent] response=203chars
+2026-04-26 09:32:17 [DEBUG   ] [Guide       ] WebSocket disconnected: ec0bab81
+2026-04-26 09:32:22 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:32:22 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:32:23 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:32:23 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:32:25 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:32:25 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:32:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:32:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:32:27 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-26 09:32:27 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-26 09:32:41 [INFO    ] [API         ] Application shutdown
+2026-04-26 09:32:41 [INFO    ] [API         ] EventBus stopped

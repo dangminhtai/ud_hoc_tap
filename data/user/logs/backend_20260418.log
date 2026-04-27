@@ -1,0 +1,5 @@
+2026-04-18 20:39:08 [INFO    ] [API         ] Application startup
+2026-04-18 20:39:08 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-18 20:39:08 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-18 20:39:08 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-18 20:39:08 [INFO    ] [API         ] EventBus started

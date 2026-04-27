@@ -1,0 +1,42 @@
+import os
+from enum import Enum
+
+
+class RunMode(str, Enum):
+    """Run mode class."""
+    CLI = "cli"
+    SERVER = "server"
+    
+    
+_current_mode: RunMode | None = None
+
+def _resolve_mode() -> RunMode:
+    raw = os.environ.get("backend_MODE", "").strip().lower()
+    if raw == RunMode.SERVER.value:
+        return RunMode.SERVER
+    return RunMode.CLI
+
+def get_mode() -> RunMode:
+    """Return the mode."""
+    global _current_mode
+    if _current_mode is None:
+        _current_mode = _resolve_mode()
+    return _current_mode
+
+
+def set_mode(mode: RunMode) -> None:
+    """Explicitly set the run mode (call early in entry points)."""
+    global _current_mode
+    _current_mode = mode
+    os.environ["backend_MODE"] = mode.value
+
+
+def is_cli() -> bool:
+    """Return True if is cli."""
+    return get_mode() == RunMode.CLI
+
+
+def is_server() -> bool:
+    """Return True if is server."""
+    return get_mode() == RunMode.SERVER
+

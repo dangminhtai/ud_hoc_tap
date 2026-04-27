@@ -96,4 +96,7 @@ dependencies {
     implementation(libs.network.okhttp)
     implementation(libs.network.okhttp.logging)
     implementation(libs.network.moshi.kotlin)
+
+    // Markdown rendering for AI responses
+    implementation(libs.compose.markdown)
 }

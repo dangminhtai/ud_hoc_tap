@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Style
@@ -25,6 +26,8 @@ import com.duong.udhoctap.core.ui.theme.DeckColors
 @Composable
 fun HomeScreen(
     onDeckClick: (Long) -> Unit,
+    onNavigateToStats: () -> Unit = {},
+    onNavigateToSearch: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -80,7 +83,6 @@ fun HomeScreen(
                     ) {
                         AssistChip(
                             onClick = {},
-                            enabled = false,
                             label = { Text("$deckCount bộ thẻ") },
                             leadingIcon = {
                                 Icon(Icons.Default.Style, contentDescription = null, modifier = Modifier.size(16.dp))
@@ -88,33 +90,44 @@ fun HomeScreen(
                         )
                         AssistChip(
                             onClick = {},
-                            enabled = false,
                             label = { Text("$dueCards cần ôn") },
                             leadingIcon = {
                                 Icon(Icons.Default.Schedule, contentDescription = null, modifier = Modifier.size(16.dp))
                             }
                         )
                         AssistChip(
-                            onClick = {},
-                            enabled = false,
-                            label = { Text("$totalCards thẻ") }
+                            onClick = onNavigateToStats,
+                            label = { Text("Thống kê") },
+                            leadingIcon = {
+                                Icon(Icons.Default.BarChart, contentDescription = null, modifier = Modifier.size(16.dp))
+                            }
                         )
                     }
                 }
             }
 
-            Text(
-                text = "Tìm kiếm nhanh",
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp)
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Tìm kiếm nhanh",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                TextButton(onClick = onNavigateToSearch, contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp), modifier = Modifier.height(24.dp)) {
+                    Text("Tìm kiếm toàn cầu", style = MaterialTheme.typography.labelMedium)
+                    androidx.compose.foundation.layout.Spacer(Modifier.width(4.dp))
+                    Icon(androidx.compose.material.icons.Icons.Default.Search, contentDescription = null, modifier = Modifier.size(14.dp))
+                }
+            }
 
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = {
                     searchQuery = it
-                    viewModel.searchDecks(it)
+                    viewModel.searchDecks(it.trim())
                 },
                 placeholder = { Text("Nhập tên bộ thẻ...") },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },

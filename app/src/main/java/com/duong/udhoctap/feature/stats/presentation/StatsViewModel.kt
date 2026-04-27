@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.duong.udhoctap.core.data.repository.DeckRepository
 import com.duong.udhoctap.core.data.repository.FlashcardRepository
 import com.duong.udhoctap.core.data.repository.ReviewRepository
+import com.duong.udhoctap.core.network.BackendApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -13,6 +14,11 @@ import java.time.LocalTime
 import java.time.ZoneId
 import javax.inject.Inject
 
+data class RetentionInterval(
+    val name: String,
+    val retention: Float
+)
+
 data class StatsUiState(
     val todayReviewed: Int = 0,
     val streak: Int = 0,
@@ -20,7 +26,15 @@ data class StatsUiState(
     val weeklyData: List<Int> = List(7) { 0 },
     val totalCards: Int = 0,
     val totalReviews: Int = 0,
-    val totalDecks: Int = 0
+    val totalDecks: Int = 0,
+    // Backend stats
+    val cardsDue: Int = 0,
+    val overallRetention: Float = 0f,
+    val mostStudiedDeck: String? = null,
+    val totalStudyHours: Float = 0f,
+    val retentionByInterval: List<RetentionInterval> = emptyList(),
+    val isLoadingStats: Boolean = false,
+    val statsError: String? = null
 )
 
 private data class StatsSnapshot(
@@ -34,7 +48,8 @@ private data class StatsSnapshot(
 class StatsViewModel @Inject constructor(
     private val reviewRepository: ReviewRepository,
     private val deckRepository: DeckRepository,
-    private val flashcardRepository: FlashcardRepository
+    private val flashcardRepository: FlashcardRepository,
+    private val backendApi: BackendApiService
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(StatsUiState())
@@ -42,6 +57,7 @@ class StatsViewModel @Inject constructor(
 
     init {
         loadStats()
+        loadBackendStats()
     }
 
     private fun loadStats() {
@@ -116,5 +132,39 @@ class StatsViewModel @Inject constructor(
             }
         }
         return streak
+    }
+
+    private fun loadBackendStats() {
+        viewModelScope.launch {
+            try {
+                _uiState.value = _uiState.value.copy(isLoadingStats = true, statsError = null)
+
+                // TODO: Uncomment when backend API is fully implemented
+                // val userStats = backendApi.getUserStatistics(days = 30)
+                // val retentionStats = backendApi.getRetentionByInterval(days = 30)
+
+                // For now, use mock data
+                val retentionIntervals = listOf(
+                    RetentionInterval("1 day", 0.95f),
+                    RetentionInterval("1-7 days", 0.88f),
+                    RetentionInterval("1-30 days", 0.75f),
+                    RetentionInterval("30+ days", 0.65f)
+                )
+
+                _uiState.value = _uiState.value.copy(
+                    cardsDue = 34,
+                    overallRetention = 0.78f,
+                    mostStudiedDeck = "TOEIC Vocabulary",
+                    totalStudyHours = 45.5f,
+                    retentionByInterval = retentionIntervals,
+                    isLoadingStats = false
+                )
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    isLoadingStats = false,
+                    statsError = e.message ?: "Failed to load statistics"
+                )
+            }
+        }
     }
 }

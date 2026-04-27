@@ -1,0 +1,73 @@
+2026-04-17 10:17:06 [INFO    ] [API         ] Application startup
+2026-04-17 10:17:06 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-17 10:17:06 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-17 10:17:06 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-17 10:17:06 [INFO    ] [API         ] EventBus started
+2026-04-17 10:18:30 [INFO    ] [API         ] Application startup
+2026-04-17 10:18:30 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-17 10:18:30 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-17 10:18:30 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-17 10:18:30 [INFO    ] [API         ] EventBus started
+2026-04-17 12:42:07 [INFO    ] [API         ] Application startup
+2026-04-17 12:42:07 [DEBUG   ] [LLMClient   ] Set OPENAI_API_KEY env var
+2026-04-17 12:42:07 [DEBUG   ] [LLMClient   ] Set OPENAI_BASE_URL env var to https://api.openai.com/v1
+2026-04-17 12:42:07 [INFO    ] [API         ] LLM client initialized: model=gpt-4.1-nano-2025-04-14
+2026-04-17 12:42:07 [INFO    ] [API         ] EventBus started
+2026-04-17 12:42:11 [DEBUG   ] [Knowledge   ] Found 0 knowledge bases: []
+2026-04-17 12:42:11 [DEBUG   ] [Knowledge   ] No knowledge bases found, returning empty list
+2026-04-17 12:43:15 [DEBUG   ] [Question.idea_agent] Prompts loaded: idea_agent (en)
+2026-04-17 12:43:15 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1068chars
+2026-04-17 12:43:22 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-17 12:43:22 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1361chars
+2026-04-17 12:43:25 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-17 12:43:25 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1569chars
+2026-04-17 12:43:29 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-17 12:43:29 [DEBUG   ] [Question.idea_agent] LLM Input [idea_agent:idea_generate_templates] system=137chars, user=1873chars
+2026-04-17 12:43:32 [DEBUG   ] [Question.idea_agent] LLM Output [idea_agent:idea_generate_templates] response=203chars
+2026-04-17 12:43:32 [DEBUG   ] [Question.generator] Prompts loaded: generator (en)
+2026-04-17 12:43:32 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2505chars
+2026-04-17 12:43:35 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:35 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2470chars
+2026-04-17 12:43:38 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:38 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2459chars
+2026-04-17 12:43:40 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:40 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2481chars
+2026-04-17 12:43:42 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:42 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2472chars
+2026-04-17 12:43:45 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:45 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2530chars
+2026-04-17 12:43:47 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:47 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2541chars
+2026-04-17 12:43:49 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:49 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2828chars
+2026-04-17 12:43:51 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-17 12:43:51 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2525chars
+2026-04-17 12:43:53 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:53 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2528chars
+2026-04-17 12:43:56 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:56 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2516chars
+2026-04-17 12:43:58 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:43:58 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2509chars
+2026-04-17 12:44:00 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:00 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2492chars
+2026-04-17 12:44:03 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:03 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2459chars
+2026-04-17 12:44:07 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:07 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2484chars
+2026-04-17 12:44:08 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:08 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2732chars
+2026-04-17 12:44:10 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-17 12:44:10 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2512chars
+2026-04-17 12:44:11 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:11 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2579chars
+2026-04-17 12:44:13 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:13 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2586chars
+2026-04-17 12:44:15 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:15 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2567chars
+2026-04-17 12:44:19 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:19 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2547chars
+2026-04-17 12:44:21 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars
+2026-04-17 12:44:21 [DEBUG   ] [Question.generator] LLM Input [generator:generator_repair_qa] system=59chars, user=2710chars
+2026-04-17 12:44:23 [DEBUG   ] [Question.generator] LLM Output [generator:generator_repair_qa] response=203chars
+2026-04-17 12:44:23 [DEBUG   ] [Question.generator] LLM Input [generator:generator_build_qa] system=202chars, user=2553chars
+2026-04-17 12:44:25 [DEBUG   ] [Question.generator] LLM Output [generator:generator_build_qa] response=203chars

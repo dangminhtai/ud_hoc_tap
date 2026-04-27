@@ -1,6 +1,9 @@
 package com.duong.udhoctap.di
 
+import com.duong.udhoctap.core.data.repository.KnowledgeBaseRepository
+import com.duong.udhoctap.core.network.BackendApiService
 import com.duong.udhoctap.core.network.DocumentApi
+import com.duong.udhoctap.core.network.WebSocketManager
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -18,15 +21,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "http://10.0.2.2:8000/" // Android Emulator localhost to host
+    private const val BASE_URL = "http://10.0.2.2:8001/"
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-    }
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Provides
     @Singleton
@@ -44,17 +45,34 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
-        return Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
+        Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-    }
 
     @Provides
     @Singleton
-    fun provideDocumentApi(retrofit: Retrofit): DocumentApi {
-        return retrofit.create(DocumentApi::class.java)
-    }
+    fun provideDocumentApi(retrofit: Retrofit): DocumentApi =
+        retrofit.create(DocumentApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideBackendApiService(retrofit: Retrofit): BackendApiService =
+        retrofit.create(BackendApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWebSocketManager(okHttpClient: OkHttpClient): WebSocketManager =
+        WebSocketManager(okHttpClient)
+
+    // ── Repositories ──────────────────────────────────────────────────────────
+
+    @Provides
+    @Singleton
+    fun provideKnowledgeBaseRepository(
+        api: BackendApiService,
+        okHttpClient: OkHttpClient
+    ): KnowledgeBaseRepository = KnowledgeBaseRepository(api, okHttpClient)
 }

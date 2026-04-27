@@ -25,6 +25,10 @@ data class FlashcardEntity(
     val back: String,
     val imageUri: String? = null,
     val isDraft: Boolean = false,
+    // Question type: "flashcard" (default), "essay", "multiple_choice"
+    val questionType: String = "flashcard",
+    // Extra explanation shown after answering
+    val explanation: String = "",
     // FSRS fields (Phase 4, defaults for now)
     val stability: Float = 0f,
     val difficulty: Float = 0f,
