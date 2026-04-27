@@ -305,4 +305,6 @@ class FileTypeRouter:
             List of glob patterns (e.g., ["*.pdf", "*.txt", "*.md"])
         """
         extensions = cls.get_extensions_for_provider(provider)
-        return [f"*{ext}" for ext in sorted(extensions)]
+        patterns = [f"*{ext}" for ext in sorted(extensions)]
+        patterns.append("*")  # Also match files without extensions
+        return patterns

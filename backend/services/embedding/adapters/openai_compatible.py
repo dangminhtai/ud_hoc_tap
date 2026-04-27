@@ -131,13 +131,22 @@ class OpenAICompatibleEmbeddingAdapter(BaseEmbeddingAdapter):
                     response.raise_for_status()
                     data = response.json()
                 break
-            except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.PoolTimeout) as exc:
+            except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.PoolTimeout, httpx.HTTPStatusError) as exc:
                 last_exc = exc
+                
+                # For HTTP errors, only retry on specific status codes
+                if isinstance(exc, httpx.HTTPStatusError):
+                    status_code = exc.response.status_code
+                    if status_code not in (429, 502, 503, 504):
+                        logger.error(f"Non-retryable HTTP error: {status_code}")
+                        raise
+
                 if attempt < self._MAX_RETRIES:
-                    wait = self._RETRY_BACKOFF * (attempt + 1)
+                    wait = self._RETRY_BACKOFF * (2 ** attempt) # Exponential backoff
                     logger.warning(
-                        f"Embedding request timeout (attempt {attempt + 1}/{1 + self._MAX_RETRIES}), "
-                        f"retrying in {wait:.0f}s..."
+                        f"Embedding request failed with {type(exc).__name__} "
+                        f"(attempt {attempt + 1}/{1 + self._MAX_RETRIES}), "
+                        f"retrying in {wait:.1f}s..."
                     )
                     await asyncio.sleep(wait)
                 else:

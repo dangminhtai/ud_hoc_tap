@@ -587,19 +587,26 @@ class KnowledgeBaseManager:
         if name not in self.list_knowledge_bases():
             raise ValueError(f"Knowledge base not found: {name}")
 
-        kb_dir = self.get_knowledge_base_path(name)
+        kb_dir = self.base_dir / name
 
         if not confirm:
             # Ask for confirmation in CLI
-            print(f"⚠️  Warning: This will permanently delete the knowledge base '{name}'")
-            print(f"   Path: {kb_dir}")
-            response = input("Are you sure? Type 'yes' to confirm: ")
-            if response.lower() != "yes":
-                print("Deletion cancelled.")
-                return False
+            if kb_dir.exists():
+                print(f"⚠️  Warning: This will permanently delete the knowledge base '{name}'")
+                print(f"   Path: {kb_dir}")
+                response = input("Are you sure? Type 'yes' to confirm: ")
+                if response.lower() != "yes":
+                    print("Deletion cancelled.")
+                    return False
+            else:
+                print(f"⚠️  Warning: Knowledge base directory for '{name}' is missing. Removing from configuration.")
 
-        # Delete the directory
-        shutil.rmtree(kb_dir)
+        # Delete the directory if it exists
+        if kb_dir.exists():
+            shutil.rmtree(kb_dir)
+            logger.info(f"Deleted KB directory: {kb_dir}")
+        else:
+            logger.warning(f"KB directory not found, skipping filesystem removal: {kb_dir}")
 
         # Remove from config
         if name in self.config.get("knowledge_bases", {}):

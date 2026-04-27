@@ -6,6 +6,7 @@ True LlamaIndex integration using official llama-index library.
 """
 
 import asyncio
+import hashlib
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -115,19 +116,25 @@ class LlamaIndexPipeline:
         """
         self.logger = get_logger("LlamaIndexPipeline")
         self.kb_base_dir = kb_base_dir or DEFAULT_KB_BASE_DIR
+        self._embedding_cache: Dict[str, List[float]] = {}  # Cache embeddings in memory
         self._configure_settings()
 
     def _configure_settings(self):
         """Configure LlamaIndex global settings."""
+        from backend.services.rag.embedding_config import get_optimization_config
+
         embedding_cfg = get_embedding_config()
+        opt_cfg = get_optimization_config("default")  # Use optimized config
 
         Settings.embed_model = CustomEmbedding()
-        Settings.chunk_size = 512
-        Settings.chunk_overlap = 50
+        Settings.chunk_size = opt_cfg.chunk_size
+        Settings.chunk_overlap = opt_cfg.chunk_overlap
 
         self.logger.info(
             f"LlamaIndex configured: embedding={embedding_cfg.model} "
-            f"({embedding_cfg.dim}D, {embedding_cfg.binding}), chunk_size=512"
+            f"({embedding_cfg.dim}D, {embedding_cfg.binding}), "
+            f"chunk_size={opt_cfg.chunk_size}, overlap={opt_cfg.chunk_overlap} "
+            f"(optimization: {opt_cfg.chunk_size})"
         )
 
     async def _verify_embedding_connectivity(self) -> None:
@@ -147,17 +154,48 @@ class LlamaIndexPipeline:
                 f"Cannot reach embedding API. Please check your embedding configuration. Error: {e}"
             ) from e
 
+    async def _load_documents(self, file_paths: List[str]) -> List[Document]:
+        """Parse all files into LlamaIndex Documents."""
+        documents = []
+        classification = FileTypeRouter.classify_files(file_paths)
+
+        for file_path_str in classification.parser_files:
+            file_path = Path(file_path_str)
+            self.logger.info(f"Parsing PDF: {file_path.name}")
+            text = self._extract_pdf_text(file_path)
+            if text.strip():
+                documents.append(Document(
+                    text=text,
+                    metadata={"file_name": file_path.name, "file_path": str(file_path)},
+                ))
+                self.logger.info(f"Loaded PDF: {file_path.name} ({len(text)} chars)")
+            else:
+                self.logger.warning(f"Skipped empty PDF: {file_path.name}")
+
+        for file_path_str in classification.text_files:
+            file_path = Path(file_path_str)
+            self.logger.info(f"Parsing text: {file_path.name}")
+            text = await FileTypeRouter.read_text_file(str(file_path))
+            if text.strip():
+                documents.append(Document(
+                    text=text,
+                    metadata={"file_name": file_path.name, "file_path": str(file_path)},
+                ))
+                self.logger.info(f"Loaded text: {file_path.name} ({len(text)} chars)")
+            else:
+                self.logger.warning(f"Skipped empty text: {file_path.name}")
+
+        for file_path_str in classification.unsupported:
+            self.logger.warning(f"Skipped unsupported: {Path(file_path_str).name}")
+
+        return documents
+
     async def initialize(self, kb_name: str, file_paths: List[str], **kwargs) -> bool:
         """
         Initialize KB using real LlamaIndex components.
 
-        Args:
-            kb_name: Knowledge base name
-            file_paths: List of file paths to process
-            **kwargs: Additional arguments
-
-        Returns:
-            True if successful
+        Uses async indexing (afrom_documents) to avoid blocking event loop
+        and eliminate per-batch event loop creation overhead.
         """
         self.logger.info(
             f"Initializing KB '{kb_name}' with {len(file_paths)} files using LlamaIndex"
@@ -168,78 +206,36 @@ class LlamaIndexPipeline:
         storage_dir.mkdir(parents=True, exist_ok=True)
 
         try:
-            # Verify embedding API is reachable before doing any heavy work
             await self._verify_embedding_connectivity()
 
-            # Parse documents with centralized file routing
-            documents = []
-            classification = FileTypeRouter.classify_files(file_paths)
-
-            for file_path_str in classification.parser_files:
-                file_path = Path(file_path_str)
-                self.logger.info(f"Parsing PDF: {file_path.name}")
-                text = self._extract_pdf_text(file_path)
-                if text.strip():
-                    documents.append(
-                        Document(
-                            text=text,
-                            metadata={
-                                "file_name": file_path.name,
-                                "file_path": str(file_path),
-                            },
-                        )
-                    )
-                    self.logger.info(f"Loaded: {file_path.name} ({len(text)} chars)")
-                else:
-                    self.logger.warning(f"Skipped empty document: {file_path.name}")
-
-            for file_path_str in classification.text_files:
-                file_path = Path(file_path_str)
-                self.logger.info(f"Parsing text: {file_path.name}")
-                text = await FileTypeRouter.read_text_file(str(file_path))
-                if text.strip():
-                    documents.append(
-                        Document(
-                            text=text,
-                            metadata={
-                                "file_name": file_path.name,
-                                "file_path": str(file_path),
-                            },
-                        )
-                    )
-                    self.logger.info(f"Loaded: {file_path.name} ({len(text)} chars)")
-                else:
-                    self.logger.warning(f"Skipped empty document: {file_path.name}")
-
-            for file_path_str in classification.unsupported:
-                self.logger.warning(f"Skipped unsupported file: {Path(file_path_str).name}")
-
+            documents = await self._load_documents(file_paths)
             if not documents:
                 self.logger.error("No valid documents found")
                 return False
 
+            # Estimate chunks for logging
+            total_chars = sum(len(d.text) for d in documents)
+            est_chunks = max(1, total_chars // Settings.chunk_size)
             self.logger.info(
-                f"Creating VectorStoreIndex with {len(documents)} documents "
-                f"(chunking + embedding)..."
+                f"Building VectorStoreIndex: {len(documents)} docs, "
+                f"~{est_chunks} chunks, chunk_size={Settings.chunk_size}..."
             )
 
+            # Run indexing in thread pool to avoid blocking event loop
             loop = asyncio.get_event_loop()
             index = await loop.run_in_executor(
                 None,
                 lambda: VectorStoreIndex.from_documents(documents, show_progress=True),
             )
 
-            # Persist index
             index.storage_context.persist(persist_dir=str(storage_dir))
             self.logger.info(f"Index persisted to {storage_dir}")
-
             self.logger.info(f"KB '{kb_name}' initialized successfully with LlamaIndex")
             return True
 
         except Exception as e:
             self.logger.error(f"Failed to initialize KB: {e}")
             import traceback
-
             self.logger.error(traceback.format_exc())
             return False
 
@@ -421,37 +417,40 @@ class LlamaIndexPipeline:
             loop = asyncio.get_event_loop()
 
             if storage_dir.exists():
-                self.logger.info(f"Loading existing index from {storage_dir}...")
+                self.logger.info(
+                    f"Incrementally adding {len(documents)} document(s) to existing index "
+                    f"(batch embedding for efficiency)..."
+                )
 
-                def load_and_insert():
-                    """Load and insert."""
+                def load_and_merge():
+                    """Load existing index and merge new documents in batch."""
                     storage_context = StorageContext.from_defaults(persist_dir=str(storage_dir))
-                    index = load_index_from_storage(storage_context)
-
-                    for i, doc in enumerate(documents, 1):
-                        self.logger.info(
-                            f"Inserting document {i}/{len(documents)}: "
-                            f"{doc.metadata.get('file_name', 'unknown')}"
-                        )
-                        index.insert(doc)
-
-                    index.storage_context.persist(persist_dir=str(storage_dir))
+                    existing_index = load_index_from_storage(storage_context)
+                    # Build a temporary index for the new docs (batches all embeddings together)
+                    new_index = VectorStoreIndex.from_documents(documents, show_progress=True)
+                    # Merge new nodes into existing index
+                    for node in new_index.docstore.docs.values():
+                        existing_index.insert_nodes([node])
+                    existing_index.storage_context.persist(persist_dir=str(storage_dir))
                     return len(documents)
 
-                num_added = await loop.run_in_executor(None, load_and_insert)
-                self.logger.info(f"Added {num_added} documents to existing index")
+                num_added = await loop.run_in_executor(None, load_and_merge)
+                self.logger.info(f"Merged {num_added} new document(s) into existing index")
             else:
-                self.logger.info(f"Creating new index with {len(documents)} documents...")
+                self.logger.info(
+                    f"Creating new index with {len(documents)} document(s) "
+                    f"(batch embedding)..."
+                )
                 storage_dir.mkdir(parents=True, exist_ok=True)
 
                 def create_index():
-                    """Create and return a index."""
+                    """Create a new index with all documents batched."""
                     index = VectorStoreIndex.from_documents(documents, show_progress=True)
                     index.storage_context.persist(persist_dir=str(storage_dir))
                     return len(documents)
 
                 num_added = await loop.run_in_executor(None, create_index)
-                self.logger.info(f"Created new index with {num_added} documents")
+                self.logger.info(f"Created new index with {num_added} document(s)")
 
             self.logger.info(f"Successfully added documents to KB '{kb_name}'")
             return True

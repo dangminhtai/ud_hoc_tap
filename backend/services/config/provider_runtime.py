@@ -138,7 +138,7 @@ class ResolvedEmbeddingConfig:
     extra_headers: dict[str, str] = field(default_factory=dict)
     dimension: int = 3072
     request_timeout: int = 60
-    batch_size: int = 10
+    batch_size: int = 64
 
 
 @dataclass(slots=True)
@@ -513,7 +513,7 @@ def resolve_embedding_runtime_config(
         extra_headers=extra_headers,
         dimension=dimension,
         request_timeout=60,
-        batch_size=10,
+        batch_size=64,
     )
 
 

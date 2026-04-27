@@ -92,20 +92,42 @@ class PDFParser(BaseComponent):
                     texts.append(item["content"])
         return "\n\n".join(texts)
 
-    async def _basic_pdf_extract(self, file_path: Path) -> str:
-        """Basic PDF text extraction fallback."""
+    def parse(self, data: Union[str, Path, bytes]) -> str:
+        """
+        Extract text from a PDF (file path or bytes).
+        
+        Args:
+            data: Path to PDF or bytes content
+            
+        Returns:
+            Extracted text content
+        """
         try:
             import fitz  # PyMuPDF
-
-            doc = fitz.open(file_path)
+            
+            self.logger.debug(f"Parsing PDF data of type {type(data).__name__}")
+            if isinstance(data, bytes):
+                self.logger.debug(f"PDF byte size: {len(data)}")
+                doc = fitz.open(stream=data, filetype="pdf")
+            else:
+                self.logger.debug(f"PDF file path: {data}")
+                doc = fitz.open(data)
+                
             texts = []
             for page in doc:
                 texts.append(page.get_text())
             doc.close()
-            return "\n\n".join(texts)
+            
+            result = "\n\n".join(texts)
+            self.logger.info(f"Extracted {len(result)} characters from PDF ({len(texts)} pages)")
+            return result
         except ImportError:
             self.logger.warning("PyMuPDF not installed. Cannot extract PDF text.")
             return ""
         except Exception as e:
             self.logger.error(f"Failed to extract PDF text: {e}")
             return ""
+
+    async def _basic_pdf_extract(self, file_path: Path) -> str:
+        """Basic PDF text extraction fallback."""
+        return self.parse(file_path)

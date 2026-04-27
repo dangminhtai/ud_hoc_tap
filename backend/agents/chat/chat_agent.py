@@ -180,15 +180,22 @@ class ChatAgent(BaseAgent):
                 rag_answer = rag_result.content
                 if rag_answer:
                     context_parts.append(f"[Knowledge Base: {kb_name}]\n{rag_answer}")
-                    sources["rag"].append(
-                        {
-                            "kb_name": kb_name,
-                            "content": rag_answer[:500] + "..."
-                            if len(rag_answer) > 500
-                            else rag_answer,
-                        }
+
+                    if rag_result.sources:
+                        sources["rag"] = rag_result.sources
+                    else:
+                        sources["rag"].append(
+                            {
+                                "kb_name": kb_name,
+                                "content": rag_answer[:500] + "..."
+                                if len(rag_answer) > 500
+                                else rag_answer,
+                            }
+                        )
+                    self.logger.info(
+                        f"RAG retrieved {len(rag_answer)} chars, "
+                        f"{len(sources['rag'])} sources"
                     )
-                    self.logger.info(f"RAG retrieved {len(rag_answer)} chars")
             except Exception as e:
                 self.logger.warning(f"RAG search failed: {e}")
 
@@ -215,6 +222,13 @@ class ChatAgent(BaseAgent):
                 self.logger.warning(f"Web search failed: {e}")
 
         context = "\n\n".join(context_parts)
+
+        # Debug logging
+        self.logger.info(f"Retrieved context: {len(context)} chars, RAG sources: {len(sources.get('rag', []))}, Web sources: {len(sources.get('web', []))}")
+        if sources.get("rag"):
+            for src in sources["rag"]:
+                self.logger.debug(f"RAG source: {src.get('title', 'unknown')} (score: {src.get('score', 'N/A')})")
+
         return context, sources
 
     def build_messages(
@@ -351,6 +365,119 @@ class ChatAgent(BaseAgent):
 
         return response
 
+    def detect_question_intent(self, message: str) -> bool:
+        """
+        Detect if user is asking to create questions/quiz.
+
+        Keywords: tạo question, làm quiz, tạo bài tập, etc.
+        """
+        keywords = [
+            "tạo question", "tạo quiz", "tạo bài tập", "làm quiz",
+            "create question", "generate quiz", "make questions",
+            "tạo đề", "làm đề", "create exam", "tạo test",
+        ]
+        msg_lower = message.lower().strip()
+        return any(kw in msg_lower for kw in keywords)
+
+    def build_question_menu(self) -> dict[str, Any]:
+        """Build interactive menu for question generation."""
+        return {
+            "type": "question_intent_detected",
+            "message": "Bạn muốn tạo question như thế nào?",
+            "options": [
+                {
+                    "id": "from_topic",
+                    "label": "📚 Tạo từ chủ đề",
+                    "description": "Nhập chủ đề, tôi sẽ tạo question cho bạn",
+                },
+                {
+                    "id": "from_pdf",
+                    "label": "📄 Tạo từ PDF",
+                    "description": "Upload file PDF, tôi sẽ phân tích và tạo question",
+                },
+                {
+                    "id": "exam_mimic",
+                    "label": "📋 Exam Mimic",
+                    "description": "Tạo question tương tự đề thi",
+                },
+            ],
+            "confirm_message": "Bạn chắc chắn muốn tiếp tục không?",
+        }
+
+    async def generate_questions(
+        self,
+        option: str,
+        details: dict[str, Any],
+        kb_name: str | None = None,
+    ) -> dict[str, Any]:
+        """
+        Generate questions based on user choice.
+
+        Args:
+            option: "from_topic", "from_pdf", "exam_mimic"
+            details: {
+                "topic": str,
+                "count": int,
+                "difficulty": str,
+                "question_type": str,
+                "pdf_path": str,
+                etc.
+            }
+            kb_name: Knowledge base name
+
+        Returns:
+            Generated questions data
+        """
+        try:
+            from backend.agents.question import AgentCoordinator
+
+            coordinator = AgentCoordinator(
+                api_key=self.api_key,
+                base_url=self.base_url,
+                api_version=self.api_version,
+                kb_name=kb_name,
+                language=self.language,
+            )
+
+            if option == "from_topic":
+                result = await coordinator.generate_from_topic(
+                    user_topic=details.get("topic", ""),
+                    preference=details.get("preference", ""),
+                    num_questions=details.get("count", 5),
+                    difficulty=details.get("difficulty", ""),
+                    question_type=details.get("question_type", ""),
+                )
+                return result
+
+            elif option == "from_pdf":
+                result = await coordinator.generate_from_exam(
+                    exam_paper_path=details.get("pdf_path", ""),
+                    max_questions=details.get("count", 5),
+                    paper_mode="upload",
+                )
+                return result
+
+            elif option == "exam_mimic":
+                result = await coordinator.generate_from_exam(
+                    exam_paper_path=details.get("paper_path", ""),
+                    max_questions=details.get("count", 5),
+                    paper_mode="parsed",
+                )
+                return result
+
+            else:
+                return {
+                    "success": False,
+                    "error": f"Unknown option: {option}",
+                }
+
+        except Exception as e:
+            self.logger.error(f"Question generation failed: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
     async def process(
         self,
         message: str,
@@ -378,6 +505,16 @@ class ChatAgent(BaseAgent):
             If stream=True: AsyncGenerator yielding chunks
         """
         history = history or []
+
+        # Check for question generation intent first
+        if self.detect_question_intent(message):
+            menu = self.build_question_menu()
+            if stream:
+                async def menu_generator():
+                    yield {"type": "menu", "data": menu}
+                return menu_generator()
+            else:
+                return {"type": "menu", "data": menu}
 
         truncated_history = self.truncate_history(history)
 

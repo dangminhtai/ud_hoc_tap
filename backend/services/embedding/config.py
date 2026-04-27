@@ -22,7 +22,7 @@ class EmbeddingConfig:
     extra_headers: dict[str, str] | None = None
     dim: int = 3072
     request_timeout: int = 60
-    batch_size: int = 10
+    batch_size: int = 64
 
 
 def get_embedding_config() -> EmbeddingConfig:

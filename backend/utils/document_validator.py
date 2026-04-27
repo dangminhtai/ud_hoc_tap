@@ -98,9 +98,9 @@ class DocumentValidator:
         if not safe_name or safe_name in (".", "..") or safe_name.strip("_") == "":
             raise ValueError("Invalid filename")
 
-        # Check file extension
+        # Check file extension (allow missing extension for MIME-based validation)
         exts_to_check = allowed_extensions or DocumentValidator.ALLOWED_EXTENSIONS
-        if ext not in exts_to_check:
+        if ext and ext not in exts_to_check:
             raise ValueError(
                 f"Unsupported file type: {ext}. Allowed types: {', '.join(exts_to_check)}"
             )

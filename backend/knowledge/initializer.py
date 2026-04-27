@@ -152,7 +152,7 @@ class KnowledgeBaseInitializer:
 
         doc_files: list[Path] = []
         for pattern in FileTypeRouter.get_glob_patterns_for_provider(provider):
-            doc_files.extend(list(self.raw_dir.glob(pattern)))
+            doc_files.extend([p for p in self.raw_dir.glob(pattern) if p.is_file()])
 
         if not doc_files:
             self.progress_tracker.update(

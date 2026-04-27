@@ -7,6 +7,7 @@ Handles knowledge base CRUD operations, file uploads, and initialization.
 
 import asyncio
 from datetime import datetime
+import mimetypes
 import os
 from pathlib import Path
 import traceback
@@ -60,6 +61,32 @@ def format_bytes_human_readable(size_bytes: int) -> str:
         return f"{size_bytes / BYTES_PER_MB:.1f} MB"
     else:
         return f"{size_bytes} bytes"
+
+
+MIME_TO_EXTENSION = {
+    "application/pdf": ".pdf",
+    "text/plain": ".txt",
+    "text/markdown": ".md",
+    "text/csv": ".csv",
+    "application/json": ".json",
+    "application/xml": ".xml",
+    "text/xml": ".xml",
+    "text/html": ".html",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
+    "application/msword": ".doc",
+    "application/rtf": ".rtf",
+    "application/vnd.ms-excel": ".xls",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": ".xlsx",
+    "application/octet-stream": ".txt",  # Default binary to text for knowledge base
+}
+
+
+def get_extension_for_mime_type(mime_type: str) -> str:
+    """Get file extension for a MIME type."""
+    if not mime_type:
+        return ""
+    mime_type = mime_type.split(";")[0].strip()  # Remove charset and other params
+    return MIME_TO_EXTENSION.get(mime_type, "")
 
 
 _kb_base_dir = PROJECT_ROOT / "data" / "knowledge_bases"
@@ -124,6 +151,13 @@ def _save_uploaded_files(
                 original_filename, None, allowed_extensions=allowed_extensions
             )
             file.filename = sanitized_filename
+
+            # Add extension based on MIME type if file has no extension
+            _, ext = os.path.splitext(sanitized_filename)
+            if not ext and file.content_type:
+                inferred_ext = get_extension_for_mime_type(file.content_type)
+                if inferred_ext:
+                    sanitized_filename = sanitized_filename + inferred_ext
 
             file_path = target_dir / sanitized_filename
             max_size = DocumentValidator.MAX_FILE_SIZE

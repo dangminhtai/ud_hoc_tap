@@ -1,6 +1,6 @@
 import asyncio
 from collections.abc import AsyncGenerator, Mapping
-from typing import TYPE_CHECKING, TypedDict
+from typing import TYPE_CHECKING, TypedDict, cast
 
 import tenacity
 
@@ -140,6 +140,7 @@ async def complete(
     provider_mode = "standard"
     extra_headers: dict[str, str] = {}
     reasoning_effort = kwargs.pop("reasoning_effort", None)
+    provided_headers = cast(dict[str, str], kwargs.pop("extra_headers", {}))
 
     if not model or not base_url or api_key is None or not binding:
         config = get_llm_config()
@@ -160,6 +161,9 @@ async def complete(
         spec = find_by_name(provider_name)
         if spec is not None:
             provider_mode = spec.mode
+
+    if provided_headers:
+        extra_headers.update(provided_headers)
 
     use_local_fallback = _should_use_local(base_url)
 

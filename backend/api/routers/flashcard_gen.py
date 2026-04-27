@@ -1,5 +1,7 @@
 import json
 import httpx
+import time
+import traceback
 from typing import Optional
 from fastapi import APIRouter, UploadFile, File, HTTPException, Form
 from pydantic import BaseModel
@@ -47,8 +49,9 @@ async def generate_flashcards(
         if not text or not text.strip():
             raise HTTPException(status_code=400, detail="Failed to extract text from PDF")
 
-        # Truncate text to reasonable size (~8000 chars for context)
-        text = text[:8000]
+        # Increase context window to ~200,000 chars for modern large-context LLMs
+        # This solves the issue of generating too few questions for large PDFs
+        text = text[:]
 
         # Call LLM
         llm_client = get_llm_client()
@@ -60,7 +63,7 @@ Do not include any other text or explanation.
 Text:
 {text}"""
 
-        response = await llm_client.generate_text(prompt)
+        response = await llm_client.complete(prompt)
 
         # Parse JSON response
         try:
@@ -72,7 +75,13 @@ Text:
         except json.JSONDecodeError:
             raise HTTPException(status_code=500, detail="Failed to parse LLM response as JSON")
 
+    except HTTPException:
+        raise
     except Exception as e:
+        tb = traceback.format_exc()
+        # Log full traceback so it appears in server logs
+        import logging
+        logging.getLogger("flashcard_gen").error(f"generate_flashcards error: {e}\n{tb}")
         raise HTTPException(status_code=500, detail=f"Error generating flashcards: {str(e)}")
 
 
@@ -88,7 +97,7 @@ Back (Answer): {body.back}
 
 Provide a clear, educational explanation."""
 
-        explanation = await llm_client.generate_text(prompt)
+        explanation = await llm_client.complete(prompt)
         return ExplainCardResponse(explanation=explanation)
 
     except Exception as e:
@@ -108,8 +117,8 @@ async def generate_from_text(body: GenerateFromTextRequest):
                 response.raise_for_status()
                 text = response.text
 
-        # Truncate to reasonable size
-        text = text[:8000]
+        # Increase context window to ~200,000 chars
+        text = text[:200000]
 
         # Call LLM
         llm_client = get_llm_client()
@@ -121,7 +130,7 @@ Do not include any other text or explanation.
 Text:
 {text}"""
 
-        response = await llm_client.generate_text(prompt)
+        response = await llm_client.complete(prompt)
 
         # Parse JSON response
         try:
@@ -134,6 +143,81 @@ Text:
             raise HTTPException(status_code=500, detail="Failed to parse LLM response as JSON")
 
     except httpx.RequestError as e:
-        raise HTTPException(status_code=400, detail=f"Failed to fetch URL: {str(e)}")
+        import logging
+        logging.getLogger("flashcard_gen").error(f"URL fetch error: {e}")
+        raise HTTPException(status_code=400, detail=f"Failed to fetch URL: {str(e)}. Please check if the URL is valid and accessible.")
     except Exception as e:
+        tb = traceback.format_exc()
+        import logging
+        logging.getLogger("flashcard_gen").error(f"generate_from_text error: {e}\n{tb}")
         raise HTTPException(status_code=500, detail=f"Error generating flashcards: {str(e)}")
+
+
+class SaveQuestionsRequest(BaseModel):
+    """Request to save generated questions as flashcards."""
+    deck_name: str
+    questions: list[dict]  # [{"question": "...", "answer": "...", "question_type": "essay", "explanation": "..."}]
+    source: str = "chat"  # "chat", "exam_mimic", "pdf"
+    topic: str = ""
+
+
+class SaveQuestionsResponse(BaseModel):
+    """Response after saving questions."""
+    success: bool
+    deck_id: Optional[int] = None
+    flashcard_count: int
+    flashcards: list[dict] = []
+    message: str
+
+
+@router.post("/save-questions-from-chat", response_model=SaveQuestionsResponse)
+async def save_questions_from_chat(body: SaveQuestionsRequest):
+    """
+    Save generated questions as flashcards for later use in the app.
+
+    Supports essay and multiple-choice question types with explanations.
+    """
+    try:
+        if not body.questions:
+            raise HTTPException(status_code=400, detail="No questions provided")
+
+        if not body.deck_name:
+            raise HTTPException(status_code=400, detail="Deck name is required")
+
+        flashcards = []
+        for q in body.questions:
+            if not isinstance(q, dict):
+                continue
+
+            front = q.get("question") or q.get("front") or ""
+            back = q.get("answer") or q.get("correct_answer") or q.get("back") or ""
+            question_type = q.get("question_type") or q.get("type") or "flashcard"
+            explanation = q.get("explanation") or ""
+
+            # Normalize question_type
+            if question_type not in ("flashcard", "essay", "multiple_choice"):
+                question_type = "essay" if not q.get("options") else "multiple_choice"
+
+            if front and back:
+                flashcards.append({
+                    "front": str(front).strip(),
+                    "back": str(back).strip(),
+                    "questionType": question_type,
+                    "explanation": str(explanation).strip(),
+                    "source": body.source,
+                    "topic": body.topic,
+                    "createdAt": int(time.time() * 1000),
+                })
+
+        if not flashcards:
+            raise HTTPException(status_code=400, detail="No valid questions found")
+
+        return SaveQuestionsResponse(
+            success=True,
+            flashcard_count=len(flashcards),
+            flashcards=flashcards,
+            message=f"Đã chuẩn bị {len(flashcards)} câu hỏi từ {body.deck_name}",
+        )
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error saving questions: {str(e)}")

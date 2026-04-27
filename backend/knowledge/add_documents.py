@@ -126,29 +126,33 @@ class DocumentAdder:
 
         pipeline = LlamaIndexPipeline(kb_base_dir=str(self.base_dir))
         processed_files: list[Path] = []
-        total_files = len(new_files)
+        
+        # Convert Path objects to strings for the pipeline
+        file_paths = [str(f) for f in new_files]
 
-        for idx, doc_file in enumerate(new_files, 1):
-            try:
-                if self.progress_tracker is not None:
-                    from backend.knowledge.progress_tracker import ProgressStage
+        try:
+            if self.progress_tracker is not None:
+                from backend.knowledge.progress_tracker import ProgressStage
 
-                    self.progress_tracker.update(
-                        ProgressStage.PROCESSING_FILE,
-                        f"Indexing (LlamaIndex) {doc_file.name}",
-                        current=idx,
-                        total=total_files,
-                    )
+                self.progress_tracker.update(
+                    ProgressStage.PROCESSING_DOCUMENTS,
+                    f"Indexing {len(new_files)} file(s) with LlamaIndex...",
+                    current=0,
+                    total=len(new_files),
+                )
 
-                success = await pipeline.add_documents(self.kb_name, [str(doc_file)])
-                if success:
+            # Batch add documents - much more efficient than one by one
+            success = await pipeline.add_documents(self.kb_name, file_paths)
+            
+            if success:
+                for doc_file in new_files:
                     processed_files.append(doc_file)
                     self._record_successful_hash(doc_file)
                     logger.info(f"Processed (LlamaIndex): {doc_file.name}")
-                else:
-                    logger.error(f"Failed to index: {doc_file.name}")
-            except Exception as e:
-                logger.exception(f"Failed {doc_file.name}: {e}")
+            else:
+                logger.error(f"Failed to index batch of {len(new_files)} files")
+        except Exception as e:
+            logger.exception(f"Batch indexing failed: {e}")
 
         return processed_files
 
