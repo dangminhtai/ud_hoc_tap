@@ -1,0 +1,382 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 5,
+  "template_count": 5,
+  "completed": 5,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "core competencies required for AI engineers, including skills in machine learning, programming, and data analysis",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "This question assesses understanding of the fundamental skills needed for AI engineers, which is essential for identifying suitable candidates or guiding training programs.",
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "AI engineer"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "the role of AI engineers in deploying machine learning models into production environments",
+      "question_type": "written",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "This prompts learners to describe the practical steps and considerations involved, deepening their comprehension of real-world AI engineering tasks.",
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "AI engineer"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "common challenges faced by AI engineers, such as data quality issues, model bias, and scalability",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "Understanding challenges helps learners anticipate and address real-world problems in AI projects, making their knowledge more applicable.",
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "AI engineer"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "the difference between AI engineering and related roles like data science or software engineering",
+      "question_type": "written",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Clarifying role distinctions enhances learners' conceptual clarity about career paths and interdisciplinary collaboration.",
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "AI engineer"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "best practices for ensuring ethical considerations and fairness in AI systems developed by AI engineers",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "This encourages awareness of ethical issues, which are increasingly vital in AI development and deployment, fostering responsible engineering.",
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "AI engineer"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "core competencies required for AI engineers, including skills in machine learning, programming, and data analysis",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "This question assesses understanding of the fundamental skills needed for AI engineers, which is essential for identifying suitable candidates or guiding training programs.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "AI engineer"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "Which of the following skill sets is most essential for an AI engineer to develop?",
+        "correct_answer": "B",
+        "explanation": "AI engineers need core competencies in machine learning, programming, and data analysis to design, develop, and optimize AI systems effectively. The other options are less relevant to the typical skill set required for AI engineering roles.",
+        "question_type": "choice",
+        "options": {
+          "A": "Advanced graphic design and multimedia editing",
+          "B": "Machine learning, programming, and data analysis",
+          "C": "Network administration and cybersecurity",
+          "D": "Hardware engineering and circuit design"
+        },
+        "concentration": "core competencies required for AI engineers, including skills in machine learning, programming, and data analysis",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "the role of AI engineers in deploying machine learning models into production environments",
+        "question_type": "written",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "This prompts learners to describe the practical steps and considerations involved, deepening their comprehension of real-world AI engineering tasks.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "AI engineer"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Describe the practical steps and considerations involved in deploying machine learning models into production environments, highlighting the role of AI engineers.",
+        "correct_answer": "",
+        "explanation": "AI engineers play a critical role in deploying machine learning models into production by first ensuring the model's performance and robustness through testing and validation. They then prepare the deployment environment, often involving containerization, cloud services, or on-premises infrastructure. Considerations include scalability, latency, security, and monitoring. AI engineers also set up continuous integration and continuous deployment (CI/CD) pipelines to facilitate updates, establish monitoring systems to track model performance and detect drift, and implement fallback mechanisms to ensure reliability. Throughout this process, they collaborate with data engineers, software developers, and stakeholders to ensure the model operates effectively in real-world conditions, aligning technical deployment with business objectives.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "the role of AI engineers in deploying machine learning models into production environments",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "common challenges faced by AI engineers, such as data quality issues, model bias, and scalability",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "Understanding challenges helps learners anticipate and address real-world problems in AI projects, making their knowledge more applicable.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "AI engineer"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "What are common challenges faced by AI engineers during the development process?",
+        "correct_answer": "A",
+        "explanation": "AI engineers frequently encounter challenges such as data quality issues, which affect model accuracy; model bias, which can lead to unfair outcomes; and scalability, which concerns deploying models effectively at scale. These are core technical challenges in AI development, unlike hardware, UI, or marketing concerns.",
+        "question_type": "choice",
+        "options": {
+          "A": "Data quality issues, model bias, and scalability",
+          "B": "Hardware incompatibility and user interface design",
+          "C": "Network latency and software licensing",
+          "D": "User acceptance testing and marketing strategies"
+        },
+        "concentration": "common challenges faced by AI engineers, such as data quality issues, model bias, and scalability",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "the difference between AI engineering and related roles like data science or software engineering",
+        "question_type": "written",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Clarifying role distinctions enhances learners' conceptual clarity about career paths and interdisciplinary collaboration.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "AI engineer"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "Explain the key differences between an AI engineer and related roles such as data scientist and software engineer. Focus on their primary responsibilities, skill sets, and typical project goals.",
+        "correct_answer": "",
+        "explanation": "An AI engineer specializes in designing, developing, and deploying artificial intelligence models and systems, often integrating machine learning techniques into products. They typically focus on building scalable AI solutions, working closely with data, algorithms, and software infrastructure. Data scientists, on the other hand, primarily analyze and interpret complex data to extract insights, develop statistical models, and inform decision-making. Their work often involves data cleaning, visualization, and exploratory analysis. Software engineers build and maintain software systems and applications, emphasizing coding, architecture, and system performance. While they may implement AI models, their core responsibilities usually extend beyond AI-specific tasks to broader software development. Understanding these distinctions clarifies each role’s focus within interdisciplinary teams and helps in career planning.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "the difference between AI engineering and related roles like data science or software engineering",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "best practices for ensuring ethical considerations and fairness in AI systems developed by AI engineers",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "This encourages awareness of ethical issues, which are increasingly vital in AI development and deployment, fostering responsible engineering.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "AI engineer"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "What is a best practice for ensuring ethical considerations and fairness when developing AI systems?",
+        "correct_answer": "B",
+        "explanation": "Implementing diverse training data and regularly auditing model outputs for bias are essential best practices to ensure ethical considerations and fairness in AI development. These approaches help detect and mitigate biases, promote transparency, and foster responsible AI systems. Focusing solely on accuracy or avoiding transparency can lead to ethical issues, while using unvalidated datasets risks perpetuating biases.",
+        "question_type": "choice",
+        "options": {
+          "A": "Focusing solely on maximizing model accuracy without bias testing",
+          "B": "Implementing diverse training data and regularly auditing model outputs for bias",
+          "C": "Using only publicly available datasets without validation",
+          "D": "Avoiding transparency to protect intellectual property"
+        },
+        "concentration": "best practices for ensuring ethical considerations and fairness in AI systems developed by AI engineers",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: AI engineer ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260427_072416_bf1effb0\\custom_20260427_072416"
+}

@@ -30,7 +30,7 @@ fun FlipCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 280.dp)
+            .heightIn(min = 300.dp)
             .graphicsLayer {
                 rotationY = rotation
                 cameraDistance = 12f * density
@@ -48,26 +48,30 @@ fun FlipCard(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(32.dp),
+                .padding(24.dp),
             contentAlignment = Alignment.Center
         ) {
             if (rotation <= 90f) {
                 // Front
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxSize()
+                ) {
                     Text(
                         text = "CÂU HỎI",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = frontText,
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Chạm để lật thẻ",
                         style = MaterialTheme.typography.bodySmall,
@@ -78,18 +82,21 @@ fun FlipCard(
                 // Back (mirrored text fix)
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.graphicsLayer { rotationY = 180f }
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer { rotationY = 180f }
                 ) {
                     Text(
                         text = "CÂU TRẢ LỜI",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = backText,
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
                     )
