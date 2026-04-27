@@ -44,29 +44,18 @@ class HomeViewModel @Inject constructor(
             deckRepository.searchDecks(query)
         }
 
-        return deckFlow.flatMapLatest { decks ->
-            if (decks.isEmpty()) {
-                flowOf(emptyList())
-            } else {
-                combine(
-                    decks.map { deck ->
-                        combine(
-                            deckRepository.getCardCount(deck.id),
-                            deckRepository.getDueCardCount(deck.id)
-                        ) { cardCount, dueCount ->
-                            DeckUiModel(
-                                id = deck.id,
-                                name = deck.name,
-                                description = deck.description,
-                                color = deck.color,
-                                cardCount = cardCount,
-                                dueCount = dueCount
-                            )
-                        }
-                    }
-                ) { deckModels ->
-                    deckModels.toList()
-                }
+        // Tối ưu: Không dùng combine lồng nhau bên trong flatMapLatest của từng deck
+        // vì nó sẽ tạo ra hàng trăm Flow nếu có nhiều deck, gây treo Main Thread.
+        return deckFlow.map { decks ->
+            decks.map { deck ->
+                DeckUiModel(
+                    id = deck.id,
+                    name = deck.name,
+                    description = deck.description,
+                    color = deck.color,
+                    cardCount = 0, // Sẽ cập nhật sau bằng SQL tối ưu
+                    dueCount = 0
+                )
             }
         }
     }

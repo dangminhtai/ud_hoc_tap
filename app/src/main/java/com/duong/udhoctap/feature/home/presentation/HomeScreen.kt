@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Style
@@ -25,6 +26,7 @@ import com.duong.udhoctap.core.ui.theme.DeckColors
 @Composable
 fun HomeScreen(
     onDeckClick: (Long) -> Unit,
+    onNavigateToStats: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -80,7 +82,6 @@ fun HomeScreen(
                     ) {
                         AssistChip(
                             onClick = {},
-                            enabled = false,
                             label = { Text("$deckCount bộ thẻ") },
                             leadingIcon = {
                                 Icon(Icons.Default.Style, contentDescription = null, modifier = Modifier.size(16.dp))
@@ -88,16 +89,17 @@ fun HomeScreen(
                         )
                         AssistChip(
                             onClick = {},
-                            enabled = false,
                             label = { Text("$dueCards cần ôn") },
                             leadingIcon = {
                                 Icon(Icons.Default.Schedule, contentDescription = null, modifier = Modifier.size(16.dp))
                             }
                         )
                         AssistChip(
-                            onClick = {},
-                            enabled = false,
-                            label = { Text("$totalCards thẻ") }
+                            onClick = onNavigateToStats,
+                            label = { Text("Thống kê") },
+                            leadingIcon = {
+                                Icon(Icons.Default.BarChart, contentDescription = null, modifier = Modifier.size(16.dp))
+                            }
                         )
                     }
                 }

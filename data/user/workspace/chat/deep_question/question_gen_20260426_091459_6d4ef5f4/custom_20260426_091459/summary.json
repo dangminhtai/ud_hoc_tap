@@ -1,0 +1,363 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 5,
+  "template_count": 5,
+  "completed": 5,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "The role of self-attention mechanisms in Transformer models",
+      "question_type": "true_false",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "Understanding self-attention is fundamental to grasping how Transformers process sequences, making this a core concept for learners at an intermediate level.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "true_false",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "The differences between Transformer-based models and traditional RNNs or CNNs",
+      "question_type": "true_false",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "Highlighting contrasts helps learners understand the unique advantages of Transformers, reinforcing their conceptual distinctions.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "true_false",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "The importance of positional encoding in Transformer models",
+      "question_type": "true_false",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "Positional encoding addresses a key challenge of sequence order in Transformers; understanding this is essential for comprehension of the model's architecture.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "true_false",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "The scalability and parallelization advantages of Transformers",
+      "question_type": "true_false",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "This concept connects the model's design to its practical benefits, providing learners with insights into why Transformers are widely used in large-scale applications.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "true_false",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "The typical components of a Transformer architecture (e.g., encoder, decoder, multi-head attention)",
+      "question_type": "true_false",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "Familiarity with the core components allows learners to better visualize and understand how Transformers operate internally, forming a foundation for more advanced topics.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "true_false",
+        "requested_difficulty": "medium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "The role of self-attention mechanisms in Transformer models",
+        "question_type": "true_false",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "Understanding self-attention is fundamental to grasping how Transformers process sequences, making this a core concept for learners at an intermediate level.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "true_false",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "Self-attention mechanisms in Transformer models are used to weigh the importance of different parts of the input sequence when generating each output element.",
+        "correct_answer": "true",
+        "explanation": "Self-attention mechanisms allow Transformer models to assess and assign importance weights to different tokens within the input sequence relative to each other. This enables the model to capture contextual relationships and dependencies regardless of their distance in the sequence, which is fundamental to the Transformer architecture's effectiveness in processing sequential data.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "The role of self-attention mechanisms in Transformer models",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "The differences between Transformer-based models and traditional RNNs or CNNs",
+        "question_type": "true_false",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "Highlighting contrasts helps learners understand the unique advantages of Transformers, reinforcing their conceptual distinctions.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "true_false",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Transformer-based models differ from traditional RNNs and CNNs primarily in their ability to handle long-range dependencies more effectively.",
+        "correct_answer": "true",
+        "explanation": "Transformers utilize self-attention mechanisms that allow them to weigh the importance of different parts of the input sequence regardless of their position, making them more effective at capturing long-range dependencies compared to RNNs and CNNs. In contrast, RNNs often struggle with vanishing gradients over long sequences, and CNNs have limited receptive fields unless very deep or with specific architectures. This key difference highlights the advantage of Transformers in modeling complex, long-distance relationships in data.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "The differences between Transformer-based models and traditional RNNs or CNNs",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "The importance of positional encoding in Transformer models",
+        "question_type": "true_false",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "Positional encoding addresses a key challenge of sequence order in Transformers; understanding this is essential for comprehension of the model's architecture.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "true_false",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "Positional encoding is crucial in Transformer models because it helps the model understand the order of tokens in a sequence.",
+        "correct_answer": "true",
+        "explanation": "Transformers lack inherent sequence order awareness due to their attention mechanism. Positional encoding introduces information about token positions, enabling the model to grasp the order of tokens within a sequence, which is essential for tasks like language understanding and translation.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "The importance of positional encoding in Transformer models",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "The scalability and parallelization advantages of Transformers",
+        "question_type": "true_false",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "This concept connects the model's design to its practical benefits, providing learners with insights into why Transformers are widely used in large-scale applications.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "true_false",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "The scalability and parallelization advantages of Transformers make them particularly suitable for large-scale applications.",
+        "correct_answer": "True",
+        "explanation": "Transformers are designed to process data in parallel using self-attention mechanisms, which allows them to scale efficiently across large datasets and leverage parallel computation resources. This scalability and parallelization capability are key reasons why Transformers are widely adopted in large-scale applications such as language modeling and machine translation.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "The scalability and parallelization advantages of Transformers",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "The typical components of a Transformer architecture (e.g., encoder, decoder, multi-head attention)",
+        "question_type": "true_false",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "Familiarity with the core components allows learners to better visualize and understand how Transformers operate internally, forming a foundation for more advanced topics.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "true_false",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "The typical components of a Transformer architecture include an encoder, a decoder, and multi-head attention. True or False?",
+        "correct_answer": "True",
+        "explanation": "Transformers typically comprise several key components, including an encoder and a decoder, which facilitate processing input sequences and generating outputs. Multi-head attention is a core mechanism within these components that allows the model to focus on different parts of the input simultaneously. Familiarity with these components helps in understanding how Transformers operate internally and forms the foundation for more advanced topics in deep learning.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "The typical components of a Transformer architecture (e.g., encoder, decoder, multi-head attention)",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260426_091459_6d4ef5f4\\custom_20260426_091459"
+}

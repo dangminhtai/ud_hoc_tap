@@ -1,0 +1,24 @@
+{
+  "notebooks": [
+    {
+      "id": "2a833571",
+      "name": "gekki",
+      "description": "ádasdasdsa",
+      "created_at": 1776344163.1136866,
+      "updated_at": 1776344209.006864,
+      "record_count": 1,
+      "color": "#3B82F6",
+      "icon": "book"
+    },
+    {
+      "id": "b31ad776",
+      "name": "Hoc to an",
+      "description": "",
+      "created_at": 1777168886.7955673,
+      "updated_at": 1777168886.7955673,
+      "record_count": 0,
+      "color": "#3B82F6",
+      "icon": "book"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 5,
+  "template_count": 5,
+  "completed": 5,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "Các phương pháp học để nâng cao kỹ năng môn học",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "Giúp học sinh hiểu các phương pháp học tập hiệu quả, từ đó hình thành thói quen học tập đúng đắn.",
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "cach hoc to an gioi ?"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "Lợi ích của việc học đều đặn và cách duy trì thói quen học tập",
+      "question_type": "written",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "Khuyến khích học sinh nhận thức rõ về tầm quan trọng của việc duy trì thói quen học đều đặn để nâng cao kết quả học tập.",
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "cach hoc to an gioi ?"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "Các mẹo để quản lý thời gian hiệu quả trong học tập",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "Hướng dẫn học sinh cách phân chia thời gian hợp lý để học tập hiệu quả hơn, tránh lãng phí thời gian.",
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "cach hoc to an gioi ?"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "Các nguồn tài liệu và phương pháp tự học phù hợp cho học sinh",
+      "question_type": "written",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Giúp học sinh biết cách lựa chọn tài liệu và phương pháp tự học phù hợp, nâng cao khả năng tự lập trong học tập.",
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "cach hoc to an gioi ?"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "Vai trò của ôn tập định kỳ trong quá trình học",
+      "question_type": "choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "Nhấn mạnh tầm quan trọng của việc ôn tập để ghi nhớ kiến thức lâu dài, giúp học sinh xây dựng chiến lược học tập hiệu quả.",
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "cach hoc to an gioi ?"
+        ],
+        "requested_question_type": null,
+        "requested_difficulty": "medium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "Các phương pháp học để nâng cao kỹ năng môn học",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "Giúp học sinh hiểu các phương pháp học tập hiệu quả, từ đó hình thành thói quen học tập đúng đắn.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "cach hoc to an gioi ?"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "Phương pháp học nào giúp nâng cao kỹ năng học tiếng Anh hiệu quả nhất?",
+        "correct_answer": "A",
+        "explanation": "Nghe và nói thường xuyên với người bản xứ giúp cải thiện khả năng nghe, phát âm và phản xạ ngôn ngữ, từ đó nâng cao kỹ năng học tiếng Anh hiệu quả. Các phương pháp khác như chỉ học sách hoặc học thuộc lòng không đủ để phát triển toàn diện kỹ năng ngôn ngữ.",
+        "question_type": "choice",
+        "options": {
+          "A": "Nghe và nói thường xuyên với người bản xứ",
+          "B": "Chỉ học qua sách giáo khoa mà không thực hành",
+          "C": "Học thuộc lòng từ vựng mà không luyện phát âm",
+          "D": "Học qua trò chơi điện tử không liên quan đến tiếng Anh"
+        },
+        "concentration": "Các phương pháp học để nâng cao kỹ năng môn học",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "Lợi ích của việc học đều đặn và cách duy trì thói quen học tập",
+        "question_type": "written",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "Khuyến khích học sinh nhận thức rõ về tầm quan trọng của việc duy trì thói quen học đều đặn để nâng cao kết quả học tập.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "cach hoc to an gioi ?"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Lợi ích của việc học đều đặn và cách duy trì thói quen học tập là gì? Hãy nêu rõ tác động của việc này đến kết quả học tập của bạn.",
+        "correct_answer": "Việc học đều đặn giúp củng cố kiến thức, giảm áp lực học tập vào phút chót, và nâng cao kết quả học tập. Để duy trì thói quen học đều đặn, bạn có thể đặt lịch học cố định hàng ngày, tạo môi trường học tập phù hợp, và tự đặt mục tiêu rõ ràng để thúc đẩy sự kiên trì.",
+        "explanation": "Học đều đặn giúp hình thành thói quen tích cực, giúp ghi nhớ kiến thức lâu dài và giảm thiểu cảm giác quá tải. Duy trì thói quen này đòi hỏi sự tự giác, lập kế hoạch rõ ràng và tạo môi trường học tập thuận lợi. Nhờ đó, kết quả học tập sẽ được cải thiện rõ rệt, giúp học sinh tự tin và đạt thành tích cao hơn.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Lợi ích của việc học đều đặn và cách duy trì thói quen học tập",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "Các mẹo để quản lý thời gian hiệu quả trong học tập",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "Hướng dẫn học sinh cách phân chia thời gian hợp lý để học tập hiệu quả hơn, tránh lãng phí thời gian.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "cach hoc to an gioi ?"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "Trong việc học tập, cách quản lý thời gian hiệu quả nhất là gì?",
+        "correct_answer": "B",
+        "explanation": "Phân chia thời gian hợp lý là yếu tố then chốt để học tập hiệu quả. Điều này giúp học sinh không chỉ tập trung vào các môn quan trọng mà còn đảm bảo thời gian nghỉ ngơi, tránh mệt mỏi và lãng phí thời gian. Các lựa chọn khác không đảm bảo sự cân đối và hiệu quả trong việc học.",
+        "question_type": "choice",
+        "options": {
+          "A": "Dành quá nhiều thời gian cho một môn học để nắm chắc kiến thức",
+          "B": "Phân chia thời gian hợp lý, ưu tiên các môn học quan trọng và nghỉ ngơi hợp lý",
+          "C": "Học theo cảm hứng mà không lập kế hoạch cụ thể",
+          "D": "Chỉ tập trung vào việc làm bài kiểm tra mà không quan tâm đến việc học lâu dài"
+        },
+        "concentration": "Các mẹo để quản lý thời gian hiệu quả trong học tập",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "Các nguồn tài liệu và phương pháp tự học phù hợp cho học sinh",
+        "question_type": "written",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Giúp học sinh biết cách lựa chọn tài liệu và phương pháp tự học phù hợp, nâng cao khả năng tự lập trong học tập.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "cach hoc to an gioi ?"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "Các nguồn tài liệu và phương pháp tự học phù hợp cho học sinh để nâng cao khả năng tự lập trong học tập là gì? Hãy nêu rõ các loại tài liệu và phương pháp tự học hiệu quả.",
+        "correct_answer": "",
+        "explanation": "Để tự học hiệu quả, học sinh nên chọn các nguồn tài liệu phù hợp như sách giáo khoa, tài liệu tham khảo, video học trực tuyến, và bài tập thực hành. Phương pháp tự học hiệu quả bao gồm lập kế hoạch học tập rõ ràng, tự đặt câu hỏi, thực hành qua các bài tập và kiểm tra kiến thức định kỳ, cũng như sử dụng các công cụ hỗ trợ học trực tuyến. Việc lựa chọn tài liệu phù hợp và phương pháp đúng đắn giúp nâng cao khả năng tự lập, tự chủ trong học tập và đạt kết quả tốt hơn.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Các nguồn tài liệu và phương pháp tự học phù hợp cho học sinh",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "Vai trò của ôn tập định kỳ trong quá trình học",
+        "question_type": "choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "Nhấn mạnh tầm quan trọng của việc ôn tập để ghi nhớ kiến thức lâu dài, giúp học sinh xây dựng chiến lược học tập hiệu quả.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "cach hoc to an gioi ?"
+          ],
+          "requested_question_type": null,
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "Vai trò của ôn tập định kỳ trong quá trình học là gì?",
+        "correct_answer": "A",
+        "explanation": "Việc ôn tập định kỳ giúp củng cố kiến thức đã học, ghi nhớ lâu dài hơn và giúp học sinh xây dựng chiến lược học tập hiệu quả. Điều này giúp tránh quên kiến thức và nâng cao khả năng ứng dụng trong thực tiễn.",
+        "question_type": "choice",
+        "options": {
+          "A": "Giúp ghi nhớ kiến thức lâu dài và xây dựng chiến lược học tập hiệu quả",
+          "B": "Chỉ giúp giảm thiểu thời gian học tập hàng ngày",
+          "C": "Không ảnh hưởng đến khả năng tiếp thu kiến thức mới",
+          "D": "Chỉ cần ôn tập khi gần kỳ thi mới cần thiết"
+        },
+        "concentration": "Vai trò của ôn tập định kỳ trong quá trình học",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "choice",
+          "schema_ok": true,
+          "repaired": false,
+          "issues": []
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: cach hoc to an gioi ? ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260426_141835_1c90ac4a\\custom_20260426_141835"
+}

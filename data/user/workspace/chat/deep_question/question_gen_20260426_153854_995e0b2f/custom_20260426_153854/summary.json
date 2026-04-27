@@ -1,0 +1,729 @@
+{
+  "success": true,
+  "source": "topic",
+  "requested": 10,
+  "template_count": 10,
+  "completed": 10,
+  "failed": 0,
+  "templates": [
+    {
+      "question_id": "q_1",
+      "concentration": "Fundamental architecture of the Transformer, including self-attention mechanism",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "Assessing understanding of the core components of Transformers ensures learners grasp the foundational structure necessary for advanced topics.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_2",
+      "concentration": "Comparison between Transformer and traditional RNNs or CNNs in sequence modeling",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "Encourages learners to analyze differences and benefits, reinforcing their conceptual clarity of why Transformers are significant.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_3",
+      "concentration": "Role of positional encoding in Transformers",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "Highlights an essential innovation in Transformers, testing learners' understanding of how sequence order information is incorporated.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_4",
+      "concentration": "Applications of Transformer models in NLP tasks",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Connecting theory to practice helps learners appreciate the versatility and relevance of Transformers across different applications.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_5",
+      "concentration": "Limitations or challenges associated with Transformer models",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "Encourages critical thinking about the practical considerations and ongoing research challenges in Transformer development.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_6",
+      "concentration": "Impact of multi-head attention on model performance and capacity",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_1",
+        "rationale": "This question helps students understand the significance of multi-head attention in enhancing the model's ability to focus on different parts of the input simultaneously, a key innovation in Transformer architecture.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_7",
+      "concentration": "Differences between scaled dot-product attention and additive attention mechanisms",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_2",
+        "rationale": "Exploring attention mechanisms deepens understanding of the core computational components within Transformers and their effect on efficiency and performance.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_8",
+      "concentration": "Role of layer normalization in Transformer training stability and convergence",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_3",
+        "rationale": "This question emphasizes the importance of normalization techniques in training deep models, highlighting a critical design choice that impacts model stability.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_9",
+      "concentration": "How Transformer models handle long-range dependencies in sequence data",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_4",
+        "rationale": "Understanding how Transformers effectively model long-range dependencies addresses a key advantage over traditional sequential models and deepens conceptual grasp.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    },
+    {
+      "question_id": "q_10",
+      "concentration": "Differences between encoder-only, decoder-only, and encoder-decoder Transformer architectures",
+      "question_type": "multiple_choice",
+      "difficulty": "medium",
+      "source": "custom",
+      "reference_question": null,
+      "reference_answer": null,
+      "metadata": {
+        "idea_id": "idea_5",
+        "rationale": "This question clarifies the various Transformer configurations used in different applications, aiding learners in selecting appropriate architectures for specific tasks.",
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+        "retrieval_queries": [
+          "Transformer"
+        ],
+        "requested_question_type": "multiple_choice",
+        "requested_difficulty": "medium"
+      }
+    }
+  ],
+  "results": [
+    {
+      "template": {
+        "question_id": "q_1",
+        "concentration": "Fundamental architecture of the Transformer, including self-attention mechanism",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "Assessing understanding of the core components of Transformers ensures learners grasp the foundational structure necessary for advanced topics.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_1",
+        "question": "Which of the following best describes the fundamental architecture of a Transformer, including its self-attention mechanism?",
+        "correct_answer": "C",
+        "explanation": "The Transformer architecture is characterized by its use of multi-head self-attention mechanisms and position-wise feedforward networks, arranged in multiple layers. This design allows the model to weigh different parts of the input sequence dynamically, capturing dependencies regardless of their distance. Unlike convolutional or recurrent models, Transformers process data in parallel and rely heavily on attention mechanisms to understand contextual relationships.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Fundamental architecture of the Transformer, including self-attention mechanism",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": false,
+          "issues": [
+            "non_choice_payload_looks_like_multiple_choice"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_2",
+        "concentration": "Comparison between Transformer and traditional RNNs or CNNs in sequence modeling",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "Encourages learners to analyze differences and benefits, reinforcing their conceptual clarity of why Transformers are significant.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_2",
+        "question": "Compared to traditional RNNs and CNNs, what is a primary advantage of Transformer models in sequence modeling?",
+        "correct_answer": "",
+        "explanation": "Transformers leverage attention mechanisms that enable the model to weigh the importance of different parts of the sequence simultaneously, allowing for parallel processing and effective modeling of long-range dependencies. Unlike RNNs, which process data sequentially, Transformers do not have to process sequence data step-by-step, leading to improved efficiency and the ability to capture global context more effectively.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Comparison between Transformer and traditional RNNs or CNNs in sequence modeling",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_3",
+        "concentration": "Role of positional encoding in Transformers",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "Highlights an essential innovation in Transformers, testing learners' understanding of how sequence order information is incorporated.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_3",
+        "question": "What is the primary role of positional encoding in Transformer models?",
+        "correct_answer": "",
+        "explanation": "Positional encoding in Transformers is used to inject information about the position of each token in the input sequence, since the Transformer architecture itself does not inherently encode order. This allows the model to understand the sequence's structure and maintain the order-dependent relationships between tokens, which is crucial for many language understanding tasks.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Role of positional encoding in Transformers",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_4",
+        "concentration": "Applications of Transformer models in NLP tasks",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Connecting theory to practice helps learners appreciate the versatility and relevance of Transformers across different applications.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_4",
+        "question": "Which of the following is a common application of Transformer models in NLP tasks?",
+        "correct_answer": "B",
+        "explanation": "Transformer models are widely used in NLP tasks, with machine translation being one of the most prominent applications. They excel at understanding and generating human language, making them ideal for translating text from one language to another. While Transformers have been adapted for various domains, their primary success in NLP is in tasks like translation, summarization, and language modeling.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Applications of Transformer models in NLP tasks",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": false,
+          "issues": [
+            "non_choice_payload_looks_like_multiple_choice"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_5",
+        "concentration": "Limitations or challenges associated with Transformer models",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "Encourages critical thinking about the practical considerations and ongoing research challenges in Transformer development.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_5",
+        "question": "What is a primary limitation of Transformer models in practical applications?",
+        "correct_answer": "",
+        "explanation": "One of the main challenges with Transformer models is their high computational and memory requirements, especially for processing long sequences. This can limit their deployment in resource-constrained environments and pose scalability issues. While they do require substantial data and can be fine-tuned, their computational demands are a well-recognized practical limitation.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Limitations or challenges associated with Transformer models",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_6",
+        "concentration": "Impact of multi-head attention on model performance and capacity",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_1",
+          "rationale": "This question helps students understand the significance of multi-head attention in enhancing the model's ability to focus on different parts of the input simultaneously, a key innovation in Transformer architecture.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_6",
+        "question": "How does multi-head attention enhance a Transformer's performance compared to single-head attention?",
+        "correct_answer": "",
+        "explanation": "Multi-head attention enables the model to attend to different parts of the input simultaneously by using multiple attention heads. This allows the Transformer to capture various aspects of the input data in parallel, leading to a richer and more nuanced understanding. Unlike single-head attention, which focuses on one aspect at a time, multi-head attention provides a broader perspective, significantly improving performance and capacity in tasks like language modeling and translation.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Impact of multi-head attention on model performance and capacity",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_7",
+        "concentration": "Differences between scaled dot-product attention and additive attention mechanisms",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_2",
+          "rationale": "Exploring attention mechanisms deepens understanding of the core computational components within Transformers and their effect on efficiency and performance.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_7",
+        "question": "What is the key difference between scaled dot-product attention and additive attention mechanisms in Transformers?",
+        "correct_answer": "",
+        "explanation": "Scaled dot-product attention computes attention scores by taking the dot product of queries and keys, then scaling the result by the square root of the key dimension to prevent excessively large values that can affect softmax stability. In contrast, additive attention (also known as Bahdanau attention) uses a small neural network to learn how to combine the queries and keys into attention scores. This fundamental difference impacts computational efficiency and performance, with scaled dot-product attention generally being faster and more suitable for large-scale Transformer models.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Differences between scaled dot-product attention and additive attention mechanisms",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_8",
+        "concentration": "Role of layer normalization in Transformer training stability and convergence",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_3",
+          "rationale": "This question emphasizes the importance of normalization techniques in training deep models, highlighting a critical design choice that impacts model stability.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_8",
+        "question": "What is the primary role of layer normalization in Transformer training?",
+        "correct_answer": "",
+        "explanation": "Layer normalization plays a crucial role in Transformer training by normalizing the inputs within each layer, which helps stabilize the learning process and accelerates convergence. This normalization reduces internal covariate shift, making training more stable and efficient. It does not directly increase model capacity, handle sequence padding, or compress representations, but rather ensures consistent input distributions to each layer during training.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Role of layer normalization in Transformer training stability and convergence",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_9",
+        "concentration": "How Transformer models handle long-range dependencies in sequence data",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_4",
+          "rationale": "Understanding how Transformers effectively model long-range dependencies addresses a key advantage over traditional sequential models and deepens conceptual grasp.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_9",
+        "question": "How do Transformer models handle long-range dependencies in sequence data?",
+        "correct_answer": "",
+        "explanation": "Transformers handle long-range dependencies primarily through self-attention mechanisms, which enable each element in the sequence to directly attend to any other element, regardless of their positions. This allows the model to capture dependencies over long distances more effectively than traditional sequential models like RNNs or CNNs, which may struggle with vanishing gradients or limited receptive fields.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "How Transformer models handle long-range dependencies in sequence data",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    },
+    {
+      "template": {
+        "question_id": "q_10",
+        "concentration": "Differences between encoder-only, decoder-only, and encoder-decoder Transformer architectures",
+        "question_type": "multiple_choice",
+        "difficulty": "medium",
+        "source": "custom",
+        "reference_question": null,
+        "reference_answer": null,
+        "metadata": {
+          "idea_id": "idea_5",
+          "rationale": "This question clarifies the various Transformer configurations used in different applications, aiding learners in selecting appropriate architectures for specific tasks.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first.",
+          "retrieval_queries": [
+            "Transformer"
+          ],
+          "requested_question_type": "multiple_choice",
+          "requested_difficulty": "medium"
+        }
+      },
+      "qa_pair": {
+        "question_id": "q_10",
+        "question": "What is the primary difference between encoder-only, decoder-only, and encoder-decoder Transformer architectures?",
+        "correct_answer": "",
+        "explanation": "Encoder-only architectures, such as BERT, are designed to encode input data for tasks like classification or feature extraction. Decoder-only architectures, like GPT, focus on generating sequences based on previous tokens. Encoder-decoder models, such as T5 and the original Transformer, combine encoding and decoding processes, making them suitable for tasks like translation where understanding the input and generating output are both essential. This distinction helps in selecting the appropriate architecture based on the task requirements.",
+        "question_type": "written",
+        "options": null,
+        "concentration": "Differences between encoder-only, decoder-only, and encoder-decoder Transformer architectures",
+        "difficulty": "medium",
+        "validation": {
+          "requested_question_type": "written",
+          "schema_ok": false,
+          "repaired": true,
+          "issues": [
+            "missing_correct_answer"
+          ]
+        },
+        "metadata": {
+          "source": "custom",
+          "reference_question": null,
+          "enabled_tools": [
+            "rag",
+            "web_search",
+            "code_execution"
+          ],
+          "available_tools": "- rag: Search the knowledge base for relevant passages and grounded answers.\n- web_search: Search the web for current or external information with citations.\n- code_execution: Describe a computation or verification task in natural language, then run generated Python code.",
+          "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+        }
+      },
+      "success": true
+    }
+  ],
+  "trace": {
+    "batches": [
+      {
+        "batch": 1,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+      },
+      {
+        "batch": 2,
+        "requested": 5,
+        "generated": 5,
+        "knowledge_context": "=== Query: Transformer ===\nNo documents indexed. Please upload documents first."
+      }
+    ]
+  },
+  "batch_dir": "D:\\ud_hoc_tap\\data\\user\\workspace\\chat\\deep_question\\question_gen_20260426_153854_995e0b2f\\custom_20260426_153854"
+}

@@ -1,0 +1,218 @@
+{
+  "version": "1.0",
+  "sessions": [
+    {
+      "session_id": "chat_1777170609893_73e7956a",
+      "title": "Làm sao đây",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Làm sao đây",
+          "timestamp": 1777170609.8965406
+        },
+        {
+          "role": "assistant",
+          "content": "Chào bạn! Bạn đang gặp vấn đề gì hoặc cần giúp đỡ về điều gì? Hãy nói rõ hơn để mình có thể hỗ trợ bạn tốt nhất nhé!",
+          "timestamp": 1777170610.9604738
+        },
+        {
+          "role": "user",
+          "content": "T quá chán đời rôi fmyaf giúp t vui hơn đi",
+          "timestamp": 1777170622.901542
+        },
+        {
+          "role": "assistant",
+          "content": "Mình rất tiếc khi nghe bạn cảm thấy chán nản. Đôi khi cuộc sống có những lúc khó khăn và khiến chúng ta cảm thấy mệt mỏi. Nhưng hãy nhớ rằng, mọi chuyện rồi sẽ qua và có những điều tốt đẹp đang chờ đợi phía trước. \n\nBạn có muốn kể rõ hơn về chuyện đang làm bạn buồn không? Hoặc mình có thể kể một câu chuyện vui, hoặc giúp bạn nghĩ ra những hoạt động giúp tinh thần thoải mái hơn. Bạn muốn nghe một câu chuyện hài, hay chia sẻ về sở thích của bạn?",
+          "timestamp": 1777170624.2329125
+        },
+        {
+          "role": "user",
+          "content": "Kể cho t một câu chuyện vui",
+          "timestamp": 1777170639.463457
+        },
+        {
+          "role": "assistant",
+          "content": "Chắc chắn rồi! Đây là một câu chuyện vui nhỏ dành cho bạn:\n\n**Câu chuyện về chú mèo và chiếc máy tính**\n\nCó một chú mèo rất thích ngồi bên cạnh chủ và nhìn chủ gõ bàn phím máy tính. Một ngày, chú mèo nhìn thấy chủ đang chơi game và nghĩ: \"Ồ, chắc là mình cũng muốn thử xem sao!\"\n\nChú mèo nhảy lên bàn, cố gắng nhấn bàn phím bằng chân nhỏ của mình. Nhưng thay vì chơi game, chú lại vô tình làm tắt máy tính của chủ! Chủ ngạc nhiên hỏi: \"Mèo yêu, sao lại tắt máy của anh rồi?\"\n\nChú mèo nhìn chủ một cách ngơ ngác, rồi thầm nghĩ: \"Chắc là mình đã giúp chủ... tắt hết công việc rồi đó!\"\n\nVà từ đó, mỗi lần chủ chơi game, chú mèo lại cố gắng giúp đỡ bằng cách... nhấn bàn phím để \"giúp\" chủ nghỉ ngơi luôn!\n\n---\n\nHy vọng câu chuyện này giúp bạn cười nhẹ nhàng hơn một chút! Bạn có muốn nghe thêm một câu chuyện khác không?",
+          "timestamp": 1777170641.4563372
+        },
+        {
+          "role": "user",
+          "content": "Haizz",
+          "timestamp": 1777170656.0821092
+        },
+        {
+          "role": "assistant",
+          "content": "Mình hiểu cảm giác của bạn. Đôi khi cuộc sống có những lúc khiến chúng ta cảm thấy mệt mỏi hoặc chán nản. Nếu bạn muốn chia sẻ thêm hoặc cần ai đó lắng nghe, mình luôn ở đây để nghe và giúp đỡ bạn. Bạn có muốn kể chuyện hoặc nói về điều gì đó đặc biệt không? Hoặc mình có thể giúp bạn tìm cách thư giãn hoặc vui vẻ hơn nhé!",
+          "timestamp": 1777170657.4257367
+        },
+        {
+          "role": "user",
+          "content": "M có ăn cứt không",
+          "timestamp": 1777170673.1985648
+        },
+        {
+          "role": "assistant",
+          "content": "Haha, câu hỏi của bạn vui quá! Nhưng mình nghĩ, ăn cứt là không tốt đâu, vì đó không phải là thức ăn phù hợp và có thể gây hại cho sức khỏe. Nếu bạn muốn nói chuyện vui hoặc chia sẻ điều gì đó, mình luôn sẵn sàng lắng nghe và giúp bạn cảm thấy vui vẻ hơn. Bạn có muốn kể chuyện vui hoặc hỏi về điều gì khác không?",
+          "timestamp": 1777170675.1601808
+        }
+      ],
+      "created_at": 1777170609.8934772,
+      "updated_at": 1777170675.1612039,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": false
+      }
+    },
+    {
+      "session_id": "chat_1777170532048_c5602ce2",
+      "title": "Chán đời quá",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Chán đời quá",
+          "timestamp": 1777170532.0516665
+        },
+        {
+          "role": "assistant",
+          "content": "Chào bạn! Mình hiểu cảm giác chán nản có thể rất khó chịu. Đôi khi, cuộc sống có những lúc thử thách và khiến chúng ta cảm thấy mệt mỏi hoặc mất phương hướng. Nhưng đừng quên rằng mọi chuyện đều có thể thay đổi và có những cách để giúp bạn cảm thấy tích cực hơn. Bạn muốn chia sẻ thêm về điều gì đang làm bạn chán đời không? Mình luôn sẵn lòng lắng nghe và giúp đỡ bạn!",
+          "timestamp": 1777170534.4783478
+        },
+        {
+          "role": "user",
+          "content": "Bây giờ t phải làm sao",
+          "timestamp": 1777170549.1496906
+        },
+        {
+          "role": "assistant",
+          "content": "Mình biết cảm giác này có thể rất khó khăn, nhưng điều quan trọng là bạn không đơn độc. Dưới đây là một số bước có thể giúp bạn cảm thấy tốt hơn:\n\n1. **Thư giãn và hít thở sâu**: Dành vài phút để thở chậm, sâu, giúp giảm căng thẳng và làm dịu tâm trí.\n\n2. **Chia sẻ cảm xúc**: Nói chuyện với người thân, bạn bè hoặc người tin cậy về cảm giác của bạn. Chia sẻ có thể giúp giảm bớt gánh nặng.\n\n3. **Tìm hoạt động tích cực**: Tham gia vào những việc bạn thích, như nghe nhạc, đọc sách, thể thao nhẹ hoặc sáng tạo nghệ thuật. Điều này giúp tâm trạng tốt hơn.\n\n4. **Chăm sóc bản thân**: Đảm bảo ăn uống đầy đủ, ngủ đủ giấc và giữ gìn sức khỏe thể chất.\n\n5. **Đặt mục tiêu nhỏ**: Đặt ra những mục tiêu nhỏ, dễ đạt được để cảm thấy có động lực hơn mỗi ngày.\n\n6. **Đừng ngần ngại tìm sự giúp đỡ chuyên nghiệp**: Nếu cảm giác này kéo dài hoặc quá nặng nề, hãy tìm đến các chuyên gia tâm lý hoặc bác sĩ để được hỗ trợ phù hợp.\n\nBạn có muốn chia sẻ rõ hơn về điều đang khiến bạn cảm thấy chán nản không? Mình luôn ở đây để lắng nghe và giúp đỡ bạn!",
+          "timestamp": 1777170559.6330664
+        }
+      ],
+      "created_at": 1777170532.0488615,
+      "updated_at": 1777170559.6330664,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": false
+      }
+    },
+    {
+      "session_id": "chat_1777169898140_e618a5cb",
+      "title": "Em ăn cơm chưa ?",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Em ăn cơm chưa ?",
+          "timestamp": 1777169898.1438963
+        },
+        {
+          "role": "assistant",
+          "content": "Chào bạn! Tôi là DeepTutor, một trợ lý học tập thông minh. Câu hỏi của bạn bằng tiếng Việt, nhưng có vẻ như bạn đang hỏi \"Em ăn cơm chưa?\" — nghĩa là \"Bạn đã ăn cơm chưa?\" trong tiếng Việt.\n\nBạn có muốn tôi giúp gì về tiếng Việt, hoặc bạn có câu hỏi nào khác không?",
+          "timestamp": 1777169899.9738235
+        },
+        {
+          "role": "user",
+          "content": "Chào bạn",
+          "timestamp": 1777170030.512802
+        }
+      ],
+      "created_at": 1777169898.1401901,
+      "updated_at": 1777170030.512802,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": false
+      }
+    },
+    {
+      "session_id": "chat_1777168724612_654bcad9",
+      "title": "nay",
+      "messages": [
+        {
+          "role": "user",
+          "content": "nay",
+          "timestamp": 1777168724.6176841
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! It seems like your message was just \"nay.\" Could you please clarify or let me know how I can assist you today? I'm here to help with any questions or topics you're interested in!",
+          "timestamp": 1777168726.013042
+        }
+      ],
+      "created_at": 1777168724.6126876,
+      "updated_at": 1777168726.013042,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": true
+      }
+    },
+    {
+      "session_id": "chat_1777187435737_c0c06329",
+      "title": "hello",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": 1777187435.7396362
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! 😊 How can I assist you today?",
+          "timestamp": 1777187436.660442
+        },
+        {
+          "role": "user",
+          "content": "can you help me learn about svm ?",
+          "timestamp": 1777187452.5046878
+        },
+        {
+          "role": "assistant",
+          "content": "Of course! I'd be happy to help you learn about Support Vector Machines (SVM). \n\n### What is SVM?\n\nSupport Vector Machine (SVM) is a supervised machine learning algorithm used mainly for classification tasks, and sometimes for regression. The main idea behind SVM is to find the best boundary (called a hyperplane) that separates different classes of data points with the maximum margin.\n\n### Key Concepts of SVM:\n\n1. **Hyperplane**: In a 2D space, this is a line that separates different classes. In higher dimensions, it's called a hyperplane.\n\n2. **Margin**: The distance between the hyperplane and the nearest data points from each class. SVM aims to maximize this margin, which helps improve the model's generalization.\n\n3. **Support Vectors**: The data points that are closest to the hyperplane. These points are critical because they define the position and orientation of the hyperplane.\n\n4. **Kernel Trick**: When data isn't linearly separable, SVM can use a kernel function to transform data into a higher-dimensional space where a hyperplane can separate the classes.\n\n### How SVM Works (Simplified):\n\n- It finds the hyperplane that best separates the classes with the widest possible margin.\n- The support vectors are the data points that are closest to this hyperplane.\n- The algorithm adjusts the hyperplane to maximize the margin, leading to better classification performance.\n\n### Visual Analogy:\nImagine you're trying to draw a straight line between two groups of points on a plane. SVM finds the line that leaves the largest possible space (margin) between the line and the closest points of each group. These closest points are the support vectors.\n\n### Why Use SVM?\n- Effective in high-dimensional spaces\n- Works well with clear margin of separation\n- Can handle non-linear data using kernels\n\n### Basic Example:\nSuppose you have two types of fruits—apples and oranges—represented in a 2D feature space based on weight and sweetness. SVM will find the best line (or boundary) that separates apples from oranges, maximizing the distance to the nearest fruit of each type.\n\n---\n\nWould you like me to go into more detail about any specific part, such as the mathematics behind SVM, kernel functions, or how to implement it?",
+          "timestamp": 1777187455.8513088
+        },
+        {
+          "role": "user",
+          "content": "transformer architecture ?>",
+          "timestamp": 1777187497.5083032
+        },
+        {
+          "role": "assistant",
+          "content": "Great! Let's explore the Transformer architecture, which is a groundbreaking model primarily used in natural language processing (NLP), but also applicable to other fields like computer vision.\n\n---\n\n### What is the Transformer Architecture?\n\nThe Transformer is a neural network architecture introduced in the paper **\"Attention is All You Need\"** by Vaswani et al. in 2017. It revolutionized NLP by enabling models to understand context more effectively without relying on traditional recurrent or convolutional structures.\n\n---\n\n### Key Concepts of the Transformer:\n\n1. **Self-Attention Mechanism**:\n   - Allows the model to weigh the importance of different words in a sentence relative to each other.\n   - For example, in the sentence \"The cat sat on the mat,\" the model can understand which words are most relevant to each other.\n\n2. **Positional Encoding**:\n   - Since Transformers don't process data sequentially like RNNs, they need a way to understand the order of words.\n   - Positional encodings are added to input embeddings to provide this information.\n\n3. **Encoder-Decoder Structure**:\n   - **Encoder**: Processes the input data and creates a representation.\n   - **Decoder**: Generates the output based on the encoder's representation and previous outputs (used in tasks like translation).\n\n---\n\n### Main Components:\n\n#### 1. Encoder:\n- Consists of multiple identical layers.\n- Each layer has:\n  - **Multi-head Self-Attention**: Allows the model to focus on different parts of the input simultaneously.\n  - **Feedforward Neural Network**: Applies non-linear transformations to the data.\n  - **Layer Normalization and Residual Connections**: Help stabilize training and improve flow of gradients.\n\n#### 2. Decoder:\n- Also consists of multiple identical layers.\n- Each layer has:\n  - **Masked Multi-head Self-Attention**: Ensures the decoder only attends to earlier positions in the output sequence during training.\n  - **Encoder-Decoder Attention**: Allows the decoder to focus on relevant parts of the input.\n  - **Feedforward Neural Network**.\n\n---\n\n### How Self-Attention Works (Simplified):\n\n- For each word, the model computes three vectors: **Query (Q)**, **Key (K)**, and **Value (V)**.\n- The attention score between words is calculated using the dot product of Q and K.\n- These scores determine how much focus each word should give to others.\n- The output is a weighted sum of the V vectors, where weights are derived from the attention scores.\n\n---\n\n### Why is the Transformer Powerful?\n\n- **Parallelization**: Unlike RNNs, Transformers process all words simultaneously, making training faster.\n- **Long-Range Dependencies**: Better at capturing relationships between distant words.\n- **Scalability**: Can be scaled up to very large models (like GPT, BERT).\n\n---\n\n### Visual Summary:\nImagine reading a paragraph and highlighting the most relevant words to understand the meaning of each word in context. The self-attention mechanism does this systematically for all words in a sentence.\n\n---\n\nWould you like a more detailed explanation of the mathematical operations, how multi-head attention works, or examples of Transformer-based models like GPT or BERT?",
+          "timestamp": 1777187501.9224875
+        }
+      ],
+      "created_at": 1777187435.7371142,
+      "updated_at": 1777187501.9224875,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": false
+      }
+    },
+    {
+      "session_id": "chat_1777186808402_6217e731",
+      "title": "hello",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello",
+          "timestamp": 1777186808.4045296
+        },
+        {
+          "role": "assistant",
+          "content": "Hello! 😊 How can I assist you today?",
+          "timestamp": 1777186811.5030737
+        }
+      ],
+      "created_at": 1777186808.4025187,
+      "updated_at": 1777186811.5040884,
+      "settings": {
+        "kb_name": "",
+        "enable_rag": false,
+        "enable_web_search": false
+      }
+    }
+  ]
+}

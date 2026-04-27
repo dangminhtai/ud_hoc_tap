@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.duong.udhoctap.core.data.repository.DeckRepository
 import com.duong.udhoctap.core.data.repository.SettingsRepository
 import com.duong.udhoctap.core.ui.navigation.AppNavigation
 import com.duong.udhoctap.core.ui.theme.UdHocTapTheme
@@ -23,7 +25,11 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var settingsRepository: SettingsRepository
 
+    @Inject
+    lateinit var deckRepository: DeckRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -32,7 +38,8 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     AppNavigation(
                         darkTheme = darkTheme,
-                        onThemeChanged = { darkTheme = it }
+                        onThemeChanged = { darkTheme = it },
+                        deckRepository = deckRepository
                     )
                 }
             }

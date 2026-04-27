@@ -55,7 +55,7 @@ fun QuizScreen(
         when (uiState.phase) {
             QuizPhase.LOADING -> {
                 Box(
-                    modifier = Modifier.fillMaxSize().padding(padding),
+                    modifier = Modifier.fillMaxSize()   .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
