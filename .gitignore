@@ -22,4 +22,15 @@ backend/__pycache__/
 backend/*.pyc
 .env
 
+# Agent & Skills
+.agents/
+.continue/
+.windsurf/
+skills/
+skills-lock.json
+
+# Database & Artifacts
+backend/chroma_db/
+preview/
+
 
