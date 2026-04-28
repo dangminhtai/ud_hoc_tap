@@ -31,6 +31,7 @@ skills-lock.json
 
 # Database & Artifacts
 backend/chroma_db/
+backend/*.db
 preview/
 
 

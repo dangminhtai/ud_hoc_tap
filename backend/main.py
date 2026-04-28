@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from apis.flashcards import router as flashcards_router
 from apis.knowledge import router as knowledge_router
+from apis.chat import router as chat_router
 
-app = FastAPI(title="UdHocTap AI Service", version="1.4.0")
+app = FastAPI(title="UdHocTap AI Service", version="1.5.0")
 
 # --- Middleware ---
 app.add_middleware(
@@ -17,6 +18,7 @@ app.add_middleware(
 # --- Include Routers ---
 app.include_router(flashcards_router)
 app.include_router(knowledge_router)
+app.include_router(chat_router)
 
 @app.get("/")
 def read_root():

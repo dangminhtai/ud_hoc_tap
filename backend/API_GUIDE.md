@@ -126,6 +126,45 @@ Hỏi các câu hỏi liên quan đến kiến thức vũ trụ, khoa học có 
 
 ---
 
+## 6. Trợ lý Chat (Multi-turn Chat)
+Trò chuyện liên tục với AI, ghi nhớ lịch sử hội thoại.
+
+- **Method:** `POST`
+- **URL:** `{{base_url}}/api/v1/chat`
+- **Headers:** 
+  - `Content-Type: application/json`
+- **Body:**
+```json
+{
+    "message": "Nhà mình có 2 con chó.",
+    "session_id": null
+}
+```
+
+### Phản hồi mẫu (Lượt 1):
+Backend sẽ trả về một `session_id` mới. Bạn cần lưu ID này lại cho lượt chat kế tiếp.
+```json
+{
+    "answer": "Ồ, thật tuyệt! Chăm sóc 2 chú chó chắc hẳn rất vui...",
+    "session_id": "8f3a2b1c-...",
+    "history": [
+        { "role": "user", "text": "Nhà mình có 2 con chó." },
+        { "role": "model", "text": "Ồ, thật tuyệt! ..." }
+    ]
+}
+```
+
+### Request tiếp theo (Gửi kèm session_id):
+```json
+{
+    "message": "Vậy tổng cộng nhà mình có bao nhiêu cái chân?",
+    "session_id": "8f3a2b1c-..."
+}
+```
+*Lưu ý: Bạn không cần gửi lại history, Backend sẽ tự tìm dựa trên `session_id`.*
+
+---
+
 ## Bảng mã lỗi thường gặp
 
 | Mã lỗi | Ý nghĩa | Cách khắc phục |

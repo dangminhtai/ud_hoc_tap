@@ -22,6 +22,13 @@ Hệ thống UdHocTap là một ứng dụng hỗ trợ học tập sử dụng 
     - Lưu trữ vào **Vector Database** (ChromaDB) để tìm kiếm ngữ nghĩa (Semantic Search).
     - Sử dụng mô hình **Gemini-2.0-Flash** để tổng hợp câu trả lời từ dữ liệu tìm được.
 
+### 2.4. Trợ lý Chat (Multi-turn Chat) - [NEW]
+- **Mục tiêu**: Tạo không gian trò chuyện liên tục, AI ghi nhớ lịch sử hội thoại.
+- **Kỹ thuật**: 
+    - Sử dụng tính năng `chats.create` của SDK `google-genai`.
+    - Lịch sử được duy trì theo danh sách các lượt `role` (user/model).
+    - Stateless: Client gửi kèm lịch sử trong mỗi request.
+
 ## 3. Yêu cầu kỹ thuật (Technical Requirements)
 
 ### 3.1. Backend
@@ -36,6 +43,7 @@ Hệ thống UdHocTap là một ứng dụng hỗ trợ học tập sử dụng 
 3. `POST /api/v1/generate-from-text`: Tạo thẻ từ text/URL.
 4. `POST /api/v1/explain-card`: Giải thích thẻ.
 5. `POST /api/v1/ask-knowledge`: [NEW] Hỏi đáp dựa trên bộ tri thức (RAG).
+6. `POST /api/v1/chat`: [NEW] Hội thoại đa lượt (Multi-turn).
 
 ## 4. Kế hoạch triển khai RAG (RAG Implementation Plan)
 1. **Tiền xử lý**: Viết script nạp dữ liệu từ `knowledges.json` vào ChromaDB khi server khởi động.
