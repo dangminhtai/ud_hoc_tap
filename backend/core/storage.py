@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -65,10 +66,22 @@ def init_db():
         FOREIGN KEY (record_id) REFERENCES notebook_records(id)
     )
     ''')
+
+    # --- Knowledge Base Files (Gemini File API) ---
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS kb_files (
+        id TEXT PRIMARY KEY,
+        kb_name TEXT,
+        file_name TEXT,
+        file_uri TEXT,
+        file_type TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
     
     conn.commit()
 
-    # --- Migration: Thêm cột nếu đã tồn tại bảng cũ ---
+    # --- Migration ---
     cursor.execute("PRAGMA table_info(chat_sessions)")
     columns = [col[1] for col in cursor.fetchall()]
     if "title" not in columns:
@@ -79,7 +92,8 @@ def init_db():
     conn.commit()
     conn.close()
 
-# --- Chat Storage Functions (Giữ nguyên các hàm đã có và tối ưu) ---
+# --- Functions ---
+
 def save_chat_message(session_id, role, text):
     conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
     cursor.execute("INSERT OR IGNORE INTO chat_sessions (id, title) VALUES (?, ?)", (session_id, "Cuộc trò chuyện mới"))
@@ -115,17 +129,12 @@ def delete_chat_session(session_id):
     cursor.execute("DELETE FROM chat_sessions WHERE id = ?", (session_id,))
     conn.commit(); conn.close(); return True
 
-# --- Notebook & Flashcard Storage Functions ---
-
+# Notebooks
 def create_notebook(name, description="", tags=[]):
-    nb_id = str(uuid.uuid4()) if 'uuid' in globals() else str(datetime.now().timestamp())
-    import uuid as uuid_lib # Đảm bảo có uuid
+    import uuid as uuid_lib
     nb_id = str(uuid_lib.uuid4())
     conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO notebooks (id, name, description, tags) VALUES (?, ?, ?, ?)",
-        (nb_id, name, description, json.dumps(tags))
-    )
+    cursor.execute("INSERT INTO notebooks (id, name, description, tags) VALUES (?, ?, ?, ?)", (nb_id, name, description, json.dumps(tags)))
     conn.commit(); conn.close(); return nb_id
 
 def get_notebooks():
@@ -138,35 +147,39 @@ def get_notebooks():
         notebooks.append({"id": r[0], "name": r[1], "description": r[2], "tags": json.loads(r[3] or "[]"), "created_at": r[4], "record_count": cursor.fetchone()[0]})
     conn.close(); return notebooks
 
-def add_notebook_record(notebook_ids, record_type, title, summary, user_query, output, kb_name):
-    import uuid as uuid_lib
-    rec_id = str(uuid_lib.uuid4())
-    conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO notebook_records (id, record_type, title, summary, user_query, output, kb_name) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (rec_id, record_type, title, summary, user_query, output, kb_name)
-    )
-    for nb_id in notebook_ids:
-        cursor.execute("INSERT INTO notebook_record_map (notebook_id, record_id) VALUES (?, ?)", (nb_id, rec_id))
-        cursor.execute("UPDATE notebooks SET updated_at = CURRENT_TIMESTAMP WHERE id = ?", (nb_id,))
-    conn.commit(); conn.close(); return rec_id
-
 def get_notebook_detail(nb_id):
     conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
     cursor.execute("SELECT id, name, description, tags, created_at FROM notebooks WHERE id = ?", (nb_id,))
     nb = cursor.fetchone()
     if not nb: conn.close(); return None
-    
-    cursor.execute('''
-        SELECT r.id, r.record_type, r.title, r.summary, r.user_query, r.output, r.kb_name, r.created_at
-        FROM notebook_records r
-        JOIN notebook_record_map m ON r.id = m.record_id
-        WHERE m.notebook_id = ?
-        ORDER BY r.created_at DESC
-    ''', (nb_id,))
+    cursor.execute("SELECT r.id, r.record_type, r.title, r.summary, r.user_query, r.output, r.kb_name, r.created_at FROM notebook_records r JOIN notebook_record_map m ON r.id = m.record_id WHERE m.notebook_id = ? ORDER BY r.created_at DESC", (nb_id,))
     records = [{"id": r[0], "record_type": r[1], "title": r[2], "summary": r[3], "user_query": r[4], "output": r[5], "kb_name": r[6], "created_at": r[7]} for r in cursor.fetchall()]
     conn.close()
     return {"id": nb[0], "name": nb[1], "description": nb[2], "tags": json.loads(nb[3] or "[]"), "created_at": nb[4], "records": records}
 
-# Khởi tạo DB
+def add_notebook_record(notebook_ids, record_type, title, summary, user_query, output, kb_name):
+    import uuid as uuid_lib
+    rec_id = str(uuid_lib.uuid4())
+    conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
+    cursor.execute("INSERT INTO notebook_records (id, record_type, title, summary, user_query, output, kb_name) VALUES (?, ?, ?, ?, ?, ?, ?)", (rec_id, record_type, title, summary, user_query, output, kb_name))
+    for nb_id in notebook_ids:
+        cursor.execute("INSERT INTO notebook_record_map (notebook_id, record_id) VALUES (?, ?)", (nb_id, rec_id))
+        cursor.execute("UPDATE notebooks SET updated_at = CURRENT_TIMESTAMP WHERE id = ?", (nb_id,))
+    conn.commit(); conn.close(); return rec_id
+
+# Knowledge Base Files
+def save_kb_file(kb_name, file_name, file_uri, file_type):
+    import uuid as uuid_lib
+    f_id = str(uuid_lib.uuid4())
+    conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
+    cursor.execute("INSERT INTO kb_files (id, kb_name, file_name, file_uri, file_type) VALUES (?, ?, ?, ?, ?)", (f_id, kb_name, file_name, file_uri, file_type))
+    conn.commit(); conn.close(); return f_id
+
+def get_kb_files(kb_name):
+    conn = sqlite3.connect(DB_PATH); cursor = conn.cursor()
+    cursor.execute("SELECT file_name, file_uri, file_type FROM kb_files WHERE kb_name = ?", (kb_name,))
+    rows = cursor.fetchall(); conn.close()
+    return [{"file_name": r[0], "file_uri": r[1], "file_type": r[2]} for r in rows]
+
+# Init
 init_db()

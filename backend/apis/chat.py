@@ -60,19 +60,27 @@ async def websocket_chat(websocket: WebSocket):
         
         context = ""
         sources = []
+        gemini_files = []
+        
         if enable_rag:
             await websocket.send_json({
                 "type": "status",
                 "stage": "searching",
                 "message": f"Đang tìm kiếm trong '{kb_name or 'tri thức'}'..."
             })
+            
+            # 1. Tìm trong ChromaDB (Dữ liệu mặc định)
             context, sources = get_relevant_context(user_message)
+            
+            # 2. Tìm các file Gemini tương ứng với kb_name (Dữ liệu người dùng upload)
+            from core.storage import get_kb_files
+            kb_files = get_kb_files(kb_name or "default")
+            for f in kb_files:
+                gemini_files.append(types.Part(file_data=types.FileData(file_uri=f["file_uri"], mime_type=f["file_type"])))
 
         db_history = get_chat_history(session_id)
         gemini_history = []
         for msg in db_history:
-            # Map "model" (Gemini) to "assistant" (Mobile expectations) if needed, 
-            # but Gemini SDK uses "model".
             gemini_history.append(
                 types.Content(role=msg["role"], parts=[types.Part(text=msg["text"])])
             )
@@ -83,7 +91,9 @@ async def websocket_chat(websocket: WebSocket):
 
         system_instruction = "Bạn là một trợ lý học tập thông minh. Trả lời bằng tiếng Việt, thân thiện."
         if context:
-            system_instruction += f"\nSử dụng NGỮ CẢNH sau để trả lời nếu liên quan:\n{context}"
+            system_instruction += f"\nSử dụng NGỮ CẢNH từ ChromaDB sau để trả lời:\n{context}"
+        if gemini_files:
+            system_instruction += "\nNgoài ra, tôi đã đính kèm các tài liệu PDF/TXT từ Knowledge Base. Hãy đọc chúng để trả lời chính xác nhất."
 
         chat_session = client.chats.create(
             model="gemini-3.1-flash-lite-preview",
@@ -104,7 +114,9 @@ async def websocket_chat(websocket: WebSocket):
                 "message": "AI đang suy nghĩ..."
             })
             
-            response_stream = chat_session.send_message_stream(user_message)
+            # Gửi tin nhắn kèm theo references tới files nếu có
+            message_content = [user_message] + gemini_files
+            response_stream = chat_session.send_message_stream(message_content)
             
             for chunk in response_stream:
                 if chunk.text:
