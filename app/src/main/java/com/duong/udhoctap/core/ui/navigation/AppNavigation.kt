@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.automirrored.filled.*
+import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -101,7 +103,7 @@ val bottomNavItems = listOf(
     BottomNavItem(Screen.Home,     "Trang chủ", Icons.Filled.Home,         Icons.Outlined.Home),
     BottomNavItem(Screen.AiHub,    "AI Studio", Icons.Filled.AutoAwesome,  Icons.Outlined.AutoAwesome),
     BottomNavItem(Screen.Stats,    "Thống kê",  Icons.Filled.BarChart,     Icons.Outlined.BarChart),
-    BottomNavItem(Screen.Library,  "Thư viện",  Icons.Filled.LibraryBooks, Icons.Outlined.LibraryBooks),
+    BottomNavItem(Screen.Library,  "Thư viện",  Icons.AutoMirrored.Filled.LibraryBooks, Icons.AutoMirrored.Outlined.LibraryBooks),
     BottomNavItem(Screen.Settings, "Cài đặt",   Icons.Filled.Settings,     Icons.Outlined.Settings)
 )
 

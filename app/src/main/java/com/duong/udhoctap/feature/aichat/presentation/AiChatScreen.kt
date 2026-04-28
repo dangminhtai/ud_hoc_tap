@@ -11,6 +11,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.automirrored.filled.*
+import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,6 +31,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.duong.udhoctap.core.network.dto.ChatMessage
 import com.duong.udhoctap.core.ui.theme.*
 import dev.jeziellago.compose.markdowntext.MarkdownText
+import com.duong.udhoctap.core.ui.components.LatexMarkdownViewer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,7 +58,7 @@ fun AiChatScreen(
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) { Icon(Icons.Filled.ArrowBack, "Back") }
+                    IconButton(onClick = onNavigateBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") }
                 },
                 actions = {
                     IconButton(onClick = { viewModel.loadSessionHistory(); showHistory = true }) {
@@ -133,7 +136,7 @@ fun AiChatScreen(
                                 Text(session.title ?: "Cuộc trò chuyện #${session.sessionId.take(6)}", maxLines = 1, overflow = TextOverflow.Ellipsis)
                             },
                             supportingContent = { Text("${session.messageCount ?: 0} tin nhắn", style = MaterialTheme.typography.labelSmall) },
-                            leadingContent = { Icon(Icons.Default.Chat, null, tint = MaterialTheme.colorScheme.primary) },
+                            leadingContent = { Icon(Icons.AutoMirrored.Filled.Chat, null, tint = MaterialTheme.colorScheme.primary) },
                             trailingContent = {
                                 IconButton(onClick = { viewModel.deleteSession(session.sessionId) }, modifier = Modifier.size(32.dp)) {
                                     Icon(Icons.Default.Delete, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
@@ -178,7 +181,14 @@ private fun ChatBubble(message: ChatMessage) {
                 } else if (isUser) {
                     Text(message.content, color = MaterialTheme.colorScheme.onPrimary, style = MaterialTheme.typography.bodyMedium)
                 } else {
-                    MarkdownText(markdown = message.content, style = TextStyle(color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp))
+                    if (message.content.contains("$") || message.content.contains("\\")) {
+                        LatexMarkdownViewer(
+                            content = message.content, 
+                            modifier = Modifier.fillMaxWidth().heightIn(min = 20.dp, max = 500.dp)
+                        )
+                    } else {
+                        MarkdownText(markdown = message.content, style = TextStyle(color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp))
+                    }
                     if (message.isStreaming) { Spacer(Modifier.height(4.dp)); StreamingCursor() }
                 }
             }
@@ -274,7 +284,7 @@ private fun ChatInputBar(
                     colors = IconButtonDefaults.filledIconButtonColors(containerColor = Purple60)
                 ) {
                     if (isStreaming) CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp, color = Color.White)
-                    else Icon(Icons.Filled.Send, null, tint = Color.White)
+                    else Icon(Icons.AutoMirrored.Filled.Send, null, tint = Color.White)
                 }
             }
         }
