@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-enum class ConnectionStatus { IDLE, CONNECTING, STREAMING, DONE, ERROR }
+enum class ConnectionStatus { IDLE, CONNECTING, THINKING, STREAMING, DONE, ERROR }
 
 data class AiChatUiState(
     val messages: List<ChatMessage> = emptyList(),
@@ -23,7 +23,8 @@ data class AiChatUiState(
     val sessionId: String? = null,
     val enableRag: Boolean = false,
     val enableWebSearch: Boolean = false,
-    val kbName: String = "",
+    val selectedKbs: Set<String> = setOf("default"),
+    val availableKbs: List<com.duong.udhoctap.core.network.dto.KbItemDto> = emptyList(),
     val error: String? = null,
     // Session history
     val sessions: List<SessionDto> = emptyList(),
@@ -42,6 +43,19 @@ class AiChatViewModel @Inject constructor(
     private var streamingJob: Job? = null
     private var streamingMessageIndex: Int = -1
 
+    init {
+        loadAvailableKbs()
+    }
+
+    fun loadAvailableKbs() {
+        viewModelScope.launch {
+            try {
+                val kbs = backendApi.listKbs()
+                _uiState.update { it.copy(availableKbs = kbs) }
+            } catch (_: Exception) {}
+        }
+    }
+
     fun sendMessage(text: String) {
         if (text.isBlank()) return
         streamingJob?.cancel()
@@ -56,16 +70,17 @@ class AiChatViewModel @Inject constructor(
         }
 
         streamingJob = viewModelScope.launch {
+            // Chuyển Set sang List để gửi qua WebSocket
             chatRepository.chat(
                 message = text,
                 sessionId = state.sessionId,
                 enableRag = state.enableRag,
                 enableWebSearch = state.enableWebSearch,
-                kbName = state.kbName
+                kbNames = state.selectedKbs.toList()
             ).collect { event ->
                 when (event) {
                     is ChatEvent.Session -> _uiState.update { it.copy(sessionId = event.sessionId) }
-                    is ChatEvent.Status -> _uiState.update { it.copy(status = ConnectionStatus.STREAMING, statusMessage = event.message) }
+                    is ChatEvent.Status -> _uiState.update { it.copy(status = ConnectionStatus.THINKING, statusMessage = event.message) }
                     is ChatEvent.Stream -> _uiState.update { state ->
                         val msgs = state.messages.toMutableList()
                         if (streamingMessageIndex < msgs.size) {
@@ -81,7 +96,20 @@ class AiChatViewModel @Inject constructor(
                         }
                         state.copy(messages = msgs, status = ConnectionStatus.DONE, statusMessage = "")
                     }
-                    is ChatEvent.AppError -> _uiState.update { it.copy(status = ConnectionStatus.ERROR, error = event.message) }
+                    is ChatEvent.Sources -> _uiState.update { state ->
+                        val msgs = state.messages.toMutableList()
+                        if (streamingMessageIndex < msgs.size) {
+                            val current = msgs[streamingMessageIndex]
+                            msgs[streamingMessageIndex] = current.copy(
+                                sources = mapOf(
+                                    "rag" to event.rag,
+                                    "web" to event.web
+                                )
+                            )
+                        }
+                        state.copy(messages = msgs)
+                    }
+                    is ChatEvent.AppError -> _uiState.update { it.copy(status = ConnectionStatus.ERROR, statusMessage = event.message, error = event.message) }
                     else -> Unit
                 }
             }
@@ -93,7 +121,6 @@ class AiChatViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val result = backendApi.listChatSessions(limit = 30)
-                // Convert FullChatSessionDto to SessionDto for display in history list
                 val sessions = result.sessions.map { s ->
                     SessionDto(
                         sessionId = s.sessionId,
@@ -117,7 +144,7 @@ class AiChatViewModel @Inject constructor(
             try {
                 val full = backendApi.getChatSession(sessionDto.sessionId)
                 val settings = full.settings ?: emptyMap()
-                val kbName = settings["kb_name"] as? String ?: ""
+                val kbNames = (settings["kb_names"] as? List<*>)?.filterIsInstance<String>() ?: emptyList()
                 val enableRag = settings["enable_rag"] as? Boolean ?: false
                 val enableWeb = settings["enable_web_search"] as? Boolean ?: false
                 val messages = full.messages.map { msg ->
@@ -128,7 +155,7 @@ class AiChatViewModel @Inject constructor(
                         sessionId = full.sessionId,
                         enableRag = enableRag,
                         enableWebSearch = enableWeb,
-                        kbName = kbName,
+                        selectedKbs = kbNames.toSet().ifEmpty { setOf("default") },
                         messages = messages
                     )
                 }
@@ -149,11 +176,21 @@ class AiChatViewModel @Inject constructor(
 
     fun toggleRag() = _uiState.update { it.copy(enableRag = !it.enableRag) }
     fun toggleWebSearch() = _uiState.update { it.copy(enableWebSearch = !it.enableWebSearch) }
-    fun setKbName(name: String) = _uiState.update { it.copy(kbName = name) }
+    fun toggleKbSelection(name: String) {
+        _uiState.update { state ->
+            val current = state.selectedKbs.toMutableSet()
+            if (current.contains(name)) {
+                if (current.size > 1) current.remove(name) // Giữ lại ít nhất 1 cái hoặc cho phép rỗng tùy ý
+            } else {
+                current.add(name)
+            }
+            state.copy(selectedKbs = current)
+        }
+    }
     fun clearError() = _uiState.update { it.copy(error = null) }
     fun newSession() {
         streamingJob?.cancel()
-        _uiState.update { AiChatUiState(enableRag = it.enableRag, enableWebSearch = it.enableWebSearch, kbName = it.kbName) }
+        _uiState.update { AiChatUiState(enableRag = it.enableRag, enableWebSearch = it.enableWebSearch, selectedKbs = it.selectedKbs) }
     }
 
     override fun onCleared() {

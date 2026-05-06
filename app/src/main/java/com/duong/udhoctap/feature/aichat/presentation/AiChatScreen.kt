@@ -1,36 +1,33 @@
 package com.duong.udhoctap.feature.aichat.presentation
 
 import androidx.compose.animation.*
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.shape.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material.icons.automirrored.filled.*
-import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.duong.udhoctap.core.network.dto.ChatMessage
-import com.duong.udhoctap.core.ui.theme.*
-import dev.jeziellago.compose.markdowntext.MarkdownText
 import com.duong.udhoctap.core.ui.components.LatexMarkdownViewer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,13 +36,17 @@ fun AiChatScreen(
     onNavigateBack: () -> Unit,
     viewModel: AiChatViewModel = hiltViewModel()
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val listState = rememberLazyListState()
+    val state by viewModel.uiState.collectAsState()
     var inputText by remember { mutableStateOf("") }
+    val listState = rememberLazyListState()
     var showHistory by remember { mutableStateOf(false) }
+    var showKbSheet by remember { mutableStateOf(false) }
 
+    // Tự động cuộn xuống khi có tin nhắn mới
     LaunchedEffect(state.messages.size) {
-        if (state.messages.isNotEmpty()) listState.animateScrollToItem(state.messages.size - 1)
+        if (state.messages.isNotEmpty()) {
+            listState.animateScrollToItem(state.messages.size - 1)
+        }
     }
 
     Scaffold(
@@ -85,7 +86,9 @@ fun AiChatScreen(
                 enableRag = state.enableRag,
                 enableWebSearch = state.enableWebSearch,
                 onToggleRag = { viewModel.toggleRag() },
-                onToggleWeb = { viewModel.toggleWebSearch() }
+                onToggleWeb = { viewModel.toggleWebSearch() },
+                selectedKbs = state.selectedKbs,
+                onOpenKbSelect = { showKbSheet = true }
             )
         }
     ) { padding ->
@@ -105,144 +108,42 @@ fun AiChatScreen(
                 }
             }
 
-            state.error?.let { error ->
-                Snackbar(
-                    modifier = Modifier.align(Alignment.BottomCenter).padding(8.dp),
-                    action = { TextButton(onClick = { viewModel.clearError() }) { Text("OK") } }
-                ) { Text(error) }
-            }
-        }
-    }
-
-    // History sheet
-    if (showHistory) {
-        ModalBottomSheet(onDismissRequest = { showHistory = false }) {
-            Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 32.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(bottom = 12.dp)) {
-                    Icon(Icons.Default.History, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("Lịch sử cuộc trò chuyện", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                }
-                if (state.isLoadingHistory) {
-                    Box(modifier = Modifier.fillMaxWidth().height(80.dp), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
-                } else if (state.sessions.isEmpty()) {
-                    Text("Chưa có lịch sử", color = MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(vertical = 16.dp))
-                } else {
-                    state.sessions.forEach { session ->
-                        ListItem(
-                            headlineContent = {
-                                Text(session.title ?: "Cuộc trò chuyện #${session.sessionId.take(6)}", maxLines = 1, overflow = TextOverflow.Ellipsis)
-                            },
-                            supportingContent = { Text("${session.messageCount ?: 0} tin nhắn", style = MaterialTheme.typography.labelSmall) },
-                            leadingContent = { Icon(Icons.AutoMirrored.Filled.Chat, null, tint = MaterialTheme.colorScheme.primary) },
-                            trailingContent = {
-                                IconButton(onClick = { viewModel.deleteSession(session.sessionId) }, modifier = Modifier.size(32.dp)) {
-                                    Icon(Icons.Default.Delete, null, tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(16.dp))
+            if (showKbSheet) {
+                ModalBottomSheet(onDismissRequest = { showKbSheet = false }) {
+                    Column(modifier = Modifier.fillMaxWidth().padding(16.dp).padding(bottom = 32.dp)) {
+                        Text("Chọn nguồn tri thức (Có thể chọn nhiều)", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Spacer(Modifier.height(16.dp))
+                        state.availableKbs.forEach { kb ->
+                            val isSelected = state.selectedKbs.contains(kb.name)
+                            Row(
+                                modifier = Modifier.fillMaxWidth().clickable { viewModel.toggleKbSelection(kb.name) }.padding(vertical = 12.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Checkbox(checked = isSelected, onCheckedChange = { viewModel.toggleKbSelection(kb.name) })
+                                Spacer(Modifier.width(12.dp))
+                                Column {
+                                    Text(kb.name, style = MaterialTheme.typography.bodyLarge)
+                                    Text("${kb.fileCount} tài liệu", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                                 }
-                            },
-                            modifier = Modifier.clickable { viewModel.loadSession(session); showHistory = false }
-                        )
-                        HorizontalDivider()
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
 
-}
-
-@Composable
-private fun ChatBubble(message: ChatMessage) {
-    val isUser = message.role == "user"
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = if (isUser) Arrangement.End else Arrangement.Start
-    ) {
-        if (!isUser) {
-            Box(
-                modifier = Modifier.size(32.dp).clip(CircleShape).background(Brush.linearGradient(listOf(Purple60, Teal60))),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(Icons.Filled.AutoAwesome, null, tint = Color.White, modifier = Modifier.size(18.dp))
-            }
-            Spacer(Modifier.width(8.dp))
-        }
-        Surface(
-            shape = if (isUser) RoundedCornerShape(topStart = 16.dp, topEnd = 4.dp, bottomStart = 16.dp, bottomEnd = 16.dp)
-                    else RoundedCornerShape(topStart = 4.dp, topEnd = 16.dp, bottomStart = 16.dp, bottomEnd = 16.dp),
-            color = if (isUser) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-            modifier = Modifier.widthIn(max = 300.dp)
-        ) {
-            Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)) {
-                if (message.isStreaming && message.content.isEmpty()) {
-                    TypingIndicator()
-                } else if (isUser) {
-                    Text(message.content, color = MaterialTheme.colorScheme.onPrimary, style = MaterialTheme.typography.bodyMedium)
-                } else {
-                    if (message.content.contains("$") || message.content.contains("\\")) {
-                        LatexMarkdownViewer(
-                            content = message.content, 
-                            modifier = Modifier.fillMaxWidth().heightIn(min = 20.dp, max = 500.dp)
-                        )
-                    } else {
-                        MarkdownText(markdown = message.content, style = TextStyle(color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp))
-                    }
-                    if (message.isStreaming) { Spacer(Modifier.height(4.dp)); StreamingCursor() }
-                }
+            if (showHistory) {
+                ChatHistoryDialog(
+                    sessions = state.sessions,
+                    isLoading = state.isLoadingHistory,
+                    onSessionSelect = { 
+                        viewModel.loadSession(it)
+                        showHistory = false 
+                    },
+                    onDeleteSession = { viewModel.deleteSession(it) },
+                    onDismiss = { showHistory = false }
+                )
             }
         }
-        if (isUser) {
-            Spacer(Modifier.width(8.dp))
-            Box(
-                modifier = Modifier.size(32.dp).clip(CircleShape).background(MaterialTheme.colorScheme.secondaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(Icons.Filled.Person, null, modifier = Modifier.size(18.dp))
-            }
-        }
-    }
-}
-
-@Composable
-private fun TypingIndicator() {
-    val infiniteTransition = rememberInfiniteTransition(label = "typing")
-    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        repeat(3) { i ->
-            val scale by infiniteTransition.animateFloat(
-                initialValue = 0.6f, targetValue = 1f,
-                animationSpec = infiniteRepeatable(animation = keyframes { durationMillis = 600; 1f at 300 }, repeatMode = RepeatMode.Reverse, initialStartOffset = StartOffset(i * 120)),
-                label = "dot_$i"
-            )
-            Box(modifier = Modifier.size((8 * scale).dp).clip(CircleShape).background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)))
-        }
-    }
-}
-
-@Composable
-private fun StreamingCursor() {
-    val alpha by rememberInfiniteTransition(label = "cursor").animateFloat(
-        initialValue = 1f, targetValue = 0f,
-        animationSpec = infiniteRepeatable(animation = tween(500, easing = LinearEasing), repeatMode = RepeatMode.Reverse),
-        label = "cursor_alpha"
-    )
-    Box(modifier = Modifier.size(width = 2.dp, height = 14.dp).background(MaterialTheme.colorScheme.primary.copy(alpha = alpha)))
-}
-
-@Composable
-private fun ConnectionStatusIndicator(status: ConnectionStatus, message: String) {
-    val (color, label) = when (status) {
-        ConnectionStatus.IDLE       -> Pair(Color.Gray, "Sẵn sàng")
-        ConnectionStatus.CONNECTING -> Pair(Amber60, "Đang kết nối…")
-        ConnectionStatus.STREAMING  -> Pair(Green60, message.ifBlank { "Đang trả lời…" })
-        ConnectionStatus.DONE       -> Pair(Green60, "Hoàn thành")
-        ConnectionStatus.ERROR      -> Pair(Red60, "Lỗi")
-    }
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Box(modifier = Modifier.size(6.dp).clip(CircleShape).background(color))
-        Spacer(Modifier.width(4.dp))
-        Text(text = label, style = MaterialTheme.typography.labelSmall, color = color)
     }
 }
 
@@ -250,41 +151,65 @@ private fun ConnectionStatusIndicator(status: ConnectionStatus, message: String)
 private fun ChatInputBar(
     text: String, onTextChange: (String) -> Unit, onSend: () -> Unit,
     isStreaming: Boolean, enableRag: Boolean, enableWebSearch: Boolean,
-    onToggleRag: () -> Unit, onToggleWeb: () -> Unit
+    onToggleRag: () -> Unit, onToggleWeb: () -> Unit,
+    selectedKbs: Set<String>, onOpenKbSelect: () -> Unit
 ) {
     Surface(tonalElevation = 4.dp, shadowElevation = 4.dp) {
         Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 FilterChip(
                     selected = enableRag, onClick = onToggleRag,
                     label = { Text("RAG", style = MaterialTheme.typography.labelSmall) },
                     leadingIcon = if (enableRag) { { Icon(Icons.Filled.Check, null, modifier = Modifier.size(14.dp)) } } else null
                 )
+                
+                if (enableRag) {
+                    AssistChip(
+                        onClick = onOpenKbSelect,
+                        label = { 
+                            val label = if (selectedKbs.size == 1) selectedKbs.first() else "${selectedKbs.size} kho tri thức"
+                            Text(label, style = MaterialTheme.typography.labelSmall, maxLines = 1, overflow = TextOverflow.Ellipsis) 
+                        },
+                        trailingIcon = { Icon(Icons.Default.ArrowDropDown, null, modifier = Modifier.size(16.dp)) },
+                        colors = AssistChipDefaults.assistChipColors(labelColor = MaterialTheme.colorScheme.primary)
+                    )
+                }
+
                 FilterChip(
                     selected = enableWebSearch, onClick = onToggleWeb,
                     label = { Text("Web", style = MaterialTheme.typography.labelSmall) },
                     leadingIcon = if (enableWebSearch) { { Icon(Icons.Filled.Check, null, modifier = Modifier.size(14.dp)) } } else null
                 )
             }
-            Spacer(Modifier.height(6.dp))
-            Row(verticalAlignment = Alignment.Bottom) {
-                OutlinedTextField(
-                    value = text, onValueChange = onTextChange,
+
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                TextField(
+                    value = text,
+                    onValueChange = onTextChange,
+                    placeholder = { Text("Hỏi AI bất cứ điều gì...") },
                     modifier = Modifier.weight(1f),
-                    placeholder = { Text("Hỏi bất kỳ điều gì…") },
-                    maxLines = 4,
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-                    keyboardActions = KeyboardActions(onSend = { onSend() }),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Purple60, unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        unfocusedContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
+                    ),
+                    maxLines = 4
                 )
-                Spacer(Modifier.width(8.dp))
-                FilledIconButton(
-                    onClick = onSend, enabled = text.isNotBlank() && !isStreaming,
-                    colors = IconButtonDefaults.filledIconButtonColors(containerColor = Purple60)
+
+                IconButton(
+                    onClick = onSend,
+                    enabled = !isStreaming && text.isNotBlank(),
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .clip(CircleShape)
+                        .background(if (text.isNotBlank()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant)
                 ) {
-                    if (isStreaming) CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp, color = Color.White)
-                    else Icon(Icons.AutoMirrored.Filled.Send, null, tint = Color.White)
+                    if (isStreaming) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = MaterialTheme.colorScheme.onPrimary, strokeWidth = 2.dp)
+                    } else {
+                        Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = MaterialTheme.colorScheme.onPrimary)
+                    }
                 }
             }
         }
@@ -292,12 +217,145 @@ private fun ChatInputBar(
 }
 
 @Composable
-private fun EmptyChatPlaceholder() {
-    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        Icon(Icons.Outlined.ChatBubbleOutline, null, modifier = Modifier.size(64.dp), tint = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+fun ChatBubble(message: ChatMessage) {
+    val isUser = message.role == "user"
+    val bubbleColor = if (isUser) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+    val textColor = if (isUser) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+    val alignment = if (isUser) Alignment.End else Alignment.Start
+    val shape = RoundedCornerShape(
+        topStart = 16.dp,
+        topEnd = 16.dp,
+        bottomStart = if (isUser) 16.dp else 4.dp,
+        bottomEnd = if (isUser) 4.dp else 16.dp
+    )
+
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = alignment) {
+        Surface(
+            color = bubbleColor,
+            shape = shape,
+            tonalElevation = 2.dp
+        ) {
+            Column(modifier = Modifier.padding(12.dp)) {
+                if (isUser) {
+                    Text(text = message.content, color = textColor, style = MaterialTheme.typography.bodyLarge)
+                } else {
+                    LatexMarkdownViewer(content = message.content, modifier = Modifier.widthIn(max = 300.dp))
+                    
+                    // Hiển thị nguồn tham khảo
+                    val context = LocalContext.current
+                    message.sources?.let { sources ->
+                        val rag = sources["rag"] ?: emptyList()
+                        val web = sources["web"] ?: emptyList()
+                        
+                        if (rag.isNotEmpty() || web.isNotEmpty()) {
+                            HorizontalDivider(
+                                modifier = Modifier.padding(vertical = 8.dp),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f)
+                            )
+                            Text("Nguồn tham khảo:", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
+                            
+                            // Nguồn RAG
+                            rag.forEach { s ->
+                                Text("• ${s["title"]}", style = MaterialTheme.typography.labelSmall)
+                            }
+                            
+                            // Nguồn Web
+                            web.forEach { s ->
+                                val title = s["title"] as? String ?: "Nguồn tin"
+                                val url = s["url"] as? String ?: ""
+                                Text(
+                                    text = "• $title",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.clickable { 
+                                        if (url.isNotEmpty()) {
+                                            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
+                                            context.startActivity(intent)
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ConnectionStatusIndicator(status: ConnectionStatus, message: String) {
+    val color = when (status) {
+        ConnectionStatus.CONNECTING -> Color.Blue
+        ConnectionStatus.THINKING -> Color(0xFFFFC107) // Yellow/Amber
+        ConnectionStatus.STREAMING -> Color.Green
+        ConnectionStatus.ERROR -> Color.Red
+        else -> Color.Gray
+    }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(color))
+        Spacer(Modifier.width(4.dp))
+        Text(text = if (message.isNotEmpty()) message else status.name, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+@Composable
+fun EmptyChatPlaceholder() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(Icons.Filled.Chat, null, modifier = Modifier.size(64.dp), tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
         Spacer(Modifier.height(16.dp))
-        Text("Bắt đầu cuộc trò chuyện", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
-        Spacer(Modifier.height(8.dp))
-        Text("Hỏi bất kỳ câu hỏi nào về tài liệu học tập của bạn", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
+        Text("Bắt đầu đặt câu hỏi cho AI", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Tôi có thể giúp bạn giải bài tập, tóm tắt tài liệu...", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f))
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ChatHistoryDialog(
+    sessions: List<com.duong.udhoctap.core.network.dto.SessionDto>,
+    isLoading: Boolean,
+    onSessionSelect: (com.duong.udhoctap.core.network.dto.SessionDto) -> Unit,
+    onDeleteSession: (String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    ModalBottomSheet(onDismissRequest = onDismiss) {
+        Column(modifier = Modifier.fillMaxWidth().padding(16.dp).padding(bottom = 32.dp)) {
+            Text("Lịch sử trò chuyện", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.height(16.dp))
+            
+            if (isLoading) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+            } else if (sessions.isEmpty()) {
+                Text("Chưa có cuộc trò chuyện nào", modifier = Modifier.align(Alignment.CenterHorizontally))
+            } else {
+                LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(sessions) { session ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
+                                .clickable { onSessionSelect(session) }
+                                .padding(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.ChatBubbleOutline, null, modifier = Modifier.size(20.dp))
+                            Spacer(Modifier.width(12.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(session.title ?: "Trò chuyện không tên", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                Text("${session.messageCount} tin nhắn", style = MaterialTheme.typography.labelSmall)
+                            }
+                            IconButton(onClick = { onDeleteSession(session.sessionId) }) {
+                                Icon(Icons.Default.Delete, null, tint = MaterialTheme.colorScheme.error)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

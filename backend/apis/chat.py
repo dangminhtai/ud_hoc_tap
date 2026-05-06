@@ -51,7 +51,9 @@ async def websocket_chat(websocket: WebSocket):
         session_id = payload.get("session_id") or str(uuid.uuid4())
         enable_rag = payload.get("enable_rag", False)
         enable_web_search = payload.get("enable_web_search", False)
-        kb_name = payload.get("kb_name", "")
+        # Chấp nhận cả chuỗi đơn hoặc danh sách các kho tri thức
+        kb_selection = payload.get("kb_names") or payload.get("kb_name") or []
+        kb_names = [kb_selection] if isinstance(kb_selection, str) else kb_selection
         
         await websocket.send_json({
             "type": "session",
@@ -63,20 +65,22 @@ async def websocket_chat(websocket: WebSocket):
         gemini_files = []
         
         if enable_rag:
+            kb_display = ", ".join(kb_names) if kb_names else "tri thức mặc định"
             await websocket.send_json({
                 "type": "status",
                 "stage": "searching",
-                "message": f"Đang tìm kiếm trong '{kb_name or 'tri thức'}'..."
+                "message": f"Đang tìm kiếm trong '{kb_display}'..."
             })
             
-            # 1. Tìm trong ChromaDB (Dữ liệu mặc định)
+            # 1. Tìm trong ChromaDB (Dữ liệu mặc định - luôn tìm nếu bật RAG)
             context, sources = get_relevant_context(user_message)
             
-            # 2. Tìm các file Gemini tương ứng với kb_name (Dữ liệu người dùng upload)
+            # 2. Tìm tất cả các file Gemini từ các kho tri thức đã chọn
             from core.storage import get_kb_files
-            kb_files = get_kb_files(kb_name or "default")
-            for f in kb_files:
-                gemini_files.append(types.Part(file_data=types.FileData(file_uri=f["file_uri"], mime_type=f["file_type"])))
+            for name in kb_names:
+                kb_files = get_kb_files(name)
+                for f in kb_files:
+                    gemini_files.append(types.Part(file_data=types.FileData(file_uri=f["file_uri"], mime_type=f["file_type"])))
 
         db_history = get_chat_history(session_id)
         gemini_history = []
@@ -95,14 +99,24 @@ async def websocket_chat(websocket: WebSocket):
         if gemini_files:
             system_instruction += "\nNgoài ra, tôi đã đính kèm các tài liệu PDF/TXT từ Knowledge Base. Hãy đọc chúng để trả lời chính xác nhất."
 
-        chat_session = client.chats.create(
-            model="gemini-3.1-flash-lite-preview",
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction,
-                tools=tools
-            ),
-            history=gemini_history
-        )
+        model_name = "gemini-2.5-flash-lite"
+        try:
+            print(f"DEBUG: Đang khởi tạo model {model_name} với tools: {tools}")
+            chat_session = client.chats.create(
+                model=model_name,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    tools=tools
+                ),
+                history=gemini_history
+            )
+        except Exception as e:
+            print(f"DEBUG: Lỗi khi tạo phiên chat: {str(e)}")
+            await websocket.send_json({
+                "type": "error",
+                "message": f"Lỗi khởi tạo Chat: {str(e)}"
+            })
+            return
 
         save_chat_message(session_id, "user", user_message)
 
@@ -116,26 +130,47 @@ async def websocket_chat(websocket: WebSocket):
             
             # Gửi tin nhắn kèm theo references tới files nếu có
             message_content = [user_message] + gemini_files
+            full_response_text = ""
+            grounding_metadata = None
+            print(f"DEBUG: Đang gửi tin nhắn tới Gemini... (RAG: {enable_rag}, Search: {enable_web_search})")
+            
             response_stream = chat_session.send_message_stream(message_content)
             
             for chunk in response_stream:
+                print(f"DEBUG: Nhận chunk: {chunk}")
                 if chunk.text:
                     full_response_text += chunk.text
                     await websocket.send_json({
                         "type": "stream",
                         "content": chunk.text
                     })
+                # Lưu lại metadata từ chunk có chứa nó
+                if chunk.candidates and chunk.candidates[0].grounding_metadata:
+                    grounding_metadata = chunk.candidates[0].grounding_metadata
+                    print("DEBUG: Đã nhận Grounding Metadata từ Google Search")
+            
+            print(f"DEBUG: Kết thúc stream. Tổng độ dài văn bản: {len(full_response_text)}")
             
             await websocket.send_json({
                 "type": "result",
                 "content": full_response_text
             })
             
-            if sources:
+            # Trích xuất nguồn tin cậy
+            web_sources = []
+            if grounding_metadata and grounding_metadata.grounding_chunks:
+                for chunk in grounding_metadata.grounding_chunks:
+                    if chunk.web:
+                        web_sources.append({
+                            "title": chunk.web.title or "Nguồn tin",
+                            "url": chunk.web.uri
+                        })
+
+            if sources or web_sources:
                 await websocket.send_json({
                     "type": "sources",
                     "rag": [{"title": s} for s in sources],
-                    "web": []
+                    "web": web_sources
                 })
 
             save_chat_message(session_id, "model", full_response_text)

@@ -15,6 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
+import org.json.JSONArray
 import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,7 +40,7 @@ class AiChatRepository @Inject constructor(
         sessionId: String? = null,
         enableRag: Boolean = false,
         enableWebSearch: Boolean = false,
-        kbName: String = ""
+        kbNames: List<String> = emptyList()
     ): Flow<ChatEvent> = callbackFlow {
 
         val request = Request.Builder().url(WS_URL).build()
@@ -51,7 +52,7 @@ class AiChatRepository @Inject constructor(
                 val payload = JSONObject().apply {
                     put("message", message)
                     if (sessionId != null) put("session_id", sessionId)
-                    put("kb_name", kbName)
+                    put("kb_names", JSONArray(kbNames))
                     put("enable_rag", enableRag)
                     put("enable_web_search", enableWebSearch)
                 }

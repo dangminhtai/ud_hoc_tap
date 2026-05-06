@@ -39,7 +39,8 @@ sealed class ChatEvent {
 data class ChatMessage(
     val role: String,      // "user" | "assistant"
     val content: String,
-    val isStreaming: Boolean = false
+    val isStreaming: Boolean = false,
+    val sources: Map<String, List<Map<String, Any?>>>? = null
 )
 
 // ─────────────────────────────────────────────────
